@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwitlyDHT
+@testable import SwiftlyDHT
 
 final class SwitlyDHTTests: XCTestCase {
     func testExample() throws {
