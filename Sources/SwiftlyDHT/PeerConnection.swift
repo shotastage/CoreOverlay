@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import MultipeerConnectivity
 import Network
 
 class SocketClient {
