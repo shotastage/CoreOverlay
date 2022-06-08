@@ -1,3 +1,3 @@
 # SwitlyDHT
 
-A description of this package.
+This library provides protocol implementation for Swift-based software.
