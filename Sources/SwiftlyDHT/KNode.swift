@@ -8,17 +8,31 @@
 import Foundation
 import Dispatch
 
-open class KNode {
 
+public protocol KademliaNode {
+    func ping()
+    func findNode()
+    func store()
+    func findValue()
+}
+
+open class KNode: KademliaNode {
     public init() {
-        
     }
 
     public func ping() {
-        
+        KDHTLogger.info("PING")
     }
 
     public func findNode() {
-        
+        KDHTLogger.info("FIND_NODE")
+    }
+
+    public func store() {
+        KDHTLogger.info("STORE")
+    }
+    
+    public func findValue() {
+        KDHTLogger.info("FIND_VALUE")
     }
 }
