@@ -1,5 +1,5 @@
 //
-//  KNode.swift
+//  SCNode.swift
 //  
 //
 //  Created by Shota Shimazu on 2022/06/07.
@@ -16,7 +16,7 @@ public protocol KademliaNode {
     func findValue()
 }
 
-open class KNode: KademliaNode {
+open class SCCNode: KademliaNode {
     public init() {
     }
 

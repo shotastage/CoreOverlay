@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Math.swift
 //  
 //
 //  Created by Shota Shimazu on 2022/06/07.
@@ -9,7 +9,7 @@ import Foundation
 
 
 open class SwiftlyDHTMath {
-    
+
     public static func hummingDistance(_ x: Int, _ y: Int) -> Int {
         var diff = x ^ y
         var count = 0

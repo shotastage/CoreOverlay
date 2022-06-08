@@ -9,7 +9,7 @@ import Foundation
 import Network
 
 class SocketClient {
-    
+
     var conn: NWConnection?
 
     init(ip: String, port: UInt16) {
@@ -38,7 +38,7 @@ class SocketClient {
                 fatalError("Illegal state")
             }
         }
-    
+
         let queue = DispatchQueue(label: "udp_socket_connection")
         conn?.start(queue:queue)
 
