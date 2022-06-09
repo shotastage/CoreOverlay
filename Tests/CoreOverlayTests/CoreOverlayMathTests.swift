@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SwiftlyDHT
+@testable import CoreOverlay
 
 final class UtilFuncsTests: XCTestCase {
     func testXORDistance1() throws {

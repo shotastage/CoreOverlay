@@ -1,27 +1,21 @@
 //
-//  SCNode.swift
+//  File.swift
 //  
 //
-//  Created by Shota Shimazu on 2022/06/07.
+//  Created by Shota Shimazu on 2022/06/08.
 //
 
 import Foundation
-import Dispatch
 
 
-public protocol KademliaNode {
-    func ping()
-    func findNode()
-    func store()
-    func findValue()
-}
+public actor Kademlia {
+    let nodeId: String = ""
+    let k: Int = 1
+    let kbuckets: [[SocketClient]] = [[ SocketClient(ip: "192.16.8.1", port: 8080) ]]
 
-open class SCCNode: KademliaNode {
-    public init() {
-    }
 
     public func ping() {
-        KDHTLogger.info("PING")
+        KDHTLogger.info("ping")
     }
 
     public func findNode() {

@@ -1,3 +1,3 @@
-# SwitlyDHT
+# CoreOverlay
 
 This library provides protocol implementation for Swift-based software.

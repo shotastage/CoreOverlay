@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftlyDHT",
+    name: "CoreOverlay",
     platforms: [
         .macCatalyst(.v13),
         .macOS(.v11),
@@ -15,8 +15,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "SwiftlyDHT",
-            targets: ["SwiftlyDHT"]),
+            name: "CoreOverlay",
+            targets: ["CoreOverlay"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -35,10 +35,10 @@ let package = Package(
             name: "Libs"
         ),
         .target(
-            name: "SwiftlyDHT",
+            name: "CoreOverlay",
             dependencies: ["CommonCrypt", "Libs"]),
         .testTarget(
-            name: "SwiftlyDHTTests",
-            dependencies: ["SwiftlyDHT"]),
+            name: "CoreOverlayTests",
+            dependencies: ["CoreOverlay"]),
     ]
 )
