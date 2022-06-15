@@ -1,5 +1,5 @@
 //
-//  SCNode.swift
+//  KHNode.swift
 //  
 //
 //  Created by Shota Shimazu on 2022/06/07.
@@ -16,7 +16,15 @@ public protocol KademliaNode {
     func findValue()
 }
 
+public enum NetworkType {
+    case `super`
+    case communicative
+}
+
 open class OverlayNode: KademliaNode {
+
+    var networkType: NetworkType = .super
+
     public init() {
     }
 
