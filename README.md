@@ -2,4 +2,12 @@
 
 >> Now under construction...
 
-This library provides protocol implementation for Swift-based software.
+This framework provides utilities that make or integrate structured overlay network.
+
+
+## Overlay Feature
+
+- Kademlia Based Protocol
+- Fast consensus algs
+- Abstracted P2P IO
+
