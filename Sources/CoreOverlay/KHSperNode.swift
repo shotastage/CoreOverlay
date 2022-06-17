@@ -9,8 +9,13 @@ import Foundation
 
 
 public class KSuperNode {
-    
+
     func initializeSuperNode() {
-        
+        let messgae = ""
+        print("Initilaze Super Node to: \(messgae)")
+    }
+
+    func findNearestNode() {
+        // -
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import Network
 
 
-class SocketClient {
+open class SocketClient {
 
     var conn: NWConnection?
 
