@@ -15,7 +15,7 @@ class CommonCryptoAlgorithm {
     public static func sha1(data: Data) -> String {
         let length = Int(CC_SHA1_DIGEST_LENGTH)
         var digest = Array<UInt8>(repeating: 0, count: length)
-            
+
         let nsData = data as NSData
         CC_SHA1(nsData.bytes, CC_LONG(data.count), &digest)
         return digest.map { String(format: "%02x", $0) }.reduce("", +)

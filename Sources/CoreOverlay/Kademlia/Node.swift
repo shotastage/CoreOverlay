@@ -1,20 +1,12 @@
 //
-//  KHNode.swift
+//  File.swift
 //  
 //
-//  Created by Shota Shimazu on 2022/06/07.
+//  Created by Shota Shimazu on 2022/06/22.
 //
 
 import Foundation
-import Dispatch
 
-
-public protocol KademliaNode {
-    func ping()
-    func findNode()
-    func store()
-    func findValue()
-}
 
 public enum NetworkType {
     case `super`
