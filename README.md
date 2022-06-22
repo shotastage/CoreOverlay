@@ -1,6 +1,8 @@
 # CoreOverlay
 
->> Now under construction...
+![Made In Yokohama](https://made-in-yokohama.herokuapp.com/normal)
+
+>> This framework is now under construction...
 
 This framework provides utilities that make or integrate structured overlay network.
 
@@ -10,5 +12,3 @@ This framework provides utilities that make or integrate structured overlay netw
 - Kademlia Based Protocol
 - Fast consensus algs
 - Abstracted P2P IO
-
-![Made In Yokohama](https://made-in-yokohama.herokuapp.com/)
