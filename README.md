@@ -1,7 +1,5 @@
 # CoreOverlay
 
-![Made In Yokohama](https://made-in-yokohama.herokuapp.com/)
-
 >> Now under construction...
 
 This framework provides utilities that make or integrate structured overlay network.
@@ -13,3 +11,4 @@ This framework provides utilities that make or integrate structured overlay netw
 - Fast consensus algs
 - Abstracted P2P IO
 
+![Made In Yokohama](https://made-in-yokohama.herokuapp.com/)
