@@ -1,0 +1,5 @@
+module CLevelDB [system] {
+  header "/usr/local/include/leveldb/c.h"
+  link "leveldb"
+  export *
+}
