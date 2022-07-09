@@ -17,6 +17,7 @@ let package = Package(
         .library(
             name: "CoreOverlay",
             targets: ["CoreOverlay"]),
+        .library(name: "CLevelDB", targets: ["CLevelDB"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.

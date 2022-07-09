@@ -9,3 +9,11 @@ public struct CoreOverlay {
     public init() {
     }
 }
+
+#if DEBUG
+class Show {
+    func show() {
+        print("CoreOverlay")
+    }
+}
+#endif
