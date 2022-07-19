@@ -1,42 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "bencode",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bluk/bencode.git",
-      "state" : {
-        "revision" : "530252b2845d05e6c554f11c8c4efced1a4108b3",
-        "version" : "0.1.0"
-      }
-    },
-    {
-      "identity" : "bluecryptor",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/IBM-Swift/BlueCryptor.git",
-      "state" : {
-        "revision" : "ee5880e031da4c609f372cf7472476ab51d5dd19",
-        "version" : "1.0.200"
-      }
-    },
-    {
-      "identity" : "btmetainfo",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bluk/btmetainfo.git",
-      "state" : {
-        "revision" : "fb79e92a2c2aff49c09edb629335ba3283b5964f",
-        "version" : "0.1.1"
-      }
-    },
-    {
-      "identity" : "dht",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bluk/DHT",
-      "state" : {
-        "revision" : "73ea14576657e43ed34245d1f136454fc5b6c0b9",
-        "version" : "0.1.0"
-      }
-    },
-    {
       "identity" : "grpc-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift.git",
