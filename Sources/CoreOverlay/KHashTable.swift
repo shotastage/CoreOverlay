@@ -11,5 +11,4 @@ import Foundation
 struct KHashTable {
     
     private var name: String = ""
-
 }
