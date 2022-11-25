@@ -9,7 +9,6 @@ import SQLite
 
 
 open calss SQLiteBackend {
-    // Now under construction...
     
     init() {
         do {

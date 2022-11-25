@@ -15,18 +15,18 @@ public actor Kademlia {
 
 
     public func ping() {
-        KDHTLogger.info("ping")
+        COLogger.info("ping")
     }
 
     public func findNode() {
-        KDHTLogger.info("FIND_NODE")
+        COLogger.info("FIND_NODE")
     }
 
     public func store() {
-        KDHTLogger.info("STORE")
+        COLogger.info("STORE")
     }
     
     public func findValue() {
-        KDHTLogger.info("FIND_VALUE")
+        COLogger.info("FIND_VALUE")
     }
 }

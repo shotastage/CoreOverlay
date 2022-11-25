@@ -40,11 +40,11 @@ let package = Package(
             name: "CommonCrypt"
         ),
         .target(
-            name: "Libs"
+            name: "COLibs"
         ),
         .target(
             name: "CoreOverlay",
-            dependencies: ["CommonCrypt", "Libs"]),
+            dependencies: ["CommonCrypt", "COLibs"]),
         .testTarget(
             name: "CoreOverlayTests",
             dependencies: ["CoreOverlay"]),
