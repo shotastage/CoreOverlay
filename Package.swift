@@ -16,9 +16,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "CoreOverlay",
-            targets: ["CoreOverlay"], dependencies: [
-                .product(name: "LibP2P", package: "swift-libp2p"),
-            ]),),
+            targets: ["CoreOverlay"]
+        ),
         .library(name: "CLevelDB", targets: ["CLevelDB"]),
     ],
     dependencies: [
