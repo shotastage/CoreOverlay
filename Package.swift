@@ -16,7 +16,9 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "CoreOverlay",
-            targets: ["CoreOverlay"]),
+            targets: ["CoreOverlay"], dependencies: [
+                .product(name: "LibP2P", package: "swift-libp2p"),
+            ]),),
         .library(name: "CLevelDB", targets: ["CLevelDB"]),
     ],
     dependencies: [
@@ -24,8 +26,8 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
-        .package(url: "https://github.com/firebase/leveldb.git", "1.22.2" ..< "1.23.0"),
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.9.2")),
+        .package(name: "LibP2P", url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
