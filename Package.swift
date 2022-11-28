@@ -23,7 +23,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.0.0"),
+        .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.9.2")),
     ],
@@ -44,7 +44,7 @@ let package = Package(
         ),
         .target(
             name: "CoreOverlay",
-            dependencies: ["CommonCrypt", "COLibs"]),
+            dependencies: ["CommonCrypt", "COLibs", .product(name: "GRPC", package: "grpc-swift")]),
         .testTarget(
             name: "CoreOverlayTests",
             dependencies: ["CoreOverlay"]),
