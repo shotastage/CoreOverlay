@@ -5,7 +5,7 @@
 //  Created by Shota Shimazu on 2022/06/22.
 //
 
-import Foundation
+import COLibs
 
 
 public protocol KademliaNode {
