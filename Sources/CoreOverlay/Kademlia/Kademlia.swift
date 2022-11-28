@@ -9,13 +9,22 @@ import COLibs
 
 
 public actor Kademlia {
-    let nodeId: String = ""
+    var nodeId: Int = 100
     let k: Int = 1
     let kbuckets: [[SocketClient]] = [[ SocketClient(ip: "192.16.8.1", port: 8080) ]]
 
+    
+    init(nodeId: Int?) {
+        guard let id = nodeId else {
+            return
+        }
 
-    public func ping() {
-        COLogger.info("ping")
+        self.nodeId = id
+    }
+
+    public func ping(nodeId: Int) {
+        COLogger.info("Ping")
+        
     }
 
     public func findNode() {
