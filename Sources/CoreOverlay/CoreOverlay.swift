@@ -9,7 +9,14 @@ import COLibs
 
 
 public struct CoreOverlay {
+
+    // Reser
+    let receiver: KademliaNode?
+    let server: KademliaNode?
+
     public init() {
+        receiver = KademliaNode(nodeId: 1234)
+        server = KademliaNode(nodeId: 43242)
     }
 
     func start() {

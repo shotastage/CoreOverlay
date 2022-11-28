@@ -6,19 +6,3 @@
 //
 
 import COLibs
-
-
-public protocol KademliaNode {
-    func ping(nodeId: Int)
-    func findNode()
-    func store()
-    func findValue()
-}
-
-
-extension KademliaNode {
-    
-    func ping(nodeId: Int) {
-        COLogger.info("Ping to node \(nodeId)")
-    }
-}

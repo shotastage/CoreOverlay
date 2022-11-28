@@ -43,8 +43,16 @@ let package = Package(
             name: "COLibs"
         ),
         .target(
+            name: "Protobuf.Generated"
+        ),
+        .target(
             name: "CoreOverlay",
-            dependencies: ["CommonCrypt", "COLibs", .product(name: "GRPC", package: "grpc-swift")]),
+            dependencies: [
+                "CommonCrypt",
+                "COLibs",
+                "Protobuf.Generated",
+                .product(name: "GRPC", package: "grpc-swift")
+            ]),
         .testTarget(
             name: "CoreOverlayTests",
             dependencies: ["CoreOverlay"]),

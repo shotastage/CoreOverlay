@@ -5,15 +5,15 @@
 //  Created by Shota Shimazu on 2022/06/08.
 //
 
+import Protobuf_Generated
 import COLibs
 
 
-public actor Kademlia {
+public actor KademliaNode {
     var nodeId: Int = 100
     let k: Int = 1
     let kbuckets: [[SocketClient]] = [[ SocketClient(ip: "192.16.8.1", port: 8080) ]]
 
-    
     init(nodeId: Int?) {
         guard let id = nodeId else {
             return
@@ -23,8 +23,7 @@ public actor Kademlia {
     }
 
     public func ping(nodeId: Int) {
-        COLogger.info("Ping")
-        
+        COLogger.info("PING")
     }
 
     public func findNode() {

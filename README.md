@@ -1,6 +1,5 @@
 # CoreOverlay
 
-[![Build Status](https://app.travis-ci.com/shotastage/CoreOverlay.svg?branch=main)](https://app.travis-ci.com/shotastage/CoreOverlay)
 ![Made In Yokohama](https://made-in-yokohama.herokuapp.com/normal)
 
 
