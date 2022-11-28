@@ -12,5 +12,6 @@ message PingResponse {
 
 
 service KadDHTNetworkService {
-	rpc Ping (PingRequest) returns (PingResponse); 
+	rpc Ping (PingRequest) returns (PingResponse);
+    rpc PingStreams (stream PingRequest) returns (stream PingResponse);
 }

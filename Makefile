@@ -9,10 +9,11 @@ generate-proto:
 	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=Protos/ Protos/*.proto
 
 .PHONY:
-build:
+build: generate-proto
 	${SWIFT} build
 
 .PHONY:
 clean:
 	rm -rf .build/
+	rm -rf .swiftpm/xcode/
 	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete

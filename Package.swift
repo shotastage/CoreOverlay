@@ -43,7 +43,10 @@ let package = Package(
             name: "COLibs"
         ),
         .target(
-            name: "Protobuf.Generated"
+            name: "Protobuf.Generated",
+            dependencies: [
+                .product(name: "GRPC", package: "grpc-swift")
+            ]
         ),
         .target(
             name: "CoreOverlay",
