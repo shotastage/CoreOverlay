@@ -6,11 +6,11 @@ import PackageDescription
 let package = Package(
     name: "CoreOverlay",
     platforms: [
-        .macCatalyst(.v13),
+        .macCatalyst(.v14),
         .macOS(.v11),
-        .iOS(.v13),
-        .watchOS(.v6),
-        .tvOS(.v14)
+        .iOS(.v14),
+        .watchOS(.v7),
+        .tvOS(.v15)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.

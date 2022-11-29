@@ -6,9 +6,10 @@
 //
 
 import JavaScriptCore
+import WasmInterpreter
 
 
-open class WASMCanister {
+open class JCWASMCanister {
     let testWasm = """
         if (typeof WebAssembly !== 'undefined') {
             console.log("Hello, Wasm.");
