@@ -5,10 +5,19 @@
 //  Created by Shota Shimazu on 2022/06/21.
 //
 
+import Foundation
 import JavaScriptCore
-import WasmInterpreter
 
 
+open class WASMJSContext {
+
+    public func loadWasmModule(data: Data) {
+        //
+    }
+}
+
+
+/// JCWASMCanister is container of WebAssembly module
 open class JCWASMCanister {
     let testWasm = """
         if (typeof WebAssembly !== 'undefined') {
@@ -28,10 +37,14 @@ open class JCWASMCanister {
 
     let jsContext = JSContext()
 
-    let carriedBin = "sample.wasm"
+    var loadedModules: Array<String> = ["sample.wasm"]
 
     init() {
         //
+    }
+
+    public func load(module: String) {
+        loadedModules.append(module)
     }
 
     func exec() {
