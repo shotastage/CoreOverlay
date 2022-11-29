@@ -26,6 +26,7 @@ let package = Package(
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.9.2")),
+        .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -54,7 +55,9 @@ let package = Package(
                 "CommonCrypt",
                 "COLibs",
                 "Protobuf.Generated",
-                .product(name: "GRPC", package: "grpc-swift")
+                .product(name: "GRPC", package: "grpc-swift"),
+                .product(name: "Crypto", package: "swift-crypto"),
+                .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
             ]),
         .testTarget(
             name: "CoreOverlayTests",

@@ -10,7 +10,6 @@ message PingResponse {
 	string message = 1;
 }
 
-
 service KadDHTNetworkService {
 	rpc Ping (PingRequest) returns (PingResponse);
     rpc PingStreams (stream PingRequest) returns (stream PingResponse);
