@@ -19,6 +19,10 @@ let package = Package(
             targets: ["CoreOverlay"]
         ),
         .library(name: "CLevelDB", targets: ["CLevelDB"]),
+        .executable(
+            name: "cot",
+            targets: ["CLI"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -58,7 +62,9 @@ let package = Package(
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-            ]),
+            ]
+        ),
+        .target(name: "CLI"),
         .testTarget(
             name: "CoreOverlayTests",
             dependencies: ["CoreOverlay"]),
