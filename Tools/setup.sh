@@ -6,6 +6,7 @@ echo
 echo " - swift-protobuf"
 echo " - grpc-swift"
 echo " - wabt"
+echo " - swiftenv"
 
 echo
 echo "Press [RETURN] to continue:"
@@ -21,9 +22,18 @@ check_and_install ()
     fi
 }
 
+
+configure_shell()
+{
+    echo 'if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi' >> ~/.zshrc
+}
+
 brew update
 
 # check_and_install protoc swift-protobuf
 # check_and_install protoc-gen-swift grpc-swift
 # check_and_install wat2wasm wabt
 brew install swift-protobuf grpc-swift wabt
+brew install kylef/formulae/swiftenv
+
+configure_shell
