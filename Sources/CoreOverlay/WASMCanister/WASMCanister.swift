@@ -9,34 +9,22 @@ import WasmInterpreter
 import Foundation
 
 
-struct WASMContainer {
+public struct WASMModule {
+
+    // WASM VM interpreter instance
     private let _vm: WasmInterpreter
 
-    init() throws {
-        _vm = try WasmInterpreter(module: WASMContainer.wasm)
+    // bit loaded
+    private let programLoad: [UInt8]
+
+    // Initializers
+    init(file: URL) throws {
+        programLoad = [UInt8](Data(base64Encoded: "base64")!)
+        _vm = try WasmInterpreter(module: programLoad)
     }
 
-    func add(_ first: Int, _ second: Int) throws -> Int {
-        Int(try _vm.call("add", Int32(first), Int32(second)) as Int32)
-    }
-
-    private static var wasm: [UInt8] {
-        
-        
-        /*
-         guard let fileURL = Bundle.main.url(forResource: "program", withExtension: "wb64")  else {
-             //fatalError("File Not Found")
-             
-             
-         }
-         guard let fileContents = try? String(contentsOf: fileURL) else {
-             print("FIle content reading error")
-             //fatalError("File Parsing Error")
-         }
-         
-         */
-        
-        let base64 = "AGFzbQEAAAABBwFgAn9/AX8DAgEABwcBA2FkZAAACgkBBwAgACABags="
-        return [UInt8](Data(base64Encoded: base64)!)
+    // Executer
+    func execute(_ first: Int, _ second: Int) throws -> Int {
+        Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
     }
 }
