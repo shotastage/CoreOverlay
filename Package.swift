@@ -25,7 +25,7 @@ let package = Package(
         .executable(
             name: "cot",
             targets: ["CLI"]
-        )
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -68,7 +68,7 @@ let package = Package(
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
             ]
         ),
-         .target(
+         .executableTarget(
             name: "CLI",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
