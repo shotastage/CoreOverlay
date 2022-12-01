@@ -10,10 +10,15 @@ import ArgumentParser
 
 @main
 struct MainCLI: ParsableCommand {
-    @Flag(help: "Include a counter with each repetition.")
-    var includeCounter = false
-
-    mutating func run() throws {
-        print("CLI is now under construction...")
-    }
+    static let configuration: CommandConfiguration = {
+        return CommandConfiguration(
+            commandName: "cot",
+            abstract: "CoreOverlay Developmet Toolkit",
+            version: "0.0.1",
+            subcommands: [
+                Build.self,
+            ],
+            defaultSubcommand: Build.self
+        )
+    }()
 }
