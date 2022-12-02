@@ -16,10 +16,10 @@ import Glibc
 
 class Shell {
     @discardableResult
-    func shell(_ url: URL = URL(fileURLWithPath: "/usr/bin/env"), _ args: String...) throws -> Int32 {
+    static func run(_ cmd: String) throws -> Int32 {
         let task = Process()
-        task.arguments = args
-        task.executableURL = url
+        task.arguments = cmd.components(separatedBy: " ")
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         try task.run()
         task.waitUntilExit()
         return task.terminationStatus
