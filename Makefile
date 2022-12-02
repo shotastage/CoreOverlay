@@ -17,3 +17,7 @@ clean:
 	rm -rf .build/
 	rm -rf .swiftpm/xcode/
 	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
+
+.PHONY:
+release:
+	${SWIFT} build -c release
