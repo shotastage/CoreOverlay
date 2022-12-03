@@ -13,7 +13,7 @@ struct MainCLI: ParsableCommand {
     static let configuration: CommandConfiguration = {
         return CommandConfiguration(
             commandName: "cot",
-            abstract: "CoreOverlay Developmet Toolkit",
+            abstract: "CoreOverlay Development Kit",
             version: "0.0.1",
             subcommands: [
                 Build.self,
