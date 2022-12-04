@@ -2,7 +2,6 @@ func add(a: Int, b: Int) -> Int {
     return a + b
 }
 
-
 actor SampleActor {
     let property = 1
     
