@@ -1,1 +1,0 @@
-// Example JavaScript Actor Program
