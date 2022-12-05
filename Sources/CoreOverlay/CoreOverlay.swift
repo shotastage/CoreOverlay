@@ -5,37 +5,44 @@
 //  Created by Shota Shimazu on 2022/06/08.
 //
 
+import Foundation
 import COLibs
 
 
-public struct CoreOverlay {
+open class CoreOverlay {
 
     // Reser
     let receiver: KademliaNode?
     let server: KademliaNode?
+    var package: URL?
 
     public init() {
         receiver = KademliaNode(nodeId: 1234)
         server = KademliaNode(nodeId: 43242)
+        package = nil
     }
 
-    func start() {
+    public init(location: URL) {
+        receiver = KademliaNode(nodeId: 1234)
+        server = KademliaNode(nodeId: 43242)
+        package = location
+    }
+
+    public func start() {
         COLogger.info("Starting CoreOverlay internal server...")
+        do {
+            let wasm = try WASMModule(file: package!)
+        }
+        catch {
+            print("Failed to register WASM artifcats.")
+        }
     }
     
-    func shutdown() {
+    public func shutdown() {
         COLogger.info("Shutting down server...")
     }
 
-    func registerArtifacts() {
-        
+    public func registerArtifacts(url: URL) {
+        package = url
     }
 }
-
-#if DEBUG
-class Show {
-    func show() {
-        print("CoreOverlay")
-    }
-}
-#endif

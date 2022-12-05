@@ -18,13 +18,13 @@ public struct WASMModule {
     private let programLoad: [UInt8]
 
     // Initializers
-    init(file: URL) throws {
+    public init(file: URL) throws {
         programLoad = [UInt8](Data(base64Encoded: "base64")!)
         _vm = try WasmInterpreter(module: programLoad)
     }
 
     // Executer
-    func execute(_ first: Int, _ second: Int) throws -> Int {
+    public func execute(_ first: Int, _ second: Int) throws -> Int {
         Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
     }
 }
