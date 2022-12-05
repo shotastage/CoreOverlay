@@ -6,3 +6,8 @@
 //
 
 #import <wasmer.h>
+
+class CWasmInstance {
+public:
+    int wasmProcess
+};

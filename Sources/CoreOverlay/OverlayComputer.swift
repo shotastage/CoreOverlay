@@ -1,5 +1,5 @@
 //
-//  SwiftlyDHT.swift
+//  OverlayComputer.swift
 //
 //
 //  Created by Shota Shimazu on 2022/06/08.
@@ -9,7 +9,7 @@ import Foundation
 import COLibs
 
 
-open class CoreOverlay {
+open class OverlayComputer {
 
     // Reser
     let receiver: KademliaNode?
@@ -30,6 +30,7 @@ open class CoreOverlay {
 
     public func start() {
         COLogger.info("Starting CoreOverlay internal server...")
+
         do {
             let wasm = try WASMModule(file: package!)
         }
