@@ -52,6 +52,12 @@ let package = Package(
             name: "COLibs"
         ),
         .target(
+            name: "Runtime",
+            dependencies: [
+                .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
+            ]
+        ),
+        .target(
             name: "Protobuf.Generated",
             dependencies: [
                 .product(name: "GRPC", package: "grpc-swift")
