@@ -14,10 +14,11 @@ struct MainCLI: ParsableCommand {
         return CommandConfiguration(
             commandName: "cot",
             abstract: "CoreOverlay Development Kit",
-            version: "0.0.1",
+            version: "0.0.2",
             subcommands: [
                 Build.self,
                 Setup.self,
+                UpdateToolchain.self,
             ],
             defaultSubcommand: Build.self
         )
