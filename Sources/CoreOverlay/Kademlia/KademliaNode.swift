@@ -6,7 +6,7 @@
 //
 
 import Protobuf_Generated
-import COLibs
+import OverlayFundation
 
 
 public actor KademliaNode {

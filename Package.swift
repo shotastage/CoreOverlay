@@ -49,7 +49,7 @@ let package = Package(
             name: "CommonCrypt"
         ),
         .target(
-            name: "COLibs"
+            name: "OverlayFundation"
         ),
         .target(
             name: "Runtime",
@@ -67,7 +67,7 @@ let package = Package(
             name: "CoreOverlay",
             dependencies: [
                 "CommonCrypt",
-                "COLibs",
+                "OverlayFundation",
                 "Protobuf.Generated",
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
