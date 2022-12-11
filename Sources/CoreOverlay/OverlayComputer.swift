@@ -7,25 +7,27 @@
 
 import Foundation
 import OverlayFundation
-
+import Runtime
 
 open class OverlayComputer {
 
-    // Reser
-    let receiver: KademliaNode?
-    let server: KademliaNode?
+    var storedObject = OverlayComputerSharedInstances(runnder: [:], receivers: [:], servers: [:])
     var package: URL?
 
     public init() {
-        receiver = KademliaNode(nodeId: 1234)
-        server = KademliaNode(nodeId: 43242)
+        storedObject.receivers.updateValue(KademliaNode(nodeId: 1234), forKey: "genesis")
+        storedObject.servers.updateValue(KademliaNode(nodeId: 1235), forKey: "genesis")
         package = nil
     }
 
     public init(location: URL) {
-        receiver = KademliaNode(nodeId: 1234)
-        server = KademliaNode(nodeId: 43242)
+        storedObject.receivers.updateValue(KademliaNode(nodeId: 1234), forKey: "genesis")
+        storedObject.servers.updateValue(KademliaNode(nodeId: 1235), forKey: "genesis")
         package = location
+    }
+
+    public func configure() {
+        COLogger.info("Not implemented")
     }
 
     public func start() {
@@ -46,4 +48,10 @@ open class OverlayComputer {
     public func registerArtifacts(url: URL) {
         package = url
     }
+}
+
+public struct OverlayComputerSharedInstances {
+    var runnder: Dictionary<String, WASMCanister>
+    var receivers: Dictionary<String, KademliaNode>
+    var servers: Dictionary<String, KademliaNode>
 }
