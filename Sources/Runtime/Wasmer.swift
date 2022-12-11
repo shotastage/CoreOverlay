@@ -5,6 +5,7 @@
 //  Created by Shota Shimazu on 2022/10/25.
 //
 
+/*
 import Wasmer
 
 
@@ -18,3 +19,5 @@ public extension Wasmer {
              Int(wasmer_version_patch()) )
   }
 }
+*/
+
