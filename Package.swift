@@ -57,7 +57,12 @@ let package = Package(
         .target(
             name: "OverlayFundation"
         ),
-        .target(name: "OverlayDB"),
+        .target(
+            name: "OverlayDB",
+            dependencies: [
+                .product(name: "SQLite", package: "SQLite.swift")
+            ]
+        ),
         .target(
             name: "Runtime",
             dependencies: [

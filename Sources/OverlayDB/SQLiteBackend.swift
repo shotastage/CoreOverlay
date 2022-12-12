@@ -8,16 +8,16 @@
 import SQLite
 
 
-open calss SQLiteBackend {
-    
+open class SQLiteBackend {
+    let db: Connection
+
     init() {
         do {
-            let db = try Connection("xnu/internal/internalHostedStates.sqlite3")
+            db = try Connection("xnu/internal/internalHostedStates.sqlite3")
             initializeTable()
         }
-        
         catch {
-            print("ERROR")
+            fatalError("ERROR")
         }
     }
 
@@ -27,7 +27,7 @@ open calss SQLiteBackend {
         let key = Expression<String?>("key")
         let value = Expression<String>("value")
 
-        try db.run(users.create { t in
+        try! db.run(users.create { t in
             t.column(id, primaryKey: true)
             t.column(key, unique: true)
             t.column(value)
