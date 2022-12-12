@@ -11,6 +11,8 @@ import Runtime
 
 open class OverlayComputer {
 
+    
+    /// storedObject is gathered instance
     var storedObject = OverlayComputerSharedInstances(runnder: [:], receivers: [:], servers: [:])
     var package: URL?
 

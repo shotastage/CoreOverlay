@@ -19,6 +19,8 @@ open class WASMJSContext {
 
 /// JCWASMCanister is container of WebAssembly module
 open class JCWASMCanister {
+    
+    /// Wasm support check JavaScript API
     let testWasm = """
         if (typeof WebAssembly !== 'undefined') {
             console.log("Hello, Wasm.");
@@ -27,7 +29,7 @@ open class JCWASMCanister {
         }
     """
     
-    
+    /// Load simple WASM program
     let loadScript = """
      var importObject = { wasi_snapshot_preview1: { proc_exit: arg => console.log(arg) } };
         WebAssembly.instantiateStreaming(
@@ -40,7 +42,7 @@ open class JCWASMCanister {
     var loadedModules: Array<String> = ["sample.wasm"]
 
     init() {
-        //
+        fatalError("This object is currently unsupported.")
     }
 
     public func load(module: String) {
