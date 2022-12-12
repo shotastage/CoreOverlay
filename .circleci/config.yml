@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    macos:
+      xcode: "14.1.0"
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - run:
+        name: Install dependencies
+        command: brew install swift-protobuf grpc-swift wabt
+      - checkout
+      - run:
+        name: Build
+        command: make build
+      #- store_artifacts:
+      #    path: output
+      #- store_test_results:
+      #    path: output/scan

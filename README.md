@@ -1,5 +1,6 @@
 # CoreOverlay
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/shotastage/CoreOverlay/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/shotastage/CoreOverlay/tree/main)
 ![Made In Yokohama](https://made-in-yokohama.herokuapp.com/normal)
 
 
