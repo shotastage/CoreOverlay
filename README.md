@@ -17,11 +17,13 @@ This framework provides utilities that make or integrate structured overlay netw
 
 ## Package Structure
 
-| Package Name | Pourpose | Description  |
-|:----------|:----------|:----------|
-| CoreOverlay | Main package of this framework |  `Under construction`  |
-| CLI         | Commandline tools for CoreOverlay package |  `Under construction` |
-| Runtime     | WebAssembly embeded runtime |  `Under construction`  |
-| COLibs      | CoreOverlay utility package    |  `Under construction`  |
-| CLevelDB    | LevelDB bridge    | `Under construction` |
-| CWasmer     | Wasmer bridging layer for CoreOverlay    | `Under construction` |
+✅ Work 🔴 Not work 🟡 Partially work
+
+| Package Name | Status |  Description  |
+|:-------------|:------:|---------------|
+| CoreOverlay  | 🔴     | Main package of this framework |
+| CLI          | 🟡     | Commandline tools for CoreOverlay package |
+| Runtime      | 🔴     | WebAssembly embeded runtime |
+| COLibs       | 🟡     | CoreOverlay utility package    |
+| CLevelDB     | 🟡     | LevelDB bridge    |
+| CWasmer      | 🟡     | Wasmer bridging layer for CoreOverlay    |
