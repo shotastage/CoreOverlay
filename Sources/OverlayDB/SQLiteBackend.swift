@@ -1,12 +1,11 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/11/26.
 //
 
 import SQLite
-
 
 open class SQLiteBackend {
     let db: Connection
@@ -15,8 +14,7 @@ open class SQLiteBackend {
         do {
             db = try Connection("xnu/internal/internalHostedStates.sqlite3")
             initializeTable()
-        }
-        catch {
+        } catch {
             fatalError("ERROR")
         }
     }

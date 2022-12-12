@@ -10,8 +10,6 @@ import OverlayFundation
 import Runtime
 
 open class OverlayComputer {
-
-    
     /// storedObject is gathered instance
     var storedObject = OverlayComputerSharedInstances(runnder: [:], receivers: [:], servers: [:])
     var package: URL?
@@ -38,12 +36,11 @@ open class OverlayComputer {
         do {
             let wasm = try WASMModule(file: package!)
             try! wasm.execute(1, 2)
-        }
-        catch {
+        } catch {
             print("Failed to register WASM artifcats.")
         }
     }
-    
+
     public func shutdown() {
         COLogger.info("Shutting down server...")
     }
@@ -54,7 +51,7 @@ open class OverlayComputer {
 }
 
 public struct OverlayComputerSharedInstances {
-    var runnder: Dictionary<String, WASMCanister>
-    var receivers: Dictionary<String, KademliaNode>
-    var servers: Dictionary<String, KademliaNode>
+    var runnder: [String: WASMCanister]
+    var receivers: [String: KademliaNode]
+    var servers: [String: KademliaNode]
 }

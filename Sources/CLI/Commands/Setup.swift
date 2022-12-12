@@ -1,12 +1,11 @@
 //
 //  Setup.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/02.
 //
 
 import ArgumentParser
-
 
 struct Setup: ParsableCommand {
     static let configuration = CommandConfiguration(
@@ -20,8 +19,7 @@ struct Setup: ParsableCommand {
             try Shell.run("brew update")
             try Shell.run("brew install swift-protobuf grpc-swift wabt")
             try Shell.run("brew install kylef/formulae/swiftenv")
-        }
-        catch {
+        } catch {
             print("Some command has been finished in fail.")
         }
     }

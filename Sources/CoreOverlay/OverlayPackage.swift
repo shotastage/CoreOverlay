@@ -1,12 +1,11 @@
 //
 //  OverlayPackage.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/07.
 //
 
 import Foundation
-
 
 public enum OverlaySupportedLanguages {
     case swift5
@@ -15,6 +14,6 @@ public enum OverlaySupportedLanguages {
 }
 
 public struct OverlayPackage {
-    let objects: Array<URL>
+    let objects: [URL]
     let language: OverlaySupportedLanguages
 }

@@ -8,10 +8,8 @@
 import Foundation
 import WasmInterpreter
 
-
 /// WASM runtime backend selection
 public enum WARuntimeBackend {
-    
     /// No description
     case wasmer
 
@@ -20,30 +18,26 @@ public enum WARuntimeBackend {
 
     /// WASM3 is fast WebAssembly text interpreter
     case wasm3
-    
+
     /// JavaScriptCore is JavaScript VM for Apple-platforms especially.
     case jscore
 }
 
-
 /// WASM Canister arguments wrapped object.
 public struct WARunnerArguments {
-    let variables: Dictionary<String, String>
+    let variables: [String: String]
 }
-
 
 /// WASM canister returns tuple object.
 public struct WARunnerReturns {
-    let store: Dictionary<Int, String>
+    let store: [Int: String]
 }
-
 
 /// WASMRunner protocol
 public protocol WASMRunner {
     var programLoad: [UInt8] { get set }
     func run(args: WARunnerArguments) -> WARunnerReturns
 }
-
 
 /// WASM runtime exposed object.
 open class WASMCanister {
@@ -65,15 +59,13 @@ open class WASMCanister {
 
 /// WASM runners
 open class WASM3Runner: WASMRunner {
-
     // WASM VM interpreter instance
     private let _vm: WasmInterpreter
 
     public var programLoad: [UInt8]
 
-
     // Initializers
-    public init(file: URL) throws {
+    public init(file _: URL) throws {
         programLoad = [UInt8](Data(base64Encoded: "base64")!)
         _vm = try WasmInterpreter(module: programLoad)
     }
@@ -83,22 +75,20 @@ open class WASM3Runner: WASMRunner {
         Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
     }
 
-
-    public func run(args: WARunnerArguments) -> WARunnerReturns {
+    public func run(args _: WARunnerArguments) -> WARunnerReturns {
         // Now under construction...
         return WARunnerReturns(store: [0: "SampleStore"])
     }
 }
 
-
 class JSCoreRuntime: WASMRunner {
     var programLoad: [UInt8] = []
-    
+
     init() {
         print("Now under construction...")
     }
 
-    func run(args: WARunnerArguments) -> WARunnerReturns {
+    func run(args _: WARunnerArguments) -> WARunnerReturns {
         return WARunnerReturns(store: [0: "Sample"])
     }
 }

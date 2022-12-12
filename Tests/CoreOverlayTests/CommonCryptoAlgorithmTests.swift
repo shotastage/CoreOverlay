@@ -1,17 +1,16 @@
 //
 //  CommonCryptoAlgorithmTests.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/06/09.
 //
 
 import Foundation
 
-import XCTest
 @testable import CoreOverlay
+import XCTest
 
 final class CommonCryptoAlgorithmTests: XCTestCase {
-
     func testSHA1() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct

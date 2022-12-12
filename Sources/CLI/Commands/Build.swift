@@ -1,12 +1,11 @@
 //
 //  Build.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/01.
 //
 
 import ArgumentParser
-
 
 struct Build: ParsableCommand {
     static let configuration = CommandConfiguration(
@@ -25,8 +24,7 @@ struct Build: ParsableCommand {
             try Shell.run("swiftenv global system")
             try Shell.run("rm ${1%.*}.wasm")
             try Shell.run("rm ${1%.*}.wat")
-        }
-        catch {
+        } catch {
             print("Some command has been finished in fail.")
         }
     }

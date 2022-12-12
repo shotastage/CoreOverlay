@@ -1,34 +1,32 @@
 //
 //  Shell.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/02.
 //
 
 import Foundation
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-import Darwin
+    import Darwin
 #else
-import Glibc
+    import Glibc
 #endif
-
 
 class Shell {
     @discardableResult
-    
+
     static func run(_ cmd: String) throws -> Int32 {
-        
         #if os(iOS) || os(watchOS) || os(tvOS)
-        return 1
+            return 1
         #else
 
-        let task = Process()
-        task.arguments = cmd.components(separatedBy: " ")
-        task.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        try task.run()
-        task.waitUntilExit()
-        return task.terminationStatus
-        
+            let task = Process()
+            task.arguments = cmd.components(separatedBy: " ")
+            task.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+            try task.run()
+            task.waitUntilExit()
+            return task.terminationStatus
+
         #endif
     }
 }

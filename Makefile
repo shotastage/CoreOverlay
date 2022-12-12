@@ -27,6 +27,10 @@ update-deps:
 	rm Package.resolved
 	xcodebuild -resolvePackageDependencies
 
+SDKROOT=(xcrun --sdk macosx --show-sdk-path)
+
+
 .PHONY:
 format:
-	swift package plugin --allow-writing-to-package-directory swiftformat --target CoreOverlay
+	swift package plugin --allow-writing-to-package-directory swiftformat .
+

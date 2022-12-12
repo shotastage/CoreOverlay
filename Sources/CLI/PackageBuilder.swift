@@ -1,6 +1,6 @@
 //
 //  PackageBuilder.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/12.
 //
@@ -8,21 +8,19 @@
 import Foundation
 import ZIPFoundation
 
-
 class PackageBuilder: CommandProcedure {
     func prepare() {
         pack()
     }
-    
+
     func procedure() {
         fatalError("Not implemented")
     }
-    
+
     func run() {
         fatalError("Not implemented")
     }
-    
-    
+
     func pack() {
         let fileManager = FileManager()
         let currentWorkingPath = fileManager.currentDirectoryPath

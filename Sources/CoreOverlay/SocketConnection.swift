@@ -1,6 +1,6 @@
 //
 //  SocketConnection.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/06/08.
 //
@@ -8,13 +8,10 @@
 import Foundation
 import Network
 
-
 open class SocketClient {
-
     var conn: NWConnection?
 
-    init(ip: String, port: UInt16) {
-    }
+    init(ip _: String, port _: UInt16) {}
 
     func connecnt(host: String, port: UInt16) {
         let nwHost = NWEndpoint.Host(host)
@@ -23,14 +20,14 @@ open class SocketClient {
 
         conn = NWConnection(host: nwHost, port: nwPort, using: .udp)
 
-        conn?.stateUpdateHandler = { (newState) in
+        conn?.stateUpdateHandler = { newState in
             switch newState {
             case .ready:
                 NSLog("Ready to send")
                 semaphore.signal()
-            case .waiting(let error):
+            case let .waiting(error):
                 NSLog("\(#function), \(error)")
-            case .failed(let error):
+            case let .failed(error):
                 NSLog("\(#function), \(error)")
             case .setup: break
             case .cancelled: break
@@ -41,7 +38,7 @@ open class SocketClient {
         }
 
         let queue = DispatchQueue(label: "udp_socket_connection")
-        conn?.start(queue:queue)
+        conn?.start(queue: queue)
 
         semaphore.wait()
     }
@@ -52,7 +49,7 @@ open class SocketClient {
 
     func start(data: Data) {
         let semaphore = DispatchSemaphore(value: 0)
-        
+
         conn?.send(content: data, completion: .contentProcessed { error in
             if let error = error {
                 NSLog("\(#function), \(error)")
@@ -67,15 +64,14 @@ open class SocketClient {
     func receive(action: @escaping (Data) -> Void) {
         let semaphore = DispatchSemaphore(value: 0)
 
-        conn?.receive(minimumIncompleteLength: 0, maximumLength: 65535, completion:{(data, context, flag, error) in
+        conn?.receive(minimumIncompleteLength: 0, maximumLength: 65535, completion: { data, _, _, error in
             if let error = error {
                 NSLog("\(#function), \(error)")
             } else {
                 if let data = data {
                     action(data)
                     semaphore.signal()
-                }
-                else {
+                } else {
                     NSLog("nil message received")
                 }
             }

@@ -1,6 +1,6 @@
 //
 //  WASMCanister.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/06/21.
 //
@@ -8,18 +8,14 @@
 import Foundation
 import JavaScriptCore
 
-
 open class WASMJSContext {
-
-    public func loadWasmModule(data: Data) {
+    public func loadWasmModule(data _: Data) {
         //
     }
 }
 
-
 /// JCWASMCanister is container of WebAssembly module
 open class JCWASMCanister {
-    
     /// Wasm support check JavaScript API
     let testWasm = """
         if (typeof WebAssembly !== 'undefined') {
@@ -28,7 +24,7 @@ open class JCWASMCanister {
             console.log("No Wasm for you!");
         }
     """
-    
+
     /// Load simple WASM program
     let loadScript = """
      var importObject = { wasi_snapshot_preview1: { proc_exit: arg => console.log(arg) } };
@@ -39,7 +35,7 @@ open class JCWASMCanister {
 
     let jsContext = JSContext()
 
-    var loadedModules: Array<String> = ["sample.wasm"]
+    var loadedModules: [String] = ["sample.wasm"]
 
     init() {
         fatalError("This object is currently unsupported.")

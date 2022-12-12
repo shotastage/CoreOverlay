@@ -10,7 +10,7 @@ let package = Package(
         .macOS(.v11),
         .iOS(.v14),
         .watchOS(.v7),
-        .tvOS(.v15)
+        .tvOS(.v15),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -40,11 +40,10 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
         .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
-        
-        
+
         // Development only dependencies
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"),
-        //.package(url: "https://github.com/realm/SwiftLint.git", from: "0.39.2"),
+        // .package(url: "https://github.com/realm/SwiftLint.git", from: "0.39.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -52,7 +51,7 @@ let package = Package(
         .systemLibrary(
             name: "CLevelDB",
             providers: [
-                .brew(["leveldb"])
+                .brew(["leveldb"]),
             ]
         ),
         .target(
@@ -76,7 +75,7 @@ let package = Package(
         .target(
             name: "Protobuf.Generated",
             dependencies: [
-                .product(name: "GRPC", package: "grpc-swift")
+                .product(name: "GRPC", package: "grpc-swift"),
             ]
         ),
         .target(
@@ -101,7 +100,8 @@ let package = Package(
         ),
         .testTarget(
             name: "CoreOverlayTests",
-            dependencies: ["CoreOverlay"]),
+            dependencies: ["CoreOverlay"]
+        ),
     ],
     cLanguageStandard: .c17,
     cxxLanguageStandard: .cxx17

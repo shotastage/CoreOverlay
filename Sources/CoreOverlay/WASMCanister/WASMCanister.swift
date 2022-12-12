@@ -1,16 +1,14 @@
 //
 //  WASMCanister.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/11/29.
 //
 
-import WasmInterpreter
 import Foundation
-
+import WasmInterpreter
 
 public struct WASMModule {
-
     // WASM VM interpreter instance
     private let _vm: WasmInterpreter
 
@@ -18,7 +16,7 @@ public struct WASMModule {
     private let programLoad: [UInt8]
 
     // Initializers
-    public init(file: URL) throws {
+    public init(file _: URL) throws {
         programLoad = [UInt8](Data(base64Encoded: "base64")!)
         _vm = try WasmInterpreter(module: programLoad)
     }
