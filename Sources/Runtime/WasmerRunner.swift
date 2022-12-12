@@ -1,9 +1,11 @@
 //
-//  Wasmer.swift
+//  WasmerRunner.swift
 //
 //
 //  Created by Shota Shimazu on 2022/10/25.
 //
+
+import Foundation
 
 /*
  import Wasmer
@@ -19,3 +21,15 @@
    }
  }
  */
+
+open class WasmerRunner: WASMRunner {
+    public var programLoad: [UInt8] = []
+
+    init() {
+        fatalError("Now under construction...")
+    }
+
+    public func run(args _: WARunnerArguments) -> WARunnerReturns {
+        return WARunnerReturns(store: [0: "Sample"])
+    }
+}
