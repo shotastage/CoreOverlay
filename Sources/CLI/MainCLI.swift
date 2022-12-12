@@ -17,6 +17,7 @@ struct MainCLI: ParsableCommand {
             version: "0.0.2",
             subcommands: [
                 Build.self,
+                Create.self,
                 Setup.self,
                 UpdateToolchain.self,
             ],
