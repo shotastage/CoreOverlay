@@ -19,6 +19,10 @@ let package = Package(
             targets: ["CoreOverlay"]
         ),
         .library(
+            name: "OverlayDB",
+            targets: ["OverlayDB"]
+        ),
+        .library(
             name: "CLevelDB",
             targets: ["CLevelDB"]
         ),
@@ -53,6 +57,7 @@ let package = Package(
         .target(
             name: "OverlayFundation"
         ),
+        .target(name: "OverlayDB"),
         .target(
             name: "Runtime",
             dependencies: [
