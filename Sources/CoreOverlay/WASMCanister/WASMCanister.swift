@@ -24,6 +24,7 @@ public struct WASMModule {
     }
 
     // Executer
+    @discardableResult
     public func execute(_ first: Int, _ second: Int) throws -> Int {
         Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
     }

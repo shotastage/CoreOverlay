@@ -36,6 +36,7 @@ let package = Package(
         .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
+        .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -73,6 +74,7 @@ let package = Package(
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
+                .product(name: "LibP2P", package: "swift-libp2p"),
             ]
         ),
          .executableTarget(

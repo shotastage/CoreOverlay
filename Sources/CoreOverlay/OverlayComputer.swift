@@ -37,6 +37,7 @@ open class OverlayComputer {
 
         do {
             let wasm = try WASMModule(file: package!)
+            try! wasm.execute(1, 2)
         }
         catch {
             print("Failed to register WASM artifcats.")
