@@ -26,3 +26,7 @@ release:
 update-deps:
 	rm Package.resolved
 	xcodebuild -resolvePackageDependencies
+
+.PHONY:
+format:
+	swift package plugin --allow-writing-to-package-directory swiftformat --target CoreOverlay
