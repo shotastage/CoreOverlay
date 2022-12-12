@@ -21,3 +21,8 @@ clean:
 .PHONY:
 release:
 	${SWIFT} build -c release
+
+.PHONY:
+update-deps:
+	rm Package.resolved
+	xcodebuild -resolvePackageDependencies
