@@ -8,7 +8,7 @@
 import Foundation
 import ZIPFoundation
 
-
+#if os(macOS)
 class PackageBuilder: CommandProcedure {
     func prepare() {
         pack()
@@ -37,3 +37,4 @@ class PackageBuilder: CommandProcedure {
         }
     }
 }
+#endif

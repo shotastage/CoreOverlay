@@ -22,7 +22,7 @@ class CommonCryptoAlgorithm {
     }
 }
 
-open class SwiftlyDHTMath {
+open class DHTMath {
 
     public static func randomID() -> String {
          let uuidString = UUID().uuidString

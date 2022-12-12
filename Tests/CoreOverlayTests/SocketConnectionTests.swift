@@ -17,9 +17,9 @@ final class SocketConnectionTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(SwiftlyDHTMath.hummingDistance(first, second))")
+        print("DIS:  \(DHTMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(SwiftlyDHTMath.hummingDistance(first, second), 1)
+        XCTAssertEqual(DHTMath.hummingDistance(first, second), 1)
     }
 
     func testXORDistance2() throws {
@@ -35,8 +35,8 @@ final class SocketConnectionTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(SwiftlyDHTMath.hummingDistance(first, second))")
+        print("DIS:  \(DHTMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(SwiftlyDHTMath.hummingDistance(first, second), 3)
+        XCTAssertEqual(DHTMath.hummingDistance(first, second), 3)
     }
 }

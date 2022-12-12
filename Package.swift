@@ -71,6 +71,7 @@ let package = Package(
                 "CommonCrypt",
                 "OverlayFundation",
                 "Protobuf.Generated",
+                "Runtime",
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),

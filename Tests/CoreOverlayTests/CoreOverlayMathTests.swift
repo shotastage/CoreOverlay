@@ -21,9 +21,9 @@ final class UtilFuncsTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(SwiftlyDHTMath.hummingDistance(first, second))")
+        print("DIS:  \(DHTMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(SwiftlyDHTMath.hummingDistance(first, second), 1)
+        XCTAssertEqual(DHTMath.hummingDistance(first, second), 1)
     }
 
 
@@ -40,9 +40,9 @@ final class UtilFuncsTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(SwiftlyDHTMath.hummingDistance(first, second))")
+        print("DIS:  \(DHTMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(SwiftlyDHTMath.hummingDistance(first, second), 3)
+        XCTAssertEqual(DHTMath.hummingDistance(first, second), 3)
     }
 
     func testRandomID() throws {
@@ -54,7 +54,7 @@ final class UtilFuncsTests: XCTestCase {
         for i in 1...100 {
             previous = current
 
-            current = SwiftlyDHTMath.randomID()
+            current = DHTMath.randomID()
 
             print("\(i):  \(current)")
             XCTAssertNotEqual(current, previous)

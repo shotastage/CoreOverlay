@@ -7,6 +7,7 @@
 
 import ArgumentParser
 
+#if os(macOS)
 
 @main
 struct MainCLI: ParsableCommand {
@@ -25,3 +26,14 @@ struct MainCLI: ParsableCommand {
         )
     }()
 }
+
+#else
+
+@main
+class MyApp {
+    static func main() {
+        print("CoreOverlay Commandline Tools is not supported on your platform.")
+    }
+}
+
+#endif
