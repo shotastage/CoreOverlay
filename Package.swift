@@ -2,6 +2,13 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
+
+let fm = FileManager.default
+
+let cxxSettings: [CXXSetting] = [
+    .headerSearchPath("\(fm.homeDirectoryForCurrentUser)/.wasmer/include"),
+]
 
 let package = Package(
     name: "CoreOverlay",
@@ -58,11 +65,12 @@ let package = Package(
                 .brew(["leveldb"]),
             ]
         ),
-        .systemLibrary(
+        .target(
             name: "CWasmer",
-            providers: [
-                .brew(["wasmer"])
-            ]
+            sources: [
+                "Sources/CWasmer/include/CWasmer.h"
+            ],
+            cxxSettings: cxxSettings
         ),
         .target(
             name: "CommonCrypt"
@@ -79,6 +87,7 @@ let package = Package(
         .target(
             name: "Runtime",
             dependencies: [
+                "CWasmer",
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
             ]
         ),
@@ -113,6 +122,6 @@ let package = Package(
             dependencies: ["CoreOverlay"]
         ),
     ],
-    cLanguageStandard: .c17,
-    cxxLanguageStandard: .cxx17
+    cLanguageStandard: .c99,
+    cxxLanguageStandard: .cxx20
 )

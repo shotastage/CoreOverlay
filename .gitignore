@@ -15,3 +15,5 @@ DerivedData/
 workspace/
 memo/
 backup/
+
+*.pc

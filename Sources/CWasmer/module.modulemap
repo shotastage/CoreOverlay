@@ -1,5 +1,6 @@
 module CWasmer {
-    header "CWasmer.h"
-    link   "libwasmer.a"
-    export *
+  header "include/CWasmer.hpp"
+  link   "libwasmer.a"
+  export *
 }
+
