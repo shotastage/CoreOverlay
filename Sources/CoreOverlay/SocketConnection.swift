@@ -51,7 +51,7 @@ open class SocketClient {
         let semaphore = DispatchSemaphore(value: 0)
 
         conn?.send(content: data, completion: .contentProcessed { error in
-            if let error = error {
+            if let error {
                 NSLog("\(#function), \(error)")
             } else {
                 semaphore.signal()
@@ -65,10 +65,10 @@ open class SocketClient {
         let semaphore = DispatchSemaphore(value: 0)
 
         conn?.receive(minimumIncompleteLength: 0, maximumLength: 65535, completion: { data, _, _, error in
-            if let error = error {
+            if let error {
                 NSLog("\(#function), \(error)")
             } else {
-                if let data = data {
+                if let data {
                     action(data)
                     semaphore.signal()
                 } else {

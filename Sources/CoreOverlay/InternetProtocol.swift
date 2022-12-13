@@ -14,6 +14,6 @@ public enum InternetNetworkProtocol {
 
 public class COInternetNetwork {
     func getIp(protocol _: InternetNetworkProtocol = .ipv4) -> String {
-        return ""
+        ""
     }
 }

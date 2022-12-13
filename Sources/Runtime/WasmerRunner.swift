@@ -30,6 +30,6 @@ open class WasmerRunner: WASMRunner {
     }
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {
-        return WARunnerReturns(store: [0: "Sample"])
+        WARunnerReturns(store: [0: "Sample"])
     }
 }

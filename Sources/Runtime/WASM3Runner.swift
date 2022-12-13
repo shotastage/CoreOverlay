@@ -28,6 +28,6 @@ open class WASM3Runner: WASMRunner {
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {
         // Now under construction...
-        return WARunnerReturns(store: [0: "SampleStore"])
+        WARunnerReturns(store: [0: "SampleStore"])
     }
 }
