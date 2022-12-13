@@ -13,8 +13,16 @@ struct Setup: ParsableCommand {
     )
 
     func run() throws {
-        print("Setup Tool is now under construction that it has possibility of being unstable.")
+        SetupProcedure().run()
+    }
+}
 
+class SetupProcedure: CommandProcedure {
+    func prepare() {
+        print("Setup Tool is now under construction that it has possibility of being unstable.")
+    }
+
+    func procedure() {
         do {
             try Shell.run("brew update")
             try Shell.run("brew install swift-protobuf grpc-swift wabt")

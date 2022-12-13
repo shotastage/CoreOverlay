@@ -12,3 +12,10 @@ protocol CommandProcedure {
     func procedure()
     func run()
 }
+
+extension CommandProcedure {
+    func run() {
+        prepare()
+        procedure()
+    }
+}

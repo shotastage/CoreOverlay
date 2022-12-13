@@ -17,11 +17,7 @@ class PackageBuilder: CommandProcedure {
         fatalError("Not implemented")
     }
 
-    func run() {
-        fatalError("Not implemented")
-    }
-
-    func pack() {
+    private func pack() {
         let fileManager = FileManager()
         let currentWorkingPath = fileManager.currentDirectoryPath
         var sourceURL = URL(fileURLWithPath: currentWorkingPath)
