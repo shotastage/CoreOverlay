@@ -22,8 +22,8 @@ open class WASM3Runner: WASMRunner {
     }
 
     // Executer
-    public func execute(_ first: Int, _ second: Int) throws -> Int {
-        Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
+    public func execute(_ args: WARunnerArguments) throws -> Int {
+        Int(try _vm.call("main", Int32(11), Int32(12)) as Int32)
     }
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {

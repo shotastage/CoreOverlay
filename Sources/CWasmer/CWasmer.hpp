@@ -5,7 +5,7 @@
 //  Created by Shota Shimazu on 2022/07/20.
 //
 
-#import <wasmer.h>
+#include <wasmer.h>
 
 class CWasmInstance {
 public:

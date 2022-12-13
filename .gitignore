@@ -11,3 +11,7 @@ DerivedData/
 *.wab1
 *.wab2 # Feature Version
 *.wab3 # Feature Version
+
+workspace/
+memo/
+backup/

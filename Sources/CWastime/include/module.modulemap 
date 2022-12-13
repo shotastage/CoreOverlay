@@ -1,0 +1,5 @@
+module SPMSample {
+    umbrella header "shim.h"
+    export *
+    link "native_add"
+}

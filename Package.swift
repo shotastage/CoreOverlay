@@ -26,6 +26,10 @@ let package = Package(
             name: "CLevelDB",
             targets: ["CLevelDB"]
         ),
+        .library(
+            name: "CWasmer",
+            targets: ["CWasmer"]
+        ),
         .executable(
             name: "cot",
             targets: ["CLI"]
@@ -52,6 +56,12 @@ let package = Package(
             name: "CLevelDB",
             providers: [
                 .brew(["leveldb"]),
+            ]
+        ),
+        .systemLibrary(
+            name: "CWasmer",
+            providers: [
+                .brew(["wasmer"])
             ]
         ),
         .target(
