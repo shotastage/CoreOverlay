@@ -4,11 +4,57 @@
 import PackageDescription
 import Foundation
 
-let fm = FileManager.default
+
+@discardableResult
+func cli(_ cmd: String) throws -> Int32 {
+    let task = Process()
+    task.arguments = cmd.components(separatedBy: " ")
+    task.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+    try task.run()
+    task.waitUntilExit()
+    return task.terminationStatus        
+}
+
+
+func getRelativePathToHome() -> String {
+    let fm = FileManager.default
+    var relativePath = ""
+    var pwd = fm.currentDirectoryPath
+    let home = fm.homeDirectoryForCurrentUser.path
+    
+    let result = pwd.range(of: home)
+    if let theRange = result {
+        pwd.removeSubrange(theRange)
+    }
+    
+    let diff = pwd.components(separatedBy: "/").filter{!$0.isEmpty}
+
+    for _ in diff {
+        relativePath += "../"
+    }
+
+    return relativePath
+}
+
+
+func preBuildScript() {
+    do {
+        try cli("./Tools/generate-headers.sh")
+    } catch {
+        print("Error: \(error)")
+    }
+}
 
 let cxxSettings: [CXXSetting] = [
-    .headerSearchPath("\(fm.homeDirectoryForCurrentUser)/.wasmer/include"),
+    .headerSearchPath("."),
+    .headerSearchPath("include"),
+    .headerSearchPath("\(getRelativePathToHome()).wasmer/include"),
 ]
+
+
+
+preBuildScript()
+
 
 let package = Package(
     name: "CoreOverlay",
@@ -33,10 +79,6 @@ let package = Package(
             name: "CLevelDB",
             targets: ["CLevelDB"]
         ),
-        .library(
-            name: "CWasmer",
-            targets: ["CWasmer"]
-        ),
         .executable(
             name: "cot",
             targets: ["CLI"]
@@ -50,7 +92,7 @@ let package = Package(
         .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
-        .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
+        //- .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
 
         // Development only dependencies
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"),
@@ -67,9 +109,7 @@ let package = Package(
         ),
         .systemLibrary(
             name: "CWasmer",
-            providers: [
-                .brew(["wasmer"]),
-            ]
+            pkgConfig: "wasmer"
         ),
         .target(
             name: "CommonCrypt"
@@ -106,7 +146,7 @@ let package = Package(
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-                .product(name: "LibP2P", package: "swift-libp2p"),
+                //- .product(name: "LibP2P", package: "swift-libp2p"),
             ]
         ),
         .executableTarget(
@@ -121,6 +161,5 @@ let package = Package(
             dependencies: ["CoreOverlay"]
         ),
     ],
-    cLanguageStandard: .c99,
     cxxLanguageStandard: .cxx20
 )

@@ -10,15 +10,15 @@ generate-proto:
 
 .PHONY:
 build: generate-proto
-	./Tools/generate-modulemap.sh Sources/CWasmer
+	#./Tools/generate-modulemap.sh Sources/CWasmer
 	${SWIFT} build
 
 .PHONY:
 clean:
 	rm -rf .build/
 	rm -rf .swiftpm/xcode/
+	rm ./Sources/CWasmer/include/CWasmer_generated.h
 	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
-	rm ./Sources/CWasmer/module.modulemap
 
 .PHONY:
 release:

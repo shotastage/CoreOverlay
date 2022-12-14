@@ -14,7 +14,6 @@ import Foundation
 
 class Shell {
     @discardableResult
-
     static func run(_ cmd: String) throws -> Int32 {
         #if os(iOS) || os(watchOS) || os(tvOS)
             return 1
