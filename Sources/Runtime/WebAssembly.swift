@@ -10,11 +10,8 @@ import WasmInterpreter
 
 /// WASM runtime backend selection
 public enum WARuntimeBackend {
-    /// No description
+    /// Default WASM backend
     case wasmer
-
-    /// No description
-    case wastime
 
     /// WASM3 is fast WebAssembly text interpreter
     case wasm3
@@ -51,14 +48,12 @@ open class WASMCanister {
 
     func initializeRunner(url: URL) -> some WASMRunner {
         switch backend {
-        case .wasm3:
-            return try! WASM3Runner(file: url)
         case .wasmer:
             fatalError("Wasmer is currently unsupported!")
+        case .wasm3:
+            return try! WASM3Runner(file: url)
         case .jscore:
             fatalError("JavaScriptCore is currently unsupported!")
-        case .wastime:
-            fatalError("Wastime is currently unsupported!")
         }
     }
 }
