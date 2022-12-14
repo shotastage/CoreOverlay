@@ -17,3 +17,5 @@ memo/
 backup/
 
 *.pc
+
+Sources/CWasmer/module.modulemap

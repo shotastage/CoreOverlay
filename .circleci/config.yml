@@ -5,7 +5,7 @@ jobs:
       xcode: "14.1.0"
     shell: /bin/bash --login -o pipefail
     steps:
-      - run: brew install swift-protobuf grpc-swift wabt
+      - run: brew install swift-protobuf grpc-swift wabt wasmer
       - checkout
       - run: make build
       #- store_artifacts:

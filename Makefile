@@ -10,6 +10,7 @@ generate-proto:
 
 .PHONY:
 build: generate-proto
+	./Tools/generate-modulemap.sh Sources/CWasmer
 	${SWIFT} build
 
 .PHONY:
@@ -32,4 +33,4 @@ SDKROOT=(xcrun --sdk macosx --show-sdk-path)
 
 .PHONY:
 format:
-	swift package plugin --allow-writing-to-package-directory swiftformat .
+	${SWIFT} package plugin --allow-writing-to-package-directory swiftformat .
