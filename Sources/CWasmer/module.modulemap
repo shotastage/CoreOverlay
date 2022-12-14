@@ -1,6 +1,5 @@
-module CWasmer {
-  header "include/CWasmer.hpp"
+framework module CWasmer [system] {
+  //header "include/CWasmer.hpp"
   link   "libwasmer.a"
   export *
 }
-

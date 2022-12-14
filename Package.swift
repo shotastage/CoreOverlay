@@ -65,12 +65,11 @@ let package = Package(
                 .brew(["leveldb"]),
             ]
         ),
-        .target(
+        .systemLibrary(
             name: "CWasmer",
-            sources: [
-                "Sources/CWasmer/include/CWasmer.h"
-            ],
-            cxxSettings: cxxSettings
+            providers: [
+                .brew(["wasmer"]),
+            ]
         ),
         .target(
             name: "CommonCrypt"
