@@ -18,6 +18,7 @@ clean:
 	rm -rf .build/
 	rm -rf .swiftpm/xcode/
 	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
+	rm ./Sources/CWasmer/module.modulemap
 
 .PHONY:
 release:
