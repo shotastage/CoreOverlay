@@ -1,8 +1,6 @@
 # CoreOverlay
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/shotastage/CoreOverlay/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/shotastage/CoreOverlay/tree/main)
-![Made In Yokohama](https://made-in-yokohama.herokuapp.com/normal)
-
 
 >> This framework is now under construction...
 
@@ -27,4 +25,4 @@ This framework provides utilities that make or integrate structured overlay netw
 | Runtime      | 🔴     | WebAssembly embeded runtime |
 | COLibs       | 🟡     | CoreOverlay utility package    |
 | CLevelDB     | 🟡     | LevelDB bridge    |
-| CWasmer      | 🟡     | Wasmer bridging layer for CoreOverlay    |
+| CWasmer      | 🔴     | Wasmer bridging layer for CoreOverlay    |
