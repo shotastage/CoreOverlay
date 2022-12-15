@@ -28,12 +28,12 @@ extension String: WARunnerArgument {}
 
 /// WASM Canister arguments wrapped object.
 public struct WARunnerArguments {
-    let variables: [String: WARunnerArgument]
+    let variables: [WARunnerArgument]
 }
 
 /// WASM canister returns tuple object.
 public struct WARunnerReturns {
-    let store: [Int: String]
+    let store: [Int: Data]
 }
 
 /// WASMRunner protocol

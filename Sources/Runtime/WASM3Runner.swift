@@ -22,12 +22,22 @@ open class WASM3Runner: WASMRunner {
     }
 
     // Executer
-    public func execute(_ args: WARunnerArguments) throws -> Int {
-        Int(try _vm.call("main", Int32(11), Int32(12)) as Int32)
+    public func execute(_ args: WARunnerArguments) throws -> some WasmTypeProtocol {
+        
+        guard let contents = try? _vm.call(
+            "main",
+            Int32(args.variables[0]),
+            Int32(args.variables[1]),
+            Int32(args.variables[2])
+        ) else {
+            return 12
+        }
+        
+        return contents
     }
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {
         // Now under construction...
-        WARunnerReturns(store: [0: "SampleStore"])
+        WARunnerReturns(store: [0: Data("Sample".utf8)])
     }
 }

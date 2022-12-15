@@ -84,9 +84,10 @@ let package = Package(
                 .brew(["leveldb"]),
             ]
         ),
-        .systemLibrary(
+        .binaryTarget(
             name: "CWasmer",
-            pkgConfig: "wasmer"
+            url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
+            checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
         ),
         .target(
             name: "CommonCrypt"

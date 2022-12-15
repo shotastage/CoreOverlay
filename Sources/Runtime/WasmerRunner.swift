@@ -26,14 +26,15 @@ import Foundation
 open class WasmerRunner: WASMRunner {
     public var programLoad: [UInt8] = []
 
-    let engine: OpaquePointer! = wasm_engine_new()
-    let store: OpaquePointer!
+
+    //let engine: OpaquePointer! = wasm_engine_new()
+    //let store: OpaquePointer!
 
     init() {
-        store = wasm_store_new(self.engine)
+        //store = wasm_store_new(self.engine)
     }
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {
-        WARunnerReturns(store: [0: "Sample"])
+        WARunnerReturns(store: [0: Data("Sample".utf8)])
     }
 }
