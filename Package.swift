@@ -5,17 +5,6 @@ import PackageDescription
 import Foundation
 
 
-@discardableResult
-func cli(_ cmd: String) throws -> Int32 {
-    let task = Process()
-    task.arguments = cmd.components(separatedBy: " ")
-    task.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-    try task.run()
-    task.waitUntilExit()
-    return task.terminationStatus        
-}
-
-
 func getRelativePathToHome() -> String {
     let fm = FileManager.default
     var relativePath = ""
@@ -37,23 +26,11 @@ func getRelativePathToHome() -> String {
 }
 
 
-func preBuildScript() {
-    do {
-        try cli("./Tools/generate-headers.sh")
-    } catch {
-        print("Error: \(error)")
-    }
-}
-
 let cxxSettings: [CXXSetting] = [
     .headerSearchPath("."),
     .headerSearchPath("include"),
     .headerSearchPath("\(getRelativePathToHome()).wasmer/include"),
 ]
-
-
-
-preBuildScript()
 
 
 let package = Package(
