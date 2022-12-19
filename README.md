@@ -25,4 +25,9 @@ This framework provides utilities that make or integrate structured overlay netw
 | Runtime      | 🔴     | WebAssembly embeded runtime |
 | COLibs       | 🟡     | CoreOverlay utility package    |
 | CLevelDB     | 🟡     | LevelDB bridge    |
+| WASM3 Backend| 🟡     | WASM3 bridging layer for CoreOverlay     |
 | CWasmer      | 🔴     | Wasmer bridging layer for CoreOverlay    |
+
+## License
+
+This software is licensed under the MIT, see [LICENSE](LICENSE) for detail.
