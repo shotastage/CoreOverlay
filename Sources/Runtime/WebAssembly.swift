@@ -20,15 +20,10 @@ public enum WARuntimeBackend {
     case jscore
 }
 
-public protocol WARunnerArgument {}
-
-extension Int: WARunnerArgument {}
-extension Double: WARunnerArgument {}
-extension String: WARunnerArgument {}
 
 /// WASM Canister arguments wrapped object.
 public struct WARunnerArguments {
-    let variables: [WARunnerArgument]
+    let variables: [Data]
 }
 
 /// WASM canister returns tuple object.

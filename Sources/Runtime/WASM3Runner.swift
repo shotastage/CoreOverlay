@@ -22,18 +22,17 @@ open class WASM3Runner: WASMRunner {
     }
 
     // Executer
-    public func execute(_ args: WARunnerArguments) throws -> some WasmTypeProtocol {
-        
-        guard let contents = try? _vm.call(
+    public func execute(_ args: WARunnerArguments) throws -> Int {
+        Int(try _vm.call(
             "main",
-            Int32(args.variables[0]),
-            Int32(args.variables[1]),
-            Int32(args.variables[2])
-        ) else {
-            return 12
-        }
-        
-        return contents
+            args.variables[0].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[1].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[2].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[3].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[4].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[5].withUnsafeBytes { $0.load( as: Int32.self ) },
+            args.variables[6].withUnsafeBytes { $0.load( as: Int32.self ) }
+        ) as Int32)
     }
 
     public func run(args _: WARunnerArguments) -> WARunnerReturns {
