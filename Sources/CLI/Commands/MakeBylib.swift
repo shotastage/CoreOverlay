@@ -25,6 +25,7 @@ class MakeBylibProcedure: CommandProcedure {
     func procedure() {
         do {
             try Shell.run("brew update")
+            // wasmer compile [file.wasm] --target $ARCH --dylib  -o [out.dylib]
         } catch {
             print("Some command has been finished in fail.")
         }
