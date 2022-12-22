@@ -22,8 +22,6 @@ public actor KademliaNode {
         }
 
         self.nodeId = id
-
-        fatalError("Now under construction")
     }
 
     /// Initializer with
