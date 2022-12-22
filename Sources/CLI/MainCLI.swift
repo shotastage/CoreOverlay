@@ -19,6 +19,7 @@ import ArgumentParser
                 subcommands: [
                     Build.self,
                     Create.self,
+                    MakeBylib.self,
                     Setup.self,
                     UpdateToolchain.self,
                 ],
