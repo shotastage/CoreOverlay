@@ -17,7 +17,9 @@ struct Setup: ParsableCommand {
     }
 }
 
-class SetupProcedure: CommandProcedure {
+final class SetupProcedure: CommandProcedure {
+    var args: [String] = []
+    
     func prepare() {
         print("Setup Tool is now under construction that it has possibility of being unstable.")
     }
