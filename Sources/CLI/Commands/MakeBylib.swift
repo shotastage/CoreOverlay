@@ -25,7 +25,10 @@ struct MakeBylib: ParsableCommand {
 enum ArchtectureLiterals: String {
     case iOSX86 = "x86_64-apple-ios"
     case iOSARM64 = "aarch64-apple-ios-sim"
+    case MacX86 = "__NOT_DEFINED_FOR_X86_"
+    case MacARM64 = "__NOT_DEFINED_FOR_ARM64_"
 }
+
 
 final class MakeBylibProcedure: CommandProcedure {
 
@@ -43,9 +46,7 @@ final class MakeBylibProcedure: CommandProcedure {
 
     func procedure() {
         do {
-            try Shell.run("brew update")
-            print("ARG1 \(args[0])")
-            try Shell.run("wasmer compile \(args[0]) --target \(ArchtectureLiterals.iOSARM64.rawValue) --dylib  -o build.dylib")
+            try Shell.run("wasmer compile -o build.dylib \(args[0]) --target \(ArchtectureLiterals.iOSARM64.rawValue) --dylib")
         } catch {
             print("Some command has been finished in fail.")
         }
