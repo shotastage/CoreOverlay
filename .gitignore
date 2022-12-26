@@ -20,3 +20,8 @@ backup/
 MEMO
 *.dylib
 *.wasm
+
+
+# Rust Related Files
+/target
+/Cargo.lock
