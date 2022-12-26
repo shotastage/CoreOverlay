@@ -17,3 +17,6 @@ memo/
 backup/
 
 *.pc
+MEMO
+*.dylib
+*.wasm
