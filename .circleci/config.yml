@@ -5,8 +5,7 @@ jobs:
       xcode: "14.1.0"
     shell: /bin/bash --login -o pipefail
     steps:
-      - run: brew install swift-protobuf grpc-swift wabt
-      - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      - run: brew install swift-protobuf grpc-swift wabt rust rustup-init      
       - run: curl https://get.wasmer.io -sSfL | sh
       - checkout
       - run: make setup
