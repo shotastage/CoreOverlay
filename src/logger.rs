@@ -5,9 +5,8 @@ impl Logger {
         Self {}
     }
 
-    pub fn log(&self) -> String {
-        "Hello, world!".to_string();
-        println!("Hello, world!");
+    pub fn log(msg: String) -> String {
+        println!(msg);
     }
 }
 
