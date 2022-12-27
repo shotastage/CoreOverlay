@@ -1,5 +1,6 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+#[no_mangle]
+pub extern "C" fn add(first: i64, second: i64) -> i64 {
+    first + second
 }
 
 #[cfg(test)]
