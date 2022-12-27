@@ -30,7 +30,7 @@ run:
 
 .PHONY:
 generate-proto:
-	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=Protos/ Protos/*.proto
+	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
 
 
 .PHONY:
@@ -53,10 +53,11 @@ endif
 
 
 .PHONY:
-build: generate-header generate-proto
-	#./Tools/generate-modulemap.sh Sources/CWasmer
+build-swift:
 	${SWIFT} build
 
+.PHONY:
+build: generate-header generate-proto build-rust build-swift
 
 .PHONY:
 clean:
