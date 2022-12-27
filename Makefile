@@ -53,11 +53,30 @@ endif
 
 
 .PHONY:
+build-lipo:
+	lipo -create \
+  		target/x86_64-apple-darwin/release/libcoreoverlayengine.a \
+  		target/aarch64-apple-darwin/release/libcoreoverlayengine.a \
+  		-output libcoreoverlayengine_macos.a
+
+	lipo -create \
+  		target/x86_64-apple-ios/release/libcoreoverlayengine.a \
+  		target/aarch64-apple-ios-sim/release/libcoreoverlayengine.a \
+  		-output libcoreoverlayengine_iossimulator.a
+ifeq ($(ENABLE_MAC_CATALYST), 1)
+	lipo -create \
+  		target/x86_64-apple-ios-macabi/release/libcoreoverlayengine.a \
+  		target/aarch64-apple-ios-macabi/release/libcoreoverlayengine.a \
+  		-output libcoreoverlayengine_maccatalyst.a
+endif
+
+
+.PHONY:
 build-swift:
 	${SWIFT} build
 
 .PHONY:
-build: generate-header generate-proto build-rust build-swift
+build: generate-header generate-proto build-rust build-swift build-lipo
 
 .PHONY:
 clean:

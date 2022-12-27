@@ -1,8 +1,12 @@
 [package]
 name = "coreoverlay-engine"
-crate-type = [ "staticlib" ]
 version = "0.1.0"
 edition = "2021"
+
+
+[lib]
+name = "coreoverlayengine"
+crate-type = [ "staticlib" ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

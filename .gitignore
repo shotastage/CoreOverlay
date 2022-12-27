@@ -25,3 +25,4 @@ MEMO
 # Rust Related Files
 *target/
 /Cargo.lock
+*.a
