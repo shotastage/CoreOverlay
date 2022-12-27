@@ -53,7 +53,7 @@ endif
 
 
 .PHONY:
-build: generate-proto
+build: generate-header generate-proto
 	#./Tools/generate-modulemap.sh Sources/CWasmer
 	${SWIFT} build
 
