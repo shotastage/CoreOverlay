@@ -54,21 +54,42 @@ endif
 
 .PHONY:
 build-lipo:
+	mkdir -p ./artifacts
 	lipo -create \
   		target/x86_64-apple-darwin/release/libcoreoverlayengine.a \
   		target/aarch64-apple-darwin/release/libcoreoverlayengine.a \
-  		-output libcoreoverlayengine_macos.a
+  		-output ./artifacts/libcoreoverlayengine_macos.a
 
 	lipo -create \
   		target/x86_64-apple-ios/release/libcoreoverlayengine.a \
   		target/aarch64-apple-ios-sim/release/libcoreoverlayengine.a \
-  		-output libcoreoverlayengine_iossimulator.a
+  		-output ./artifacts/libcoreoverlayengine_iossimulator.a
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	lipo -create \
   		target/x86_64-apple-ios-macabi/release/libcoreoverlayengine.a \
   		target/aarch64-apple-ios-macabi/release/libcoreoverlayengine.a \
-  		-output libcoreoverlayengine_maccatalyst.a
+  		-output ./artifacts/libcoreoverlayengine_maccatalyst.a
 endif
+
+
+.PHONY:
+build-rust-framework:
+	xcodebuild -create-xcframework \
+  		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
+  		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
+  		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
+  		-output ./artifacts/CoreOverlayEngine.xcframework
+
+ifeq ($(ENABLE_MAC_CATALYST), 1)
+	xcodebuild -create-xcframework \
+  		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
+  		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
+  		-library ./artifacts/libcoreoverlayengine_maccatalyst.a -headers ./include/ \
+  		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
+  		-output ./artifacts/CoreOverlayEngine.xcframework
+endif
+
+
 
 
 .PHONY:
@@ -76,15 +97,16 @@ build-swift:
 	${SWIFT} build
 
 .PHONY:
-build: generate-header generate-proto build-rust build-swift build-lipo
+build: generate-header generate-proto build-rust build-swift build-lipo build-rust-framework
 
 .PHONY:
 clean:
 	rm -rf .build/
 	rm -rf .swiftpm/xcode/
-	rm ./Sources/CWasmer/include/CWasmer_generated.h
 	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
 	rm -rf target/
+	rm -rf ./artifacts/
+	
 
 .PHONY:
 release:

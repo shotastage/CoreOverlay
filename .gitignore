@@ -26,3 +26,4 @@ MEMO
 *target/
 /Cargo.lock
 *.a
+artifacts/
