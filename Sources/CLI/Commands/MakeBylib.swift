@@ -24,7 +24,7 @@ struct MakeBylib: ParsableCommand {
 
 enum ArchtectureLiterals: String {
     case iOSX86 = "x86_64-apple-ios"
-    case iOSARM64 = "aarch64-apple-ios-sim"
+    case iOSARM64 = "_aarch64-apple-ios-sim"
     case MacX86 = "__NOT_DEFINED_FOR_X86_"
     case MacARM64 = "__NOT_DEFINED_FOR_ARM64_"
 }

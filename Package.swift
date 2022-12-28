@@ -89,6 +89,11 @@ let package = Package(
             url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
             checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
         ),
+        .binaryTarget(
+            name: "CoreOverlayEngine",
+            url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.1/bundle.zip",
+            checksum: "57450ea155120354c032ee02a5c4f6181ce1352d19c690df42a48b40ce628f0a"
+        ),
         .target(
             name: "CommonCrypt"
         ),
@@ -119,6 +124,7 @@ let package = Package(
             dependencies: [
                 "CommonCrypt",
                 "OverlayFundation",
+                "CoreOverlayEngine",
                 "Protobuf.Generated",
                 "Runtime",
                 .product(name: "GRPC", package: "grpc-swift"),
