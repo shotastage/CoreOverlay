@@ -1,5 +1,4 @@
-use std::ffi::CString;
-
+use std::ffi::c_char;
 
 #[repr(C)]
 struct Logger {}
@@ -16,7 +15,6 @@ impl Logger {
 
 
 #[no_mangle]
-pub extern "C" fn log(msg: CString) {
-    print!("{}", msg.into_string().unwrap());
-    
+pub extern "C" fn log(msg: *const c_char) {
+
 }
