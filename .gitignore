@@ -27,3 +27,7 @@ MEMO
 /Cargo.lock
 *.a
 artifacts/
+
+
+# WebAssembly Related Files
+*.wasmu
