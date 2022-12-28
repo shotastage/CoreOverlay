@@ -7,4 +7,4 @@ int64_t add(int64_t first, int64_t second);
 
 const char *arch(void);
 
-const char *log(void);
+void log(CString msg);
