@@ -15,6 +15,6 @@ impl Logger {
 
 
 #[no_mangle]
-pub extern "C" fn log(msg: *const c_char) {
-
+pub extern "C" fn ovry_log(msg: *const c_char) {
+    println!("{:?}", msg);
 }

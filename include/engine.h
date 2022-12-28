@@ -7,4 +7,4 @@ int64_t add(int64_t first, int64_t second);
 
 const char *arch(void);
 
-void log(const char *msg);
+void ovry_log(const char *msg);
