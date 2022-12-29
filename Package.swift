@@ -89,10 +89,14 @@ let package = Package(
             url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
             checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
         ),
+        //- .binaryTarget(
+        //     name: "CoreOverlayEngine",
+        //     url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.4/bundle.zip",
+        //     checksum: "bfe73fa008052eafab0857c74e83895484f26aa344b7f96f1717ace6f9290843"
+        //- ),
         .binaryTarget(
             name: "CoreOverlayEngine",
-            url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.4/bundle.zip",
-            checksum: "bfe73fa008052eafab0857c74e83895484f26aa344b7f96f1717ace6f9290843"
+            path: "./artifacts/CoreOverlayEngine.xcframework"
         ),
         .target(
             name: "CommonCrypt"

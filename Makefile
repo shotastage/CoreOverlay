@@ -106,7 +106,6 @@ build-artifacts:
 build-finalize:
 	@echo "Cleaning up..."
 	@echo
-	@rm -rf ./artifacts/CoreOverlayEngine.xcframework
 	@rm ./artifacts/libcoreoverlayengine_macos.a
 	@rm ./artifacts/libcoreoverlayengine_iossimulator.a
 	@echo "Build complete!"
@@ -115,7 +114,7 @@ build-finalize:
 	@openssl dgst -sha256 ./artifacts/bundle.zip
 
 .PHONY:
-build: generate-header generate-proto build-rust build-swift build-lipo build-rust-framework build-artifacts build-finalize
+build: generate-header generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
 
 
 .PHONY:
