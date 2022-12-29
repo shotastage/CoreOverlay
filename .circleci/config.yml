@@ -6,7 +6,7 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - run: brew install swift-protobuf grpc-swift wabt rust rustup-init      
-      - run: curl https://get.wasmer.io -sSfL | sh
+      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
       - run: make setup
       - run: make build
