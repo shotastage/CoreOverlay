@@ -25,13 +25,13 @@ open class WASM3Runner: WASMRunner {
     public func execute(_ args: WARunnerArguments) throws -> Int {
         Int(try _vm.call(
             "main",
-            args.variables[0].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[1].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[2].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[3].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[4].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[5].withUnsafeBytes { $0.load( as: Int32.self ) },
-            args.variables[6].withUnsafeBytes { $0.load( as: Int32.self ) }
+            args.variables[0].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[1].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[2].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[3].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[4].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[5].withUnsafeBytes { $0.load(as: Int32.self) },
+            args.variables[6].withUnsafeBytes { $0.load(as: Int32.self) }
         ) as Int32)
     }
 

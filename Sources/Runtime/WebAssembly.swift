@@ -20,7 +20,6 @@ public enum WARuntimeBackend {
     case jscore
 }
 
-
 /// WASM Canister arguments wrapped object.
 public struct WARunnerArguments {
     let variables: [Data]

@@ -10,9 +10,9 @@ import ZIPFoundation
 
 class PackageBuilder: CommandProcedure {
     var args: [String] = []
-    
+
     required init() {}
-    
+
     func prepare() {
         pack()
     }

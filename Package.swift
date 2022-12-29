@@ -1,22 +1,21 @@
 // swift-tools-version: 5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
-import PackageDescription
 import Foundation
-
+import PackageDescription
 
 func getRelativePathToHome() -> String {
     let fm = FileManager.default
     var relativePath = ""
     var pwd = fm.currentDirectoryPath
     let home = fm.homeDirectoryForCurrentUser.path
-    
+
     let result = pwd.range(of: home)
     if let theRange = result {
         pwd.removeSubrange(theRange)
     }
-    
-    let diff = pwd.components(separatedBy: "/").filter{!$0.isEmpty}
+
+    let diff = pwd.components(separatedBy: "/").filter { !$0.isEmpty }
 
     for _ in diff {
         relativePath += "../"
@@ -25,13 +24,11 @@ func getRelativePathToHome() -> String {
     return relativePath
 }
 
-
 let cxxSettings: [CXXSetting] = [
     .headerSearchPath("."),
     .headerSearchPath("include"),
     .headerSearchPath("\(getRelativePathToHome()).wasmer/include"),
 ]
-
 
 let package = Package(
     name: "CoreOverlay",
@@ -69,7 +66,7 @@ let package = Package(
         .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
-        //- .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
+        // - .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
 
         // Development only dependencies
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"),
@@ -89,11 +86,11 @@ let package = Package(
             url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
             checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
         ),
-        //- .binaryTarget(
+        // - .binaryTarget(
         //     name: "CoreOverlayEngine",
         //     url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.4/bundle.zip",
         //     checksum: "bfe73fa008052eafab0857c74e83895484f26aa344b7f96f1717ace6f9290843"
-        //- ),
+        // - ),
         .binaryTarget(
             name: "CoreOverlayEngine",
             path: "./artifacts/CoreOverlayEngine.xcframework"
@@ -134,7 +131,7 @@ let package = Package(
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-                //- .product(name: "LibP2P", package: "swift-libp2p"),
+                // - .product(name: "LibP2P", package: "swift-libp2p"),
             ]
         ),
         .executableTarget(

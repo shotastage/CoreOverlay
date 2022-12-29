@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/22.
 //
@@ -8,7 +8,6 @@
 import ArgumentParser
 
 struct MakeBylib: ParsableCommand {
-    
     @Argument var args: [String] = []
 
     static let configuration = CommandConfiguration(
@@ -21,7 +20,6 @@ struct MakeBylib: ParsableCommand {
     }
 }
 
-
 enum ArchtectureLiterals: String {
     case iOSX86 = "x86_64-apple-ios"
     case iOSARM64 = "_aarch64-apple-ios-sim"
@@ -29,11 +27,9 @@ enum ArchtectureLiterals: String {
     case MacARM64 = "__NOT_DEFINED_FOR_ARM64_"
 }
 
-
 final class MakeBylibProcedure: CommandProcedure {
-
     var args: [String] = []
-    
+
     required init() {}
 
     init(arguments: [String]) {

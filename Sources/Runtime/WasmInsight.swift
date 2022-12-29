@@ -1,6 +1,6 @@
 //
 //  WasmInsight.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2022/12/20.
 //
@@ -13,13 +13,10 @@ public struct InspectorInfo {
 }
 
 open class WasmInsight {
-    
     public init() {
         print("Wasm Runtime Program Inspector is now under construction!")
         fatalError("Failed to launch WASM inspector.")
     }
-    
-    func inspect() {
-        
-    }
+
+    func inspect() {}
 }

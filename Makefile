@@ -1,12 +1,15 @@
 SHELL=/usr/bin/env bash
 
+# Build configuration
+ENABLE_MAC_CATALYST := 0
+
 # Command Definitions
 SWIFT := swift
 CARGO ?= cargo
 
+SDKROOT=(xcrun --sdk macosx --show-sdk-path)
 
-# Build configuration
-ENABLE_MAC_CATALYST := 0
+
 
 .PHONY:
 setup:
@@ -22,6 +25,7 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 	rustup target add x86_64-apple-ios-macabi
 	rustup target add aarch64-apple-ios-macabi
 endif
+
 
 
 .PHONY:
@@ -90,8 +94,6 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
-
-
 .PHONY:
 build-swift:
 	${SWIFT} build
@@ -118,6 +120,10 @@ build: generate-header generate-proto build-rust build-lipo build-rust-framework
 
 
 .PHONY:
+build-ci: build
+	rm -rf ./artifacts/CoreOverlayEngine.xcframework
+
+.PHONY:
 clean:
 	@echo "Cleaning project..."
 	@rm -rf .build/
@@ -125,6 +131,7 @@ clean:
 	@find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
 	@rm -rf target/
 	@rm -rf ./artifacts/
+	@rm Cargo.lock
 	@echo "Done!"
 
 .PHONY:
@@ -133,11 +140,8 @@ release:
 
 .PHONY:
 update-deps:
-	rm Package.resolved
+	@rm Package.resolved
 	xcodebuild -resolvePackageDependencies
-
-SDKROOT=(xcrun --sdk macosx --show-sdk-path)
-
 
 .PHONY:
 format:

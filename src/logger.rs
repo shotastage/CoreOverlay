@@ -1,20 +1,16 @@
 use std::ffi::c_char;
 
-#[repr(C)]
-struct Logger {}
-
-impl Logger {
-    pub fn new() -> Self {
-        Self {}
-    }
-
-    pub fn log(msg: String) {
-        println!("{}", msg);
-    }
-}
-
-
 #[no_mangle]
 pub extern "C" fn ovry_log(msg: *const c_char) {
+    println!("{:?}", msg);
+}
+
+#[no_mangle]
+pub extern "C" fn ovry_warning(msg: *const c_char) {
+    println!("{:?}", msg);
+}
+
+#[no_mangle]
+pub extern "C" fn ovry_error(msg: *const c_char) {
     println!("{:?}", msg);
 }

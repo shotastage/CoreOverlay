@@ -9,4 +9,8 @@ const char *arch(void);
 
 void ovry_log(const char *msg);
 
+void ovry_warning(const char *msg);
+
+void ovry_error(const char *msg);
+
 int64_t wasm_test(void);

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol CommandProcedure {
-    
     var args: [String] { get set }
     init()
     func prepare()
@@ -16,16 +15,14 @@ protocol CommandProcedure {
     func run()
 }
 
-
 protocol ArgumentProcedure: CommandProcedure {
     func argumentCheck()
 }
 
 extension CommandProcedure {
-    
-    init(arguments: [String] = []) {
+    init(arguments _: [String] = []) {
         self.init()
-        self.args = args
+        args = args
     }
 
     func run() {
