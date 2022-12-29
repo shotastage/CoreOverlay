@@ -1,5 +1,6 @@
 pub mod arch;
 pub mod logger;
+pub mod wasmer_integration;
 
 #[no_mangle]
 pub extern "C" fn add(first: i64, second: i64) -> i64 {

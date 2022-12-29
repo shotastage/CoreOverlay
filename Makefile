@@ -120,12 +120,13 @@ build: generate-header generate-proto build-rust build-swift build-lipo build-ru
 
 .PHONY:
 clean:
-	rm -rf .build/
-	rm -rf .swiftpm/xcode/
-	find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
-	rm -rf target/
-	rm -rf ./artifacts/
-	
+	@echo "Cleaning project..."
+	@rm -rf .build/
+	@rm -rf .swiftpm/xcode/
+	@find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
+	@rm -rf target/
+	@rm -rf ./artifacts/
+	@echo "Done!"
 
 .PHONY:
 release:
