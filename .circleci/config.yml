@@ -5,12 +5,12 @@ jobs:
       xcode: "14.1.0"
     shell: /bin/bash --login -o pipefail
     steps:
-      - run: brew install swift-protobuf grpc-swift wabt rust rustup-init      
+      - run: brew install swift-protobuf grpc-swift wabt
       - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
       - run: make setup
       - run: make build
-      #- store_artifacts:
-      #    path: output
+      - store_artifacts:
+          path: ./artifacts/
       #- store_test_results:
       #    path: output/scan
