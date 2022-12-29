@@ -91,8 +91,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "CoreOverlayEngine",
-            url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.03/bundle.zip",
-            checksum: "6ba00279e1429951c540bad9630294705ac34ea450f9f45a8e5a37ab2aea4440"
+            url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.4/bundle.zip",
+            checksum: "bfe73fa008052eafab0857c74e83895484f26aa344b7f96f1717ace6f9290843"
         ),
         .target(
             name: "CommonCrypt"
