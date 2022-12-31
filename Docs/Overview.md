@@ -1,6 +1,6 @@
 # About CoreOverlay
 
-CoreOverlay is lightweight P2P computing abstracted layer for on-device use.
+CoreOverlay is lightweight P2P computing abstracted layer for edge device use.
 
 ## Decentralized Computing Module
 
