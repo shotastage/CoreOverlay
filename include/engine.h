@@ -13,8 +13,6 @@ void ovry_warning(const char *msg);
 
 void ovry_error(const char *msg);
 
-void load_wasm_text_module(const char *wasm_text, const char *main_fn);
+void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
 
-void load_wasm_module(void);
-
-int64_t wasm_test(void);
+void c_exec_wasm_module(void);

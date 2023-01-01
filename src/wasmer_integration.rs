@@ -3,7 +3,7 @@ use std::ffi::CStr;
 use std::os::raw::c_char;
 
 
-
+// Rust function that calls the wasm text module
 fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
 
     let mut store = Store::default();
@@ -18,7 +18,7 @@ fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
     Ok(())
 }
 
-
+// Rust function that calls the pre-compiled wasm module
 fn wasm_exec() -> anyhow::Result<()> {
     let module_wat = r#"
     (module
@@ -41,13 +41,17 @@ fn wasm_exec() -> anyhow::Result<()> {
     Ok(())
 }
 
+
+// Test functions
 #[test]
 fn test_hello_world() -> anyhow::Result<()> {
     wasm_exec()
 }
 
+
+// C functions that can be called from the C code
 #[no_mangle]
-pub extern "C" fn load_wasm_text_module(wasm_text: *const c_char, main_fn: *const c_char) {
+pub extern "C" fn c_exec_wasm_text_module(wasm_text: *const c_char, main_fn: *const c_char) {
     println!("Loading wasm module");
 
     // Convert the C string to a Rust string
@@ -63,12 +67,7 @@ pub extern "C" fn load_wasm_text_module(wasm_text: *const c_char, main_fn: *cons
 }
 
 #[no_mangle]
-pub extern "C" fn load_wasm_module() {
+pub extern "C" fn c_exec_wasm_module() {
     println!("Loading wasm module");
-}
-
-#[no_mangle]
-pub extern "C" fn wasm_test() -> i64 {
     wasm_exec().unwrap();
-    return 42;
 }
