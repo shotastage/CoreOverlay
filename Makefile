@@ -43,6 +43,12 @@ generate-header:
 
 
 .PHONY:
+pre-build-preparation:
+	@echo "Preparing build..."
+	@rm -rf ./artifacts/
+	@echo "Done!"
+
+.PHONY:
 build-rust:
 	$(CARGO) build --release --target aarch64-apple-ios
 	$(CARGO) build --release --target x86_64-apple-darwin
@@ -116,7 +122,7 @@ build-finalize:
 	@openssl dgst -sha256 ./artifacts/bundle.zip
 
 .PHONY:
-build: generate-header generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
+build: pre-build-preparation generate-header generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
 
 
 .PHONY:
