@@ -29,6 +29,22 @@ endif
 
 
 .PHONY:
+setup-ci:
+	rustup target add aarch64-apple-ios
+	rustup target add x86_64-apple-darwin
+	rustup target add aarch64-apple-darwin
+	rustup target add x86_64-apple-ios
+	rustup target add aarch64-apple-ios-sim
+ifeq ($(ENABLE_MAC_CATALYST), 1)
+	$(CARGO) +nightly build --release -Z build-std --target x86_64-apple-ios-macabi
+	$(CARGO) +nightly build --release -Z build-std --target aarch64-apple-ios-high macabi
+	rustup target add x86_64-apple-ios-macabi
+	rustup target add aarch64-apple-ios-macabi
+endif
+
+
+
+.PHONY:
 run:
 	${SWIFT} run
 
@@ -126,7 +142,7 @@ build: pre-build-preparation generate-header generate-proto build-rust build-lip
 
 
 .PHONY:
-build-ci: build
+build-ci: pre-build-preparation generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
 	rm -rf ./artifacts/CoreOverlayEngine.xcframework
 
 .PHONY:
