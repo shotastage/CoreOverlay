@@ -6,32 +6,22 @@
 //
 
 import Foundation
-import WasmInterpreter
+import CBreeze
 import OverlayEngine
 import OverlayFundation
 
 public struct WASMModule {
-    // WASM VM interpreter instance
-    private let _vm: WasmInterpreter
 
-    // bit loaded
-    private let programLoad: [UInt8]
+    let wasmText: String
 
-    // Initializers
-    public init(file _: URL) throws {
-        programLoad = [UInt8](Data(base64Encoded: "base64")!)
-        _vm = try WasmInterpreter(module: programLoad)
+    init(module: String) {
+        wasmText = module
     }
 
     // Executer
-    @discardableResult
-    public func execute(_ first: Int, _ second: Int) throws -> Int {
-        Int(try _vm.call("main", Int32(first), Int32(second)) as Int32)
-    }
-
-    func testable(wasmText: String, mainFx: String) {
-        let cWasmText: UnsafeMutablePointer<CChar> = makeCString(from: wasmText)
-        let cMainFx: UnsafeMutablePointer<CChar> = makeCString(from: mainFx)
+    public func execute(_ mainFx: String) {
+        let cWasmText: UnsafeMutablePointer<CChar> = toCString(from: wasmText)
+        let cMainFx: UnsafeMutablePointer<CChar> = toCString(from: mainFx)
         
         c_exec_wasm_text_module(cWasmText, cMainFx)
     }
