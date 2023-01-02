@@ -32,18 +32,9 @@ open class OverlayComputer {
 
     public func start() {
         COLogger.info("Starting CoreOverlay internal server...")
-
-        let wat = """
-(module
-(type $t0 (func (param i32) (result i32)))
-(func $add_one (export "add_one") (type $t0) (param $p0 i32) (result i32)
-get_local $p0
-i32.const 1
-i32.add))
-"""
         
         do {
-            let wasm = try WASMModule(module: wat)
+            let wasm = try WASMModule(module: package!)
             try! wasm.execute("main")
         } catch {
             print("Failed to register WASM artifcats.")
