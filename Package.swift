@@ -66,6 +66,9 @@ var targetDeps: [Target] = [
         name: "OverlayFundation"
     ),
     .target(
+        name: "CBreeze"
+    ),
+    .target(
         name: "OverlayDB",
         dependencies: [
             .product(name: "SQLite", package: "SQLite.swift"),
@@ -92,6 +95,7 @@ var targetDeps: [Target] = [
             "CoreOverlayEngine",
             "Protobuf.Generated",
             "Runtime",
+            "CBreeze",
             .product(name: "GRPC", package: "grpc-swift"),
             .product(name: "Crypto", package: "swift-crypto"),
             .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
