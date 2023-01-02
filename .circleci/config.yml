@@ -17,4 +17,6 @@ jobs:
           paths:
             - ./.build/
             - ./target/
-          key: v1-dependencies-{{ checksum "Cargo.lock" }}
+          key: 
+            - v1-dependencies-{{ checksum "Cargo.lock" }}
+            - v1-dependencies-{{ checksum "Package.resolved" }}
