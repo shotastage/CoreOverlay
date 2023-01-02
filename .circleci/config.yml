@@ -12,3 +12,9 @@ jobs:
       - run: COREOVERLAY_BUILD_MODE="development" make build-ci
       - store_artifacts:
           path: ./artifacts/
+      - save_cache:
+          name: save
+          paths:
+            - ./.build/
+            - ./target/
+          key: v1-dependencies-{{ checksum "Cargo.lock" }}

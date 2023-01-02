@@ -142,7 +142,7 @@ build: pre-build-preparation generate-header generate-proto build-rust build-lip
 
 
 .PHONY:
-build-ci: pre-build-preparation generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
+build-ci: pre-build-preparation build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
 	rm -rf ./artifacts/CoreOverlayEngine.xcframework
 
 .PHONY:
