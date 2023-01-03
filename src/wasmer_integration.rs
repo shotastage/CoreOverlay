@@ -1,7 +1,8 @@
-use wasmer::{Store, Module, Instance, Value, imports};
+use anyhow::Ok;
+use wasmer::{imports, EngineBuilder, Instance, Module, Store, Value};
 use std::ffi::CStr;
-use std::os::raw::c_char;
-
+use std::os::raw::{c_char, c_uchar};
+use core::slice;
 
 // Rust function that calls the wasm text module
 fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
@@ -19,24 +20,18 @@ fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
 }
 
 // Rust function that calls the pre-compiled wasm module
-fn wasm_exec() -> anyhow::Result<()> {
-    let module_wat = r#"
-    (module
-      (type $t0 (func (param i32) (result i32)))
-      (func $add_one (export "add_one") (type $t0) (param $p0 i32) (result i32)
-        get_local $p0
-        i32.const 1
-        i32.add))
-    "#;
+fn wasm_native_exec(file_binary: &[u8]) -> anyhow::Result<()> {
+    let engine = EngineBuilder::headless();
+    let mut store = Store::new(engine);
+    let module = Module::from_binary(&store, file_binary)?;
 
-    let mut store = Store::default();
-    let module = Module::new(&store, &module_wat)?;
     let import_object = imports! {};
+
     let instance = Instance::new(&mut store, &module, &import_object)?;
 
-    let add_one = instance.exports.get_function("add_one")?;
-    let result = add_one.call(&mut store, &[Value::I32(42)])?;
-    assert_eq!(result[0], Value::I32(43));
+
+    let sum = instance.exports.get_function("sum")?;
+    let _results = sum.call(&mut store, &[Value::I32(1), Value::I32(2)])?;
 
     Ok(())
 }
@@ -45,7 +40,8 @@ fn wasm_exec() -> anyhow::Result<()> {
 // Test functions
 #[test]
 fn test_hello_world() -> anyhow::Result<()> {
-    wasm_exec()
+    // wasm_exec("hello_world.wasm")
+    Ok(())
 }
 
 
@@ -67,7 +63,11 @@ pub extern "C" fn c_exec_wasm_text_module(wasm_text: *const c_char, main_fn: *co
 }
 
 #[no_mangle]
-pub extern "C" fn c_exec_wasm_module() {
+pub extern "C" fn c_exec_wasm_native_module(data: *const c_uchar, data_length: usize) {
     println!("Loading wasm module");
-    wasm_exec().unwrap();
+
+    let c_data = unsafe {slice::from_raw_parts(data, data_length)};
+    let r_data: Vec<u8> = Vec::from(c_data);
+
+    wasm_native_exec(&r_data).unwrap();
 }

@@ -5,7 +5,7 @@
 
 int64_t add(int64_t first, int64_t second);
 
-const char *arch(void);
+const char *ovr_arch(void);
 
 void ovry_log(const char *msg);
 
@@ -15,4 +15,4 @@ void ovry_error(const char *msg);
 
 void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
 
-void c_exec_wasm_module(void);
+void c_exec_wasm_native_module(const unsigned char *data, uintptr_t data_length);
