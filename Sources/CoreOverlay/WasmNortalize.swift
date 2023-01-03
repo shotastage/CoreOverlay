@@ -12,7 +12,7 @@ struct NotarlizeTable {
     let objectIdentifier: String
 }
 
-class WasmNotarized {
+open class WasmNotarized {
     func nortalize() {
         COLogger.info("Initializing wasm package notarization...")
     }

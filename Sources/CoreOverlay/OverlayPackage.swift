@@ -8,12 +8,15 @@
 import Foundation
 
 public enum OverlaySupportedLanguages {
-    case swift5
-    case go
-    case cpp
+    case swift5, go, cpp
+}
+
+public enum ExecutionMode {
+    case texscript, native
 }
 
 public struct OverlayPackage {
     let objects: [URL]
     let language: OverlaySupportedLanguages
+    let mode: ExecutionMode
 }

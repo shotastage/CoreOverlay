@@ -5,7 +5,7 @@
 //  Created by Shota Shimazu on 2022/06/07.
 //
 
-@testable import CoreOverlay
+@testable import OverlayFundation
 import XCTest
 
 final class UtilFuncsTests: XCTestCase {
@@ -21,9 +21,9 @@ final class UtilFuncsTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(DHTMath.hummingDistance(first, second))")
+        print("DIS:  \(COMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(DHTMath.hummingDistance(first, second), 1)
+        XCTAssertEqual(COMath.hummingDistance(first, second), 1)
     }
 
     func testXORDistance2() throws {
@@ -38,9 +38,9 @@ final class UtilFuncsTests: XCTestCase {
         print("IN:   \(first)")
         print("OUT:  \(second)")
         print("DIFF: \(first ^ second)")
-        print("DIS:  \(DHTMath.hummingDistance(first, second))")
+        print("DIS:  \(COMath.hummingDistance(first, second))")
 
-        XCTAssertEqual(DHTMath.hummingDistance(first, second), 3)
+        XCTAssertEqual(COMath.hummingDistance(first, second), 3)
     }
 
     func testRandomID() throws {
@@ -52,7 +52,7 @@ final class UtilFuncsTests: XCTestCase {
         for i in 1 ... 100 {
             previous = current
 
-            current = DHTMath.randomID()
+            current = COMath.randomID()
 
             print("\(i):  \(current)")
             XCTAssertNotEqual(current, previous)

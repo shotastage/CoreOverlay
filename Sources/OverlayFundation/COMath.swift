@@ -1,14 +1,14 @@
 //
-//  Math.swift
+//  File.swift
+//  
 //
-//
-//  Created by Shota Shimazu on 2022/06/07.
+//  Created by Shota Shimazu on 2023/01/03.
 //
 
 import CommonCrypto
 import Foundation
 
-class CommonCryptoAlgorithm {
+open class CommonCryptoAlgorithm {
     var digestLength: Int = .init(CC_SHA1_DIGEST_LENGTH)
 
     public static func sha1(data: Data) -> String {
@@ -21,7 +21,7 @@ class CommonCryptoAlgorithm {
     }
 }
 
-open class DHTMath {
+open class COMath {
     public static func randomID() -> String {
         let uuidString = UUID().uuidString
 

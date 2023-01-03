@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OverlayFundation
 
 @testable import CoreOverlay
 import XCTest
