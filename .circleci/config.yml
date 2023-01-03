@@ -8,6 +8,10 @@ jobs:
       - run: brew install swift-protobuf grpc-swift wabt
       - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
+      - restore_cache:
+          name: Restore Swift and Rust packaging compiled cache
+          keys:
+            - v1-dependencies-{{ checksum "Cargo.lock" }}-{{ checksum "Package.resolved" }}
       - run: make setup-ci
       - run: COREOVERLAY_BUILD_MODE="development" make build-ci
       - store_artifacts:
