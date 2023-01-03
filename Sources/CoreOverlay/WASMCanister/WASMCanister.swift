@@ -17,8 +17,6 @@ public struct WASMModule {
     let wasmFile: Data
 
     init(module: URL) throws {
-        
-        arch()
         do {
             wasmText = try String(contentsOf: module, encoding: .utf8)
             wasmFile = try Data(contentsOf: module)

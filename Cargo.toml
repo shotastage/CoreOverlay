@@ -15,6 +15,7 @@ crate-type = [ "staticlib" ]
 [dependencies]
 wasmer = "3.0"
 anyhow = "1.0"
+libp2p = "0.50.0"
 
 [build-dependencies]
 build-deps = "0.1.4"
