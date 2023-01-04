@@ -15,7 +15,9 @@ crate-type = [ "staticlib" ]
 [dependencies]
 wasmer = "3.0"
 anyhow = "1.0"
-libp2p = "0.50.0"
+libp2p = { version = "0.50.0", features = ["tcp-tokio", "mdns-tokio"] }
+tokio = { version = "0.3", features = ["io-util", "io-std", "stream", "macros", "rt", "rt-multi-thread", "fs", "time", "sync"] }
+
 
 [build-dependencies]
 build-deps = "0.1.4"
