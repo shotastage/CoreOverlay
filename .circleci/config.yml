@@ -11,7 +11,7 @@ jobs:
       - restore_cache:
           name: Restore Swift and Rust packaging compiled cache
           keys:
-            - v1-dependencies-{{ checksum "Cargo.lock" }}-{{ checksum "Package.resolved" }}
+            - v1-dependencies-{{ checksum "Package.resolved" }}
       - run: make setup-ci
       - run: COREOVERLAY_BUILD_MODE="development" make build-ci
       - store_artifacts:
@@ -21,4 +21,4 @@ jobs:
           paths:
             - ./.build/
             - ./target/
-          key: v1-dependencies-{{ checksum "Cargo.lock" }}-{{ checksum "Package.resolved" }}
+          key: v1-dependencies-{{ checksum "Package.resolved" }}
