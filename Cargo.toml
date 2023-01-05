@@ -16,8 +16,50 @@ crate-type = [ "staticlib" ]
 wasmer = "3.0"
 anyhow = "1.0"
 futures = "0.3.25"
-libp2p = { version = "0.50.0", features = ["kad"] }
 
+[dependencies.libp2p]
+version = "0.50.0"
+features = [
+    "async-std",
+    "autonat",
+    "dcutr",
+    "deflate",
+    "dns",
+    "ecdsa",
+    "floodsub",
+    "gossipsub",
+    "identify",
+    "kad",
+    "mdns",
+    "metrics",
+    "mplex",
+    "noise",
+    "ping",
+    "plaintext",
+    "pnet",
+    "quic",
+    "macros",
+    "relay",
+    "rendezvous",
+    "request-response",
+    "rsa",
+    "secp256k1",
+    "serde",
+    "tcp",
+    "tls",
+    "tokio",
+    "uds",
+    "wasm-bindgen",
+    "wasm-ext",
+    "wasm-ext-websocket",
+    "webrtc",
+    "websocket",
+    "yamux",
+]
+
+[dependencies.async-std]
+version = "1.4.0"
+features = ["attributes"]
 
 [build-dependencies]
 build-deps = "0.1.4"
@@ -31,5 +73,5 @@ criterion = "0.3"
 lazy_static = "1.4"
 serial_test = "0.5"
 tempfile = "3.1"
-async-std = { version = "1.6.2", features = ["attributes"] }
-tokio = { version = "1.15", features = ["io-util", "io-std", "macros", "rt", "rt-multi-thread"] }
+async-std = { version = "1.11.0", features = ["attributes"] }
+async-executor = "1.4.1"
