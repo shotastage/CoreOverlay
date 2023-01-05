@@ -15,8 +15,8 @@ crate-type = [ "staticlib" ]
 [dependencies]
 wasmer = "3.0"
 anyhow = "1.0"
-libp2p = "0.50.0"
 futures = "0.3.25"
+libp2p = { version = "0.50.0", features = ["kad"] }
 
 
 [build-dependencies]
