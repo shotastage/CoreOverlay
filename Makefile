@@ -151,7 +151,7 @@ clean:
 	@rm -rf .build/
 	@rm -rf .swiftpm/xcode/
 	@find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
-	@rm -rf target/
+	@cargo clean
 	@rm -rf ./artifacts/
 	@rm Cargo.lock
 	@echo "Done!"

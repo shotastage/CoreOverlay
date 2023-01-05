@@ -1,5 +1,9 @@
-
+use std::os::raw::c_char;
+use std::ffi::{CString, CStr};
 use async_std::io;
+use async_ffi::{FfiFuture, FutureExt};
+use tokio::runtime::Handle;
+
 use futures::{prelude::*, select};
 use libp2p::kad::record::store::MemoryStore;
 use libp2p::kad::{
@@ -16,6 +20,47 @@ use std::error::Error;
 
 
 
+
+#[no_mangle]
+pub extern "C" fn create_localkey() {
+    // Create a random key for ourselves.
+    let _local_key = identity::Keypair::generate_ed25519();
+}
+
+
+#[no_mangle]
+pub extern "C" fn create_peerid() {
+    // Create a random key for ourselves.
+    let local_key = identity::Keypair::generate_ed25519();
+    let _local_peer_id = PeerId::from(local_key.public());
+}
+
+#[derive(NetworkBehaviour)]
+#[behaviour(out_event = "CoreOverlayBehaviourEvent")]
+struct CoreOverlayBehaviour {
+    kademlia: Kademlia<MemoryStore>,
+    mdns: mdns::async_io::Behaviour,
+}
+
+#[allow(clippy::large_enum_variant)]
+enum CoreOverlayBehaviourEvent {
+    Kademlia(KademliaEvent),
+    Mdns(mdns::Event),
+}
+
+impl From<KademliaEvent> for CoreOverlayBehaviourEvent {
+    fn from(event: KademliaEvent) -> Self {
+        CoreOverlayBehaviourEvent::Kademlia(event)
+    }
+}
+
+impl From<mdns::Event> for CoreOverlayBehaviourEvent {
+    fn from(event: mdns::Event) -> Self {
+        CoreOverlayBehaviourEvent::Mdns(event)
+    }
+}
+
+
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn Error>> {
 
@@ -25,6 +70,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex protocol.
     let transport = development_transport(local_key).await?;
+
 
     // We create a custom network behaviour that combines Kademlia and mDNS.
     #[derive(NetworkBehaviour)]
@@ -137,7 +183,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
     }
 }
 
-fn handle_input_line(kademlia: &mut Kademlia<MemoryStore>, line: String) {
+
+
+#[no_mangle]
+pub extern "C" fn setup_kademlia() {
+    let _res: Result<(), Box<dyn Error>> = main();
+}
+
+pub fn handle_input_line(kademlia: &mut Kademlia<MemoryStore>, line: String) {
     let mut args = line.split(' ');
 
     match args.next() {
@@ -213,4 +266,9 @@ fn handle_input_line(kademlia: &mut Kademlia<MemoryStore>, line: String) {
             eprintln!("expected GET, GET_PROVIDERS, PUT or PUT_PROVIDER");
         }
     }
+}
+
+#[no_mangle]
+pub extern "C" fn c_head_input_line() {
+    //- handle_input_line();
 }

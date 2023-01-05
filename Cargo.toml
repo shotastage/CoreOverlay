@@ -14,8 +14,11 @@ crate-type = [ "staticlib" ]
 
 [dependencies]
 wasmer = "3.0"
-anyhow = "1.0"
 futures = "0.3.25"
+anyhow = "1.0"
+async-ffi = "0.4.0"
+tokio = "1.24.0"
+safer-ffi = "0.0.10"
 
 [dependencies.libp2p]
 version = "0.50.0"
@@ -42,7 +45,6 @@ features = [
     "relay",
     "rendezvous",
     "request-response",
-    "rsa",
     "secp256k1",
     "serde",
     "tcp",
@@ -55,7 +57,7 @@ features = [
 ]
 
 [dependencies.async-std]
-version = "1.4.0"
+version = "1.11.0"
 features = ["attributes"]
 
 [build-dependencies]
