@@ -128,8 +128,8 @@ case .production:
     targetDeps.append(
         Target.binaryTarget(
             name: "CoreOverlayEngine",
-             url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.5/bundle.zip",
-             checksum: "00ae2cb13cd73e5ea3a3d24a79a6e63cfa8181a099ae8c3bc37e7d263a59717c"
+             url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.6/bundle.zip",
+             checksum: "605a23962e9a045e285b4d8c9f8fd5933b1f36a8943e6846d8d083e1114a0ca1"
         )
     )
 case .development:
