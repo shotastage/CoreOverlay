@@ -5,14 +5,16 @@ jobs:
       xcode: "14.1.0"
     shell: /bin/bash --login -o pipefail
     steps:
-      - run: brew --prefix
-      - run: brew install swift-protobuf grpc-swift wabt
-      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
       - restore_cache:
           name: Restore Swift and Rust packaging compiled cache
           keys:
             - v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Package.resolved" }}
+      - run: brew update
+      - run: brew install swift-protobuf grpc-swift wabt
+      - run: brew upgrade
+      - run: brew cleanup
+      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - run: make setup-ci
       - run: COREOVERLAY_BUILD_MODE="development" make build-ci
       - store_artifacts:
@@ -23,4 +25,6 @@ jobs:
             - ./.build/
             - ./target/
             - ~/.cargo/
+            - /Users/distiller/Library/Caches/Homebrew
+            - /usr/local/Homebrew
           key: v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Package.resolved" }}
