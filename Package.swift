@@ -63,7 +63,10 @@ var targetDeps: [Target] = [
         name: "CBreeze"
     ),
     .target(
-        name: "OverlayDHT"
+        name: "OverlayDHT",
+        dependencies: [
+            "CommonCrypt",
+        ]
     ),
     .target(
         name: "OverlayDB",

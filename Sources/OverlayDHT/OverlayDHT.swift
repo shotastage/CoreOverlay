@@ -16,7 +16,7 @@ protocol Kademlia {
 
 open class OverlayDHT: Kademlia {
 
-    init() {}
+    init(kid: String) {}
     
     deinit {}
 

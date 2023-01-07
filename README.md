@@ -22,7 +22,7 @@ This framework provides utilities that make or integrate structured overlay netw
 |:-----------------|:------:|---------------|
 | CoreOverlay      | 🔴     | Main package of this framework |
 | CLI              | 🟡     | Commandline tools for CoreOverlay package |
-| Runtime          | 🔴     | WebAssembly embeded runtime |
+| Runtime          | 🟡     | WebAssembly embeded runtime |
 | OverlayFundation | 🟡     | CoreOverlay utility package |
 | CLevelDB         | 🟡     | LevelDB bridge              |
 | WASM3 Backend    | ⚪️     | WASM3 backend will be deprecated due to JIT-compiler restriction policy.     |
