@@ -48,12 +48,6 @@ func getRelativePathToHome() -> String {
 }
 
 var targetDeps: [Target] = [
-    .systemLibrary(
-        name: "CLevelDB",
-        providers: [
-            .brew(["leveldb"]),
-        ]
-    ),
     .binaryTarget(
         name: "CWasmer",
         url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
@@ -67,6 +61,9 @@ var targetDeps: [Target] = [
     ),
     .target(
         name: "CBreeze"
+    ),
+    .target(
+        name: "OverlayDHT"
     ),
     .target(
         name: "OverlayDB",
@@ -96,6 +93,7 @@ var targetDeps: [Target] = [
             "Protobuf.Generated",
             "Runtime",
             "CBreeze",
+            "OverlayDHT",
             .product(name: "GRPC", package: "grpc-swift"),
             .product(name: "Crypto", package: "swift-crypto"),
             .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
@@ -161,10 +159,6 @@ let package = Package(
         .library(
             name: "OverlayDB",
             targets: ["OverlayDB"]
-        ),
-        .library(
-            name: "CLevelDB",
-            targets: ["CLevelDB"]
         ),
         .executable(
             name: "cot",

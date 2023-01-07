@@ -20,11 +20,3 @@ void ovry_error(const char *msg);
 void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
 
 void c_exec_wasm_native_module(const unsigned char *data, uintptr_t data_length);
-
-void create_localkey(void);
-
-void create_peerid(void);
-
-void setup_kademlia(void);
-
-void c_head_input_line(void);
