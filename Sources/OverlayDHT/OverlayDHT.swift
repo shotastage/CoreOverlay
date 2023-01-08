@@ -16,9 +16,19 @@ protocol Kademlia {
 
 open class OverlayDHT: Kademlia {
 
-    init(kid: String) {}
+    let kid: String
+    let kbuckets: [KBucket]
+
+    init() {
+        kid = OverlayDHTUtils.randomID()
+        kbuckets = []
+    }
     
     deinit {}
+
+    func bootstrap() {
+        
+    }
 
     func findNode() {
         // Now under construction

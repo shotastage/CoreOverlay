@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct KadDHTNetwork_PingRequest {
+public struct Kad_Dht_Network_Pb_PingRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -32,7 +32,7 @@ public struct KadDHTNetwork_PingRequest {
   public init() {}
 }
 
-public struct KadDHTNetwork_PingResponse {
+public struct Kad_Dht_Network_Pb_PingResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -44,7 +44,7 @@ public struct KadDHTNetwork_PingResponse {
   public init() {}
 }
 
-public struct KadDHTNetwork_FindRequest {
+public struct Kad_Dht_Network_Pb_FindRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -56,7 +56,7 @@ public struct KadDHTNetwork_FindRequest {
   public init() {}
 }
 
-public struct KadDHTNetwork_FindResponse {
+public struct Kad_Dht_Network_Pb_FindResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -68,7 +68,7 @@ public struct KadDHTNetwork_FindResponse {
   public init() {}
 }
 
-public struct KadDHTNetwork_StoreRequest {
+public struct Kad_Dht_Network_Pb_StoreRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -80,7 +80,7 @@ public struct KadDHTNetwork_StoreRequest {
   public init() {}
 }
 
-public struct KadDHTNetwork_StoreResponse {
+public struct Kad_Dht_Network_Pb_StoreResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -93,19 +93,19 @@ public struct KadDHTNetwork_StoreResponse {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension KadDHTNetwork_PingRequest: @unchecked Sendable {}
-extension KadDHTNetwork_PingResponse: @unchecked Sendable {}
-extension KadDHTNetwork_FindRequest: @unchecked Sendable {}
-extension KadDHTNetwork_FindResponse: @unchecked Sendable {}
-extension KadDHTNetwork_StoreRequest: @unchecked Sendable {}
-extension KadDHTNetwork_StoreResponse: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_PingRequest: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_PingResponse: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_FindRequest: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_FindResponse: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_StoreRequest: @unchecked Sendable {}
+extension Kad_Dht_Network_Pb_StoreResponse: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "KadDHTNetwork"
+fileprivate let _protobuf_package = "kad.dht.network.pb"
 
-extension KadDHTNetwork_PingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_PingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PingRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -130,14 +130,14 @@ extension KadDHTNetwork_PingRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_PingRequest, rhs: KadDHTNetwork_PingRequest) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_PingRequest, rhs: Kad_Dht_Network_Pb_PingRequest) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension KadDHTNetwork_PingResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_PingResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PingResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -162,14 +162,14 @@ extension KadDHTNetwork_PingResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_PingResponse, rhs: KadDHTNetwork_PingResponse) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_PingResponse, rhs: Kad_Dht_Network_Pb_PingResponse) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension KadDHTNetwork_FindRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_FindRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FindRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -194,14 +194,14 @@ extension KadDHTNetwork_FindRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_FindRequest, rhs: KadDHTNetwork_FindRequest) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_FindRequest, rhs: Kad_Dht_Network_Pb_FindRequest) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension KadDHTNetwork_FindResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_FindResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FindResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -226,14 +226,14 @@ extension KadDHTNetwork_FindResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_FindResponse, rhs: KadDHTNetwork_FindResponse) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_FindResponse, rhs: Kad_Dht_Network_Pb_FindResponse) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension KadDHTNetwork_StoreRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_StoreRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StoreRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -258,14 +258,14 @@ extension KadDHTNetwork_StoreRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_StoreRequest, rhs: KadDHTNetwork_StoreRequest) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_StoreRequest, rhs: Kad_Dht_Network_Pb_StoreRequest) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension KadDHTNetwork_StoreResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Kad_Dht_Network_Pb_StoreResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StoreResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -290,7 +290,7 @@ extension KadDHTNetwork_StoreResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: KadDHTNetwork_StoreResponse, rhs: KadDHTNetwork_StoreResponse) -> Bool {
+  public static func ==(lhs: Kad_Dht_Network_Pb_StoreResponse, rhs: Kad_Dht_Network_Pb_StoreResponse) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

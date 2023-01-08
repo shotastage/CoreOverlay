@@ -21,7 +21,7 @@ class OverlayDHTUtils {
         return digest.map { String(format: "%02x", $0) }.reduce("", +)
     }
 
-    public static func hummingDistance(_ x: Int, _ y: Int) -> Int {
+    public static func xor(_ x: Int, _ y: Int) -> Int {
         var diff = x ^ y
         var count = 0
 
@@ -33,6 +33,9 @@ class OverlayDHTUtils {
         return count
     }
 
+    
+    /// randomID generates unique 160bit random ID string
+    /// - Returns: Random 160bit ID as string.
     public static func randomID() -> String {
         let uuidString = UUID().uuidString
 
