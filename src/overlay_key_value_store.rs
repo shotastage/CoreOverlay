@@ -1,7 +1,7 @@
-use std::os::raw::c_char;
-use std::ffi::{CString, CStr};
-use async_std::io;
 use async_ffi::{FfiFuture, FutureExt};
+use async_std::io;
+use std::ffi::{CStr, CString};
+use std::os::raw::c_char;
 use tokio::runtime::Handle;
 
 use futures::{prelude::*, select};
@@ -10,23 +10,19 @@ use libp2p::kad::{
     record::Key, AddProviderOk, Kademlia, KademliaEvent, PeerRecord, PutRecordOk, QueryResult,
     Quorum, Record,
 };
+use libp2p::kad::{GetProvidersOk, GetRecordOk};
 use libp2p::{
     development_transport, identity, mdns,
     swarm::{NetworkBehaviour, SwarmEvent},
     PeerId, Swarm,
 };
-use libp2p::kad::{GetProvidersOk, GetRecordOk};
 use std::error::Error;
-
-
-
 
 #[no_mangle]
 pub extern "C" fn create_localkey() {
     // Create a random key for ourselves.
     let _local_key = identity::Keypair::generate_ed25519();
 }
-
 
 #[no_mangle]
 pub extern "C" fn create_peerid() {
@@ -60,17 +56,14 @@ impl From<mdns::Event> for CoreOverlayBehaviourEvent {
     }
 }
 
-
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-
     // Create a random key for ourselves.
     let local_key = identity::Keypair::generate_ed25519();
     let local_peer_id = PeerId::from(local_key.public());
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex protocol.
     let transport = development_transport(local_key).await?;
-
 
     // We create a custom network behaviour that combines Kademlia and mDNS.
     #[derive(NetworkBehaviour)]
@@ -182,8 +175,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
         }
     }
 }
-
-
 
 #[no_mangle]
 pub extern "C" fn setup_kademlia() {

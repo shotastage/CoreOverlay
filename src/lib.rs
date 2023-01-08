@@ -1,11 +1,11 @@
 pub mod arch;
 pub mod logger;
-pub mod wasmer_integration;
 pub mod overlay_core;
 pub mod overlay_file_system;
 pub mod overlay_key_value_store;
 pub mod overlay_messaging;
 pub mod overlay_ping;
+pub mod wasmer_integration;
 
 #[no_mangle]
 pub extern "C" fn add(first: i64, second: i64) -> i64 {

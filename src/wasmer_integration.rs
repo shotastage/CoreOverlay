@@ -1,12 +1,11 @@
 use anyhow::Ok;
-use wasmer::{imports, EngineBuilder, Instance, Module, Store, Value};
+use core::slice;
 use std::ffi::CStr;
 use std::os::raw::{c_char, c_uchar};
-use core::slice;
+use wasmer::{imports, EngineBuilder, Instance, Module, Store, Value};
 
 // Rust function that calls the wasm text module
 fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
-
     let mut store = Store::default();
     let module = Module::new(&store, &wat_module)?;
     let import_object = imports! {};
@@ -29,13 +28,11 @@ fn wasm_native_exec(file_binary: &[u8]) -> anyhow::Result<()> {
 
     let instance = Instance::new(&mut store, &module, &import_object)?;
 
-
     let sum = instance.exports.get_function("sum")?;
     let _results = sum.call(&mut store, &[Value::I32(1), Value::I32(2)])?;
 
     Ok(())
 }
-
 
 // Test functions
 #[test]
@@ -43,7 +40,6 @@ fn test_hello_world() -> anyhow::Result<()> {
     // wasm_exec("hello_world.wasm")
     Ok(())
 }
-
 
 // C functions that can be called from the C code
 #[no_mangle]
@@ -66,7 +62,7 @@ pub extern "C" fn c_exec_wasm_text_module(wasm_text: *const c_char, main_fn: *co
 pub extern "C" fn c_exec_wasm_native_module(data: *const c_uchar, data_length: usize) {
     println!("Loading wasm module");
 
-    let c_data = unsafe {slice::from_raw_parts(data, data_length)};
+    let c_data = unsafe { slice::from_raw_parts(data, data_length) };
     let r_data: Vec<u8> = Vec::from(c_data);
 
     wasm_native_exec(&r_data).unwrap();
