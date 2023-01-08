@@ -54,19 +54,13 @@ var targetDeps: [Target] = [
         checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
     ),
     .target(
-        name: "CommonCrypt"
-    ),
-    .target(
         name: "OverlayFundation"
     ),
     .target(
         name: "CBreeze"
     ),
     .target(
-        name: "OverlayDHT",
-        dependencies: [
-            "CommonCrypt",
-        ]
+        name: "OverlayDHT"
     ),
     .target(
         name: "OverlayDB",
@@ -90,7 +84,6 @@ var targetDeps: [Target] = [
     .target(
         name: "CoreOverlay",
         dependencies: [
-            "CommonCrypt",
             "OverlayFundation",
             "CoreOverlayEngine",
             "Protobuf.Generated",

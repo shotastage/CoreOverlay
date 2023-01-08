@@ -6,6 +6,7 @@ pub mod overlay_key_value_store;
 pub mod overlay_messaging;
 pub mod overlay_ping;
 pub mod wasmer_integration;
+// pub mod sha;
 
 #[no_mangle]
 pub extern "C" fn add(first: i64, second: i64) -> i64 {
