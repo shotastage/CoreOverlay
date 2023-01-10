@@ -1,6 +1,8 @@
 use async_ffi::{FfiFuture, FutureExt};
 use async_std::io;
 use std::ffi::{CStr, CString};
+use std::{os::raw::c_void, path::Path, ptr::NonNull};
+
 use std::os::raw::c_char;
 use tokio::runtime::Handle;
 
@@ -43,6 +45,36 @@ impl From<mdns::Event> for CoreOverlayBehaviourEvent {
         CoreOverlayBehaviourEvent::Mdns(event)
     }
 }
+
+
+
+#[repr(C)]
+pub struct CoreOverlayDHTEngine {
+    pub local_key: identity::Keypair,
+    pub local_peer_id: PeerId,
+}
+
+impl CoreOverlayDHTEngine {
+    pub fn new() -> Self {
+        let local_key = identity::Keypair::generate_ed25519();
+        let local_peer_id = PeerId::from(local_key.public());
+
+        let new_instance = CoreOverlayDHTEngine {
+            local_key: local_key,
+            local_peer_id: local_peer_id,
+        };
+        new_instance
+    }
+}
+
+
+#[no_mangle]
+pub extern "C" fn new_dht() -> *mut CoreOverlayDHTEngine {
+    let instance: &mut CoreOverlayDHTEngine = &mut CoreOverlayDHTEngine::new();
+    return instance;
+}
+
+
 
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn Error>> {
