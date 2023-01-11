@@ -10,9 +10,22 @@ import CommonCrypto
 
 
 class OverlayDHTUtils {
-    var digestLength: Int = .init(CC_SHA1_DIGEST_LENGTH)
 
-    public static func sha1(data: Data) -> String {
+    public static func sha1(string: String) -> Int {
+        let data = Data(string.utf8)
+        var digest = [UInt8](repeating: 0, count:Int(CC_SHA1_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA1($0.baseAddress, CC_LONG(data.count), &digest)
+        }
+        var digestInt = 0
+        for i in 0..<4 {
+            digestInt = digestInt << 8
+            digestInt = digestInt | Int(digest[i])
+        }
+        return digestInt
+    }
+
+    public static func sha1Str(data: Data) -> String {
         let length = Int(CC_SHA1_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)
 
@@ -35,15 +48,11 @@ class OverlayDHTUtils {
 
     
     /// randomID generates unique 160bit random ID string
-    /// - Returns: Random 160bit ID as string.
-    public static func randomID() -> String {
+    /// - Returns: Random 160bit ID as integer.
+    public static func randomID() -> Int {
         let uuidString = UUID().uuidString
 
-        guard let data = uuidString.data(using: .utf8) else {
-            return ""
-        }
-
-        let digest = OverlayDHTUtils.sha1(data: data)
+        let digest = OverlayDHTUtils.sha1(string: uuidString)
         return digest
     }
 }

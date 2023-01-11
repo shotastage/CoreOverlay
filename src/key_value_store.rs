@@ -67,8 +67,7 @@ impl CoreOverlayDHTEngine {
     pub fn start_network(&self) {}
 }
 
-#[no_mangle]
-pub extern "C" fn new_dht() -> *mut CoreOverlayDHTEngine {
+pub fn new_dht() -> *mut CoreOverlayDHTEngine {
     let instance: &mut CoreOverlayDHTEngine = &mut CoreOverlayDHTEngine::new();
     return instance;
 }

@@ -3,11 +3,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef struct CoreOverlayDHTEngine {
-  Keypair local_key;
-  PeerId local_peer_id;
-} CoreOverlayDHTEngine;
-
 int64_t add(int64_t first, int64_t second);
 
 const char *ovr_arch(void);
@@ -15,8 +10,6 @@ const char *ovr_arch(void);
 const char *ovr_os(void);
 
 const char *ovr_user_agent(void);
-
-struct CoreOverlayDHTEngine *new_dht(void);
 
 void ovry_log(const char *msg);
 

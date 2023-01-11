@@ -16,7 +16,7 @@ protocol Kademlia {
 
 open class OverlayDHT: Kademlia {
 
-    let kid: String
+    let kid: Int
     let kbuckets: [KBucket]
 
     init() {
@@ -25,10 +25,6 @@ open class OverlayDHT: Kademlia {
     }
     
     deinit {}
-
-    func bootstrap() {
-        
-    }
 
     func findNode() {
         // Now under construction
