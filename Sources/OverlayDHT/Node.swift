@@ -1,5 +1,5 @@
 //
-//  KNode.swift
+//  Node.swift
 //  
 //
 //  Created by Shota Shimazu on 2023/01/09.
@@ -38,15 +38,33 @@ public struct NodeOption {
 
 /// DHTNode()
 ///
-open class KademliaNode {
+///
+
+public struct KNode {
+    let id: Int
+    let address: (host: String, port: UInt16)
+
+    init(id: Int, address: (String, UInt16)) {
+        self.id = id
+        self.address = address
+    }
+    
+    func distance(to other: KNode) -> Int {
+        return OverlayDHTUtils.xor(self.id, other.id)
+    }
+}
+
+public class KademliaNode {
     var id: Int // unique id for the node
     var option: NodeOption // kademlia node option
     var routingTable: [KademliaNode] // array of other nodes in the network
-    
+    var kbucket: [KademliaNode] // array of other nodes in the network
+
     init(option opt: NodeOption) {
         self.id = OverlayDHTUtils.randomID()
         self.routingTable = []
         self.option = opt
+        self.kbucket = []
     }
     
     // Function to calculate the XOR distance between two nodes

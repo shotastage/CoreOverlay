@@ -8,39 +8,23 @@
 import Foundation
 
 
-public struct KPeer {
-    let kid: String
-    // let peer: KPeer
-}
-
 public struct KBucket {
+    var nodes: [KNode]
+    var capacity: Int
 
-    /// Initial K variables number
-    var k: Int = 20
-
-    
-    /// Peers store
-    let peers: [KPeer] = []
-
-    
-    /// Peers number counter
-    /// Usage:
-    /// kBucketInstance().count
-    public var count: Int {
-        peers.count
+    public init(capacity: Int) {
+        self.capacity = capacity
+        self.nodes = []
     }
 
-    public init() {
-        k = 20 // This is initial value without initialization.
-    }
-    
     /// Add function is main procedures to add new peer to get involved a new DHT network
-    func add() {
-        print("Now under construction...")
+    mutating func add(id: Int, address: String) {
+        self.nodes.append(KNode(id: id, address: (address, 913)))
     }
 
     /// Remove peer from KBucket
-    func remove() {
+    mutating func remove() {
         print("Now under construction...")
+        self.nodes.remove(at: 0)
     }
 }

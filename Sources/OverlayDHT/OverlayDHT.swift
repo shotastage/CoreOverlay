@@ -16,29 +16,47 @@ protocol Kademlia {
 
 open class OverlayDHT: Kademlia {
 
-    let kid: Int
+    let node: KNode
+    var k: Int = 20
     let kbuckets: [KBucket]
 
-    init() {
-        kid = OverlayDHTUtils.randomID()
+    init(k: Int = 20) {
+        node = KNode(id: OverlayDHTUtils.randomID(), address: ("localhost", 8080))
+        self.k = k
         kbuckets = []
     }
-    
+
     deinit {}
 
-    func findNode() {
-        // Now under construction
+    func nodeLookup() {
+        fatalError("Not implemented")
     }
-    
+
     func store() {
-        // Now under construction
+        fatalError("Not implemented")
+    }
+
+    func findNode() {
+        fatalError("Not implemented")
+    }
+
+    func ping() {
+        fatalError("Not implemented")
     }
     
     func findValue() {
-        // Now under construction
+        fatalError("Not implemented")
     }
 
-    func add() {
-        
+    func iterativeFindNode() {
+        fatalError("Not implemented")
+    }
+    
+    func iterativeStore() {
+        fatalError("Not implemented")
+    }
+
+    func iterativeFindValue() {
+        fatalError("Not implemented")
     }
 }
