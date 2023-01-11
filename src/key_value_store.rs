@@ -1,10 +1,10 @@
-use async_ffi::{FfiFuture, FutureExt};
+//use async_ffi::{FfiFuture, FutureExt};
 use async_std::io;
-use std::ffi::{CStr, CString};
-use std::{os::raw::c_void, path::Path, ptr::NonNull};
+//use std::ffi::{CStr, CString};
+//use std::{os::raw::c_void, path::Path, ptr::NonNull};
 
-use std::os::raw::c_char;
-use tokio::runtime::Handle;
+//use std::os::raw::c_char;
+//use tokio::runtime::Handle;
 
 use futures::{prelude::*, select};
 use libp2p::kad::record::store::MemoryStore;
@@ -25,7 +25,7 @@ use std::error::Error;
 #[behaviour(out_event = "CoreOverlayBehaviourEvent")]
 struct CoreOverlayBehaviour {
     kademlia: Kademlia<MemoryStore>,
-    mdns: mdns::async_io::Behaviour,  
+    mdns: mdns::async_io::Behaviour,
 }
 
 #[allow(clippy::large_enum_variant)]
@@ -35,7 +35,7 @@ enum CoreOverlayBehaviourEvent {
 }
 
 impl From<KademliaEvent> for CoreOverlayBehaviourEvent {
-    fn from(event: KademliaEvent) -> Self {                                                                                                                                                                                                                                                                                                                                                                                    
+    fn from(event: KademliaEvent) -> Self {
         CoreOverlayBehaviourEvent::Kademlia(event)
     }
 }
@@ -45,8 +45,6 @@ impl From<mdns::Event> for CoreOverlayBehaviourEvent {
         CoreOverlayBehaviourEvent::Mdns(event)
     }
 }
-
-
 
 #[repr(C)]
 pub struct CoreOverlayDHTEngine {
@@ -65,16 +63,15 @@ impl CoreOverlayDHTEngine {
         };
         new_instance
     }
-}
 
+    pub fn start_network(&self) {}
+}
 
 #[no_mangle]
 pub extern "C" fn new_dht() -> *mut CoreOverlayDHTEngine {
     let instance: &mut CoreOverlayDHTEngine = &mut CoreOverlayDHTEngine::new();
     return instance;
 }
-
-
 
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -170,8 +167,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     }
 }
 
-
-fn handle_input_line(kademlia: &mut Kademlia<MemoryStore>, line: String) {
+pub fn handle_input_line(kademlia: &mut Kademlia<MemoryStore>, line: String) {
     let mut args = line.split(' ');
 
     match args.next() {

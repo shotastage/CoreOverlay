@@ -1,9 +1,9 @@
 pub mod arch;
-pub mod logger;
-pub mod overlay_core;
 pub mod file_system;
 pub mod key_value_store;
+pub mod logger;
 pub mod messaging;
+pub mod overlay_core;
 pub mod pingpong;
 pub mod wasmer_integration;
 // pub mod sha;

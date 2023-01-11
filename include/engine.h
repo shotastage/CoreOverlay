@@ -16,13 +16,13 @@ const char *ovr_os(void);
 
 const char *ovr_user_agent(void);
 
+struct CoreOverlayDHTEngine *new_dht(void);
+
 void ovry_log(const char *msg);
 
 void ovry_warning(const char *msg);
 
 void ovry_error(const char *msg);
-
-struct CoreOverlayDHTEngine *new_dht(void);
 
 void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
 
