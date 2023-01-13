@@ -16,6 +16,11 @@ enum KademliaRPCProtocol: Int {
     case store = 3
 }
 
+// Bootstrap type is representation for node accesor especially for knowing node.
+public struct Bootstrap {
+    let addr: String
+    let port: UInt16
+}
 
 public actor OverlayDHT {
 
@@ -26,8 +31,8 @@ public actor OverlayDHT {
     let kbuckets: [KNode]
     let connection = SocketClient()
 
-    init(k: Int = 20) {
-        node = KNode(id: OverlayDHTUtils.randomID(), address: ("localhost", 8080))
+    init(k: Int = 20, bootstrap: Bootstrap) {
+        node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
         self.k = k
         kbuckets = []
     }
