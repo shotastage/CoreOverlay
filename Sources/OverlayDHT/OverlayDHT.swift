@@ -16,28 +16,38 @@ enum KademliaRPCProtocol: Int {
     case store = 3
 }
 
+// Bootstrap type is representation for node accesor especially for knowing node.
+public struct Bootstrap {
+    let addr: String
+    let port: UInt16
+}
 
 public actor OverlayDHT {
+    let connection = UDPConnection(on: 1234)
+    let subscription: AnyCancellable
 
-    @Published var observingConnection = ""
-    
     let node: KNode
     var k: Int = 20
     let kbuckets: [KNode]
-    let connection = SocketClient()
 
-    init(k: Int = 20) {
-        node = KNode(id: OverlayDHTUtils.randomID(), address: ("localhost", 8080))
+    init(k: Int = 20, bootstrap: Bootstrap) {
+        node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
         self.k = k
         kbuckets = []
+        subscription = connection.objectWillChange
+            .sink {
+                print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                print("Object has changed")
+                print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        }
     }
 
     deinit {
-        connection.disconnect()
+        connection.cancel()
     }
 
     func bootstrap() {
-        connection.connecnt(host: "", port: 1234)
+        // connection.connecnt(host: "", port: 1234)
     }
 
     /// Basic Kademlia Methods

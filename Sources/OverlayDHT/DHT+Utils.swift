@@ -9,6 +9,11 @@ import Foundation
 import CommonCrypto
 
 
+class KademliaSpecifications {
+    let bitSpace: Int = 160
+    let k: Int = 20
+}
+
 class OverlayDHTUtils {
 
     public static func sha1(string: String) -> Int {
@@ -23,15 +28,6 @@ class OverlayDHTUtils {
             digestInt = digestInt | Int(digest[i])
         }
         return digestInt
-    }
-
-    public static func sha1Str(data: Data) -> String {
-        let length = Int(CC_SHA1_DIGEST_LENGTH)
-        var digest = [UInt8](repeating: 0, count: length)
-
-        let nsData = data as NSData
-        CC_SHA1(nsData.bytes, CC_LONG(data.count), &digest)
-        return digest.map { String(format: "%02x", $0) }.reduce("", +)
     }
 
     public static func xor(_ x: Int, _ y: Int) -> Int {
