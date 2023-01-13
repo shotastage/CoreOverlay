@@ -55,8 +55,34 @@ class UDPConnection: ObservableObject {
         self.listener?.start(queue: self.queue)
     }
     
+    func createConnection(host: String, port: UInt16) {
+        let nwHost = NWEndpoint.Host(host)
+        let nwPort = NWEndpoint.Port(integerLiteral: port)
+        
+        let connection = NWConnection(host: nwHost, port: nwPort, using: .udp)
+        self.conn = connection
+
+        self.conn?.stateUpdateHandler = { (newState) in
+            switch (newState) {
+            case .ready:
+                print("Listener ready to receive message - \(connection)")
+                self.receive()
+            case .cancelled, .failed:
+                print("Listener failed to receive message - \(connection)")
+                // Cancel the listener, something went wrong
+                self.listener?.cancel()
+                // Announce we are no longer able to listen
+                self.listening = false
+            default:
+                print("Listener waiting to receive message - \(connection)")
+            }
+        }
+        self.conn?.start(queue: .global())
+    }
+
     func createConnection(connection: NWConnection) {
         self.conn = connection
+
         self.conn?.stateUpdateHandler = { (newState) in
             switch (newState) {
             case .ready:
