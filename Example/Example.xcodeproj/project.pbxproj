@@ -44,7 +44,7 @@
 		43448E6E297144DE0012E4B2 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43448E72297144DE0012E4B2 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		43448E74297144DE0012E4B2 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		43B7168C297146D900F488F3 /* CoreOverlay */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CoreOverlay; path = ..; sourceTree = "<group>"; };
+		438BA03329718F6600BB76D8 /* CoreOverlay */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CoreOverlay; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 		43448E4B297144DD0012E4B2 = {
 			isa = PBXGroup;
 			children = (
-				43B7168B297146D900F488F3 /* Packages */,
+				438BA03229718F6600BB76D8 /* Packages */,
 				43448E56297144DD0012E4B2 /* Example */,
 				43448E67297144DE0012E4B2 /* ExampleTests */,
 				43448E71297144DE0012E4B2 /* ExampleUITests */,
@@ -129,10 +129,10 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		43B7168B297146D900F488F3 /* Packages */ = {
+		438BA03229718F6600BB76D8 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				43B7168C297146D900F488F3 /* CoreOverlay */,
+				438BA03329718F6600BB76D8 /* CoreOverlay */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

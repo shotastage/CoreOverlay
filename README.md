@@ -27,6 +27,14 @@ This framework provides utilities that make or integrate structured overlay netw
 | CLevelDB         | 🟡     | LevelDB bridge              |
 | CWasmer          | ⚪️     | Standalone wasmer runtime will be deprecated due to JIT-compiler restriction policy.    |
 
+
+## Self Build Instruction
+
+>> Currently, we supports iOS `*.framework` build or Swift Package distribution.
+
+To make standalone frmework, you can use `Makefile` running `make build`.
+
+
 ## License
 
 This software is licensed under the MIT, see [LICENSE](LICENSE) for detail.
