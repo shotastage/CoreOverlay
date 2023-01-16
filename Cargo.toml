@@ -22,42 +22,6 @@ safer-ffi = "0.0.10"
 sha1 = "0.10.5"
 swift-bridge = "0.1"
 
-[dependencies.libp2p]
-version = "0.50.0"
-features = [
-    "async-std",
-    "autonat",
-    "dcutr",
-    "deflate",
-    "dns",
-    "ecdsa",
-    "floodsub",
-    "gossipsub",
-    "identify",
-    "kad",
-    "mdns",
-    "metrics",
-    "mplex",
-    "noise",
-    "ping",
-    "plaintext",
-    "pnet",
-    "quic",
-    "macros",
-    "relay",
-    "rendezvous",
-    "request-response",
-    "secp256k1",
-    "serde",
-    "tcp",
-    "tls",
-    "tokio",
-    "uds",
-    "webrtc",
-    "websocket",
-    "yamux",
-]
-
 [dependencies.async-std]
 version = "1.11.0"
 features = ["attributes"]
