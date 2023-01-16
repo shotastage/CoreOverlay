@@ -1,6 +1,5 @@
 pub mod arch;
 pub mod file_system;
-pub mod key_value_store;
 pub mod logger;
 pub mod messaging;
 pub mod overlay_core;
