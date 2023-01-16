@@ -5,5 +5,5 @@ fn main() {
       .with_crate(".")
       .generate()
       .expect("Unable to generate bindings")
-      .write_to_file("engine.h");
+      .write_to_file("include/engine.h");
 }

@@ -1,9 +1,12 @@
 [package]
 name = "coreoverlay-engine"
 authors = ["Shota Shimazu <hornet.live.mf@gmail.com>"]
+description = "Core engine for CoreOverlay"
 repository = "https://github.com/shotastage/CoreOverlay"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+publish = false
 
 
 [lib]
