@@ -52,12 +52,6 @@ run:
 generate-proto:
 	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
 
-
-.PHONY:
-generate-header:
-	cbindgen --lang c --output include/engine.h 
-
-
 .PHONY:
 pre-build-preparation:
 	@echo "Preparing build..."
@@ -138,7 +132,7 @@ build-finalize:
 	@openssl dgst -sha256 ./artifacts/bundle.zip
 
 .PHONY:
-build: pre-build-preparation generate-header generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
+build: pre-build-preparation generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
 
 
 .PHONY:
