@@ -52,9 +52,12 @@ public actor OverlayDHT {
 
     /// Basic Kademlia Methods
     ///
-    func ping(id: Int) async {
-        
-        fatalError("Not implemented")
+    func ping(id: Int) async throws {
+        for bucket in kbuckets {
+            if bucket.id == id {
+                connection.createConnection(host: bucket.address.host, port: 19000)
+            }
+        }
     }
 
     func findNode() async {
