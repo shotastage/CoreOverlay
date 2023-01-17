@@ -51,13 +51,13 @@ public actor OverlayDHT {
         connection.cancel()
     }
 
-    func bootstrap() {
+    public func bootstrap() {
         // connection.connecnt(host: "", port: 1234)
     }
 
     /// Basic Kademlia Methods
     ///
-    func ping(id: Int) async throws {
+    public func ping(id: Int) async throws {
         for bucket in kbuckets {
             if bucket.id == id {
                 connection.createConnection(host: bucket.address.host, port: 19000)
@@ -65,33 +65,33 @@ public actor OverlayDHT {
         }
     }
 
-    func findNode() async {
+    public func findNode() async {
         fatalError("Not implemented")
     }
 
-    func store() async {
+    public func store() async {
         fatalError("Not implemented")
     }
 
-    func findValue() async {
+    public func findValue() async {
         fatalError("Not implemented")
     }
 
     /// Extra implemented utilities
     ///
-    func nodeLookup() {
+    public func nodeLookup() {
         fatalError("Not implemented")
     }
 
-    func iterativeFindNode() {
+    public func iterativeFindNode() {
         fatalError("Not implemented")
     }
     
-    func iterativeStore() {
+    public func iterativeStore() {
         fatalError("Not implemented")
     }
 
-    func iterativeFindValue() {
+    public func iterativeFindValue() {
         fatalError("Not implemented")
     }
 }
