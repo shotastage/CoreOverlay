@@ -27,7 +27,7 @@ public struct Bootstrap {
     }
 }
 
-public actor OverlayDHT {
+public class OverlayDHT {
     let connection = UDPConnection(on: 1234)
     let subscription: AnyCancellable
 
