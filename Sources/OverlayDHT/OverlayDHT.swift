@@ -20,18 +20,24 @@ enum KademliaRPCProtocol: Int {
 public struct Bootstrap {
     let addr: String
     let port: UInt16
+    
+    public init(addr: String, port: UInt16) {
+        self.addr = addr
+        self.port = port
+    }
 }
 
-public actor OverlayDHT {
-    let connection = UDPConnection(on: 1234)
+public class OverlayDHT {
+    let connection: UDPConnection
     let subscription: AnyCancellable
 
     let node: KNode
     var k: Int = 20
     let kbuckets: [KNode]
 
-    init(k: Int = 20, bootstrap: Bootstrap) {
+    public init(k: Int = 20, bootstrap: Bootstrap, selfPortAlign: Int = 1234) {
         node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
+        connection = UDPConnection(on: selfPortAlign)
         self.k = k
         kbuckets = []
         subscription = connection.objectWillChange
@@ -46,13 +52,13 @@ public actor OverlayDHT {
         connection.cancel()
     }
 
-    func bootstrap() {
+    public func bootstrap() {
         // connection.connecnt(host: "", port: 1234)
     }
 
     /// Basic Kademlia Methods
     ///
-    func ping(id: Int) async throws {
+    public func ping(id: Int) async throws {
         for bucket in kbuckets {
             if bucket.id == id {
                 connection.createConnection(host: bucket.address.host, port: 19000)
@@ -60,33 +66,33 @@ public actor OverlayDHT {
         }
     }
 
-    func findNode() async {
+    public func findNode() async {
         fatalError("Not implemented")
     }
 
-    func store() async {
+    public func store() async {
         fatalError("Not implemented")
     }
 
-    func findValue() async {
+    public func findValue() async {
         fatalError("Not implemented")
     }
 
     /// Extra implemented utilities
     ///
-    func nodeLookup() {
+    public func nodeLookup() {
         fatalError("Not implemented")
     }
 
-    func iterativeFindNode() {
+    public func iterativeFindNode() {
         fatalError("Not implemented")
     }
     
-    func iterativeStore() {
+    public func iterativeStore() {
         fatalError("Not implemented")
     }
 
-    func iterativeFindValue() {
+    public func iterativeFindValue() {
         fatalError("Not implemented")
     }
 }
