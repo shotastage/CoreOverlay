@@ -2,13 +2,12 @@ SHELL=/usr/bin/env bash
 
 # Build configuration
 ENABLE_MAC_CATALYST := 0
+ENABLE_ANDROID_SUPPORT := 0
 
 # Command Definitions
 SWIFT := swift
 CARGO ?= cargo
-
 SDKROOT=(xcrun --sdk macosx --show-sdk-path)
-
 
 
 .PHONY:
@@ -19,6 +18,12 @@ setup:
 	rustup target add aarch64-apple-darwin
 	rustup target add x86_64-apple-ios
 	rustup target add aarch64-apple-ios-sim
+ifeq ($(ENABLE_ANDROID_SUPPORT), 1)
+	rustup target add aarch64-linux-android
+	rustup target add armv7-linux-androideabi
+	rustup target add i686-linux-android
+	rustup target add x86_64-linux-android
+endif
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	$(CARGO) +nightly build --release -Z build-std --target x86_64-apple-ios-macabi
 	$(CARGO) +nightly build --release -Z build-std --target aarch64-apple-ios-high macabi
