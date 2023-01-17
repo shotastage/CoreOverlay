@@ -18,8 +18,8 @@ enum KademliaRPCProtocol: Int {
 
 // Bootstrap type is representation for node accesor especially for knowing node.
 public struct Bootstrap {
-    let addr: String
-    let port: UInt16
+    public let addr: String
+    public let port: UInt16
 }
 
 public actor OverlayDHT {

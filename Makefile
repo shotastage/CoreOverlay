@@ -32,6 +32,9 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
+.PHONY:
+dev-setup:
+	brew install peripher
 
 .PHONY:
 setup-ci:
