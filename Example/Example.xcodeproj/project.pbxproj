@@ -14,6 +14,8 @@
 		43448E69297144DE0012E4B2 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43448E68297144DE0012E4B2 /* ExampleTests.swift */; };
 		43448E73297144DE0012E4B2 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43448E72297144DE0012E4B2 /* ExampleUITests.swift */; };
 		43448E75297144DE0012E4B2 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43448E74297144DE0012E4B2 /* ExampleUITestsLaunchTests.swift */; };
+		436EDBB0297661AD009C1DBC /* CoreOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 436EDBAF297661AD009C1DBC /* CoreOverlay */; };
+		436EDBB2297661AD009C1DBC /* OverlayDB in Frameworks */ = {isa = PBXBuildFile; productRef = 436EDBB1297661AD009C1DBC /* OverlayDB */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,6 @@
 		43448E6E297144DE0012E4B2 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43448E72297144DE0012E4B2 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		43448E74297144DE0012E4B2 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		438BA03329718F6600BB76D8 /* CoreOverlay */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CoreOverlay; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				436EDBB0297661AD009C1DBC /* CoreOverlay in Frameworks */,
+				436EDBB2297661AD009C1DBC /* OverlayDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +78,6 @@
 		43448E4B297144DD0012E4B2 = {
 			isa = PBXGroup;
 			children = (
-				438BA03229718F6600BB76D8 /* Packages */,
 				43448E56297144DD0012E4B2 /* Example */,
 				43448E67297144DE0012E4B2 /* ExampleTests */,
 				43448E71297144DE0012E4B2 /* ExampleUITests */,
@@ -129,14 +131,6 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		438BA03229718F6600BB76D8 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				438BA03329718F6600BB76D8 /* CoreOverlay */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,6 +147,10 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				436EDBAF297661AD009C1DBC /* CoreOverlay */,
+				436EDBB1297661AD009C1DBC /* OverlayDB */,
+			);
 			productName = Example;
 			productReference = 43448E54297144DD0012E4B2 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -225,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 43448E4B297144DD0012E4B2;
+			packageReferences = (
+				436EDBAE297661AD009C1DBC /* XCRemoteSwiftPackageReference "CoreOverlay" */,
+			);
 			productRefGroup = 43448E55297144DD0012E4B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -593,6 +594,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		436EDBAE297661AD009C1DBC /* XCRemoteSwiftPackageReference "CoreOverlay" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shotastage/CoreOverlay.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		436EDBAF297661AD009C1DBC /* CoreOverlay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 436EDBAE297661AD009C1DBC /* XCRemoteSwiftPackageReference "CoreOverlay" */;
+			productName = CoreOverlay;
+		};
+		436EDBB1297661AD009C1DBC /* OverlayDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 436EDBAE297661AD009C1DBC /* XCRemoteSwiftPackageReference "CoreOverlay" */;
+			productName = OverlayDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43448E4C297144DD0012E4B2 /* Project object */;
 }
