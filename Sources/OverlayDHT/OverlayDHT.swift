@@ -28,15 +28,16 @@ public struct Bootstrap {
 }
 
 public class OverlayDHT {
-    let connection = UDPConnection(on: 1234)
+    let connection: UDPConnection
     let subscription: AnyCancellable
 
     let node: KNode
     var k: Int = 20
     let kbuckets: [KNode]
 
-    public init(k: Int = 20, bootstrap: Bootstrap) {
+    public init(k: Int = 20, bootstrap: Bootstrap, selfPortAlign: Int = 1234) {
         node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
+        connection = UDPConnection(on: selfPortAlign)
         self.k = k
         kbuckets = []
         subscription = connection.objectWillChange
