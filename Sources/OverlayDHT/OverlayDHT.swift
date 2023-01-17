@@ -30,7 +30,7 @@ public actor OverlayDHT {
     var k: Int = 20
     let kbuckets: [KNode]
 
-    init(k: Int = 20, bootstrap: Bootstrap) {
+    public init(k: Int = 20, bootstrap: Bootstrap) {
         node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
         self.k = k
         kbuckets = []
