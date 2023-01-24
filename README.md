@@ -24,8 +24,7 @@ This framework provides utilities that make or integrate structured overlay netw
 | CLI              | 🟡     | Commandline tools for CoreOverlay package |
 | Runtime          | 🟡     | WebAssembly embeded runtime |
 | OverlayFundation | 🟡     | CoreOverlay utility package |
-| CLevelDB         | 🟡     | LevelDB bridge              |
-| CWasmer          | ⚪️     | Standalone wasmer runtime will be deprecated due to JIT-compiler restriction policy.    |
+| RS-Wasmer        | ⚪️     | Standalone wasmer runtime will be deprecated due to JIT-compiler restriction policy.    |
 
 
 ## Self Build Instruction

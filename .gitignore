@@ -31,3 +31,5 @@ artifacts/
 
 # WebAssembly Related Files
 *.wasmu
+
+.vscode/
