@@ -5,6 +5,7 @@
 //  Created by Shota Shimazu on 2022/11/29.
 //
 
+/*
 import Foundation
 import CBreeze
 import OverlayEngine
@@ -43,3 +44,4 @@ public struct WASMModule {
         c_exec_wasm_text_module(cWasmText, cMainFx)
     }
 }
+*/
