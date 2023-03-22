@@ -34,8 +34,8 @@ open class OverlayComputer {
         COLogger.info("Starting CoreOverlay internal server...")
         
         do {
-            let wasm = try WASMModule(module: package!)
-            try! wasm.execute("main")
+            //let wasm = try WASMModule(module: package!)
+            //try! wasm.execute("main")
         } catch {
             print("Failed to register WASM artifcats.")
         }

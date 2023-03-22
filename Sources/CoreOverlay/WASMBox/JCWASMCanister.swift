@@ -5,6 +5,7 @@
 //  Created by Shota Shimazu on 2022/06/21.
 //
 
+/*
 import Foundation
 import JavaScriptCore
 
@@ -49,3 +50,4 @@ open class JCWASMCanister {
         jsContext?.evaluateScript(testWasm)
     }
 }
+*/
