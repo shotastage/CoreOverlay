@@ -14,6 +14,8 @@ const char *ovr_os();
 
 const char *ovr_user_agent();
 
+void ovry_info(const char *msg);
+
 void ovry_log(const char *msg);
 
 void ovry_warning(const char *msg);
