@@ -122,8 +122,8 @@ case .production:
     targetDeps.append(
         Target.binaryTarget(
             name: "CoreOverlayEngine",
-             url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.6/bundle.zip",
-             checksum: "605a23962e9a045e285b4d8c9f8fd5933b1f36a8943e6846d8d083e1114a0ca1"
+             url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.7/bundle.zip",
+             checksum: "d72aecd5725d177b7be6ba13bb1b41e0126b0e171f7b388fefb7bb7dba31435d"
         )
     )
 case .development:
@@ -169,7 +169,6 @@ let package = Package(
         .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
-        // - .package(url: "https://github.com/swift-libp2p/swift-libp2p.git", .upToNextMajor(from: "0.0.1")),
 
         // Development only dependencies
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"),
