@@ -123,7 +123,7 @@ case .production:
         Target.binaryTarget(
             name: "CoreOverlayEngine",
              url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.7/bundle.zip",
-             checksum: "6c32b204d5fd83e7bf49adf8e1b181a417469978f175175f7815823f50802265"
+             checksum: "e749ddef2fe7da8639d78c46a35977e3bc09dfd935ceaede4fbef28b4c9895e8"
         )
     )
 case .development:
