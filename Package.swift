@@ -54,38 +54,32 @@ var targetDeps: [Target] = [
         checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
     ),
     .target(
-        name: "OverlayFundation",
-        path: "src-swift"
+        name: "OverlayFundation"
     ),
     .target(
-        name: "CBreeze",
-        path: "src-swift"
+        name: "CBreeze"
     ),
     .target(
-        name: "OverlayDHT",
-        path: "src-swift"
+        name: "OverlayDHT"
     ),
     .target(
         name: "OverlayDB",
         dependencies: [
             .product(name: "SQLite", package: "SQLite.swift"),
-        ],
-        path: "src-swift"
+        ]
     ),
     .target(
         name: "Runtime",
         dependencies: [
             "CWasmer",
             .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-        ],
-        path: "src-swift"
+        ]
     ),
     .target(
         name: "Protobuf.Generated",
         dependencies: [
             .product(name: "GRPC", package: "grpc-swift"),
-        ],
-        path: "src-swift"
+        ]
     ),
     .target(
         name: "CoreOverlay",
@@ -100,8 +94,7 @@ var targetDeps: [Target] = [
             .product(name: "Crypto", package: "swift-crypto"),
             .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
             // - .product(name: "LibP2P", package: "swift-libp2p"),
-        ],
-        path: "src-swift"
+        ]
     ),
     .executableTarget(
         name: "CLI",

@@ -5,6 +5,7 @@ description = "Core engine for CoreOverlay"
 repository = "https://github.com/shotastage/CoreOverlay"
 version = "0.1.0"
 edition = "2021"
+exclude=["/Sources", "*.swift"]
 license = "MIT"
 publish = false
 
@@ -12,6 +13,7 @@ publish = false
 [lib]
 name = "coreoverlayengine"
 crate-type = [ "staticlib" ]
+path = "rust-src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

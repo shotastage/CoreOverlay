@@ -54,7 +54,7 @@ run:
 
 .PHONY:
 generate-proto:
-	protoc --swift_out=swift-src/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
+	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
 
 .PHONY:
 pre-build-preparation:
@@ -148,7 +148,7 @@ clean:
 	@echo "Cleaning project..."
 	@rm -rf .build/
 	@rm -rf .swiftpm/xcode/
-	@find ./swift-src/Protobuf.Generated/ -type f -name "*.swift" -delete
+	@find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
 	@cargo clean
 	@rm -rf ./artifacts/
 	@rm Cargo.lock
