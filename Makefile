@@ -10,6 +10,9 @@ CARGO ?= cargo
 SDKROOT=(xcrun --sdk macosx --show-sdk-path)
 
 
+###############################################################
+## BUILD ENV SETUP FOR DEVELOPMENT                           ##
+###############################################################
 .PHONY:
 setup:
 	$(CARGO) install --force cbindgen
@@ -32,6 +35,9 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
+###############################################################
+## BUILD ENV SETuP FOR CI                                    ##
+###############################################################
 .PHONY:
 setup-ci:
 	rustup target add aarch64-apple-ios
@@ -52,16 +58,24 @@ endif
 run:
 	${SWIFT} run
 
+
+###############################################################
+## BUILD PROCEDURES                                          ##
+###############################################################
+
+## Generate & compile protobuff
 .PHONY:
 generate-proto:
+	@echo "Generating compiled protobuf!"
 	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
 
+## Preparation for building
 .PHONY:
 pre-build-preparation:
 	@echo "Preparing build..."
 	@rm -rf ./artifacts/
-	@echo "Done!"
 
+## Rust build procedure
 .PHONY:
 build-rust:
 	$(CARGO) build --release --target aarch64-apple-ios
@@ -76,8 +90,9 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
+## Generate Universal Binary
 .PHONY:
-build-lipo:
+build-universal-bin:
 	mkdir -p ./artifacts
 	lipo -create \
   		target/x86_64-apple-darwin/release/libcoreoverlayengine.a \
@@ -96,8 +111,9 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
+## Build Rust package and make as XCFramework
 .PHONY:
-build-rust-framework:
+build-rust-xcframework:
 	xcodebuild -create-xcframework \
   		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
   		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
@@ -114,6 +130,7 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
+## Build Swift package
 .PHONY:
 build-swift:
 	${SWIFT} build
@@ -135,14 +152,33 @@ build-finalize:
 	@echo "Artifacts are located in ./artifacts"
 	@openssl dgst -sha256 ./artifacts/bundle.zip
 
+
+###############################################################
+## GATHERED ALL BUILD PROCEDURE                              ##
+###############################################################
 .PHONY:
-build: pre-build-preparation generate-proto build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
+build: pre-build-preparation generate-proto build-rust build-universal-bin build-rust-xcframework build-artifacts build-swift build-finalize
 
 
+###############################################################
+## GATHERED ALL BUILD PROCEDURE FOR RELEASE                  ##
+###############################################################
 .PHONY:
-build-ci: pre-build-preparation build-rust build-lipo build-rust-framework build-artifacts build-swift build-finalize
+release:
+	${SWIFT} build -c release
+
+
+###############################################################
+## GATHERED ALL BUILD PROCEDURE FOR CI                       ##
+###############################################################
+.PHONY:
+build-ci: pre-build-preparation build-rust build-universal-bin build-rust-xcframework build-artifacts build-swift build-finalize
 	rm -rf ./artifacts/CoreOverlayEngine.xcframework
 
+
+###############################################################
+## CELAN PROJECT WORKSPACE                                   ##
+###############################################################
 .PHONY:
 clean:
 	@echo "Cleaning project..."
@@ -154,10 +190,11 @@ clean:
 	@rm Cargo.lock
 	@echo "Done!"
 
-.PHONY:
-release:
-	${SWIFT} build -c release
 
+
+###############################################################
+## PROJECT UTILITIES                                         ##
+###############################################################
 .PHONY:
 update-deps:
 	@rm Package.resolved
