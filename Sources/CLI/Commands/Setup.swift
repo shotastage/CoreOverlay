@@ -28,7 +28,8 @@ final class SetupProcedure: CommandProcedure {
         do {
             try Shell.run("brew update")
             try Shell.run("brew install swift-protobuf grpc-swift wabt")
-            try Shell.run("brew install kylef/formulae/swiftenv")
+            // Temporary disabled installing swiftenv.
+            //- try Shell.run("brew install kylef/formulae/swiftenv")
         } catch {
             print("Some command has been finished in fail.")
         }
