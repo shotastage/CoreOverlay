@@ -12,9 +12,14 @@ fi
 echo "Updating Homebrew..."
 brew update
 
+
 # Install Rust using Homebrew
-echo "Installing Rust..."
-brew install rustup-init
+if ! command -v cargo &> /dev/null; then
+    echo "Installing Rust..."
+    brew install rustup-init
+else
+    echo "Rust toolchain is already installed."
+fi
 
 # Initialize Rustup and configure the default toolchain
 echo "Initializing Rustup and setting the default toolchain..."
@@ -30,3 +35,9 @@ rustc --version
 cargo --version
 
 echo "Rust environment setup is complete."
+
+
+# Check if Homebrew is installed, otherwise install it
+if ! command -v protoc &> /dev/null; then
+    brew install protobuf
+fi
