@@ -40,4 +40,5 @@ echo "Rust environment setup is complete."
 # Check if Homebrew is installed, otherwise install it
 if ! command -v protoc &> /dev/null; then
     brew install protobuf
+    brew install swift-protobuf
 fi
