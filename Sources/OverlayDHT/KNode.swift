@@ -4,6 +4,7 @@
 //
 //  Created by Shota Shimazu on 2023/08/30.
 //
+
 import Foundation
 
 // 160-bit node ID represented as a 20-byte array
@@ -24,16 +25,16 @@ func toUInt160(_ id: NodeID) -> UInt {
 struct Node {
     let id: NodeID
     var buckets: [[Node]] // Each bucket contains nodes at a certain distance range
-    
+
     init(id: NodeID) {
         self.id = id
         self.buckets = Array(repeating: [], count: 160)
     }
-    
+
     // Find k closest nodes to a given target ID
     func findClosestNodes(target: NodeID, k: Int) -> [Node] {
         var closestNodes: [Node] = []
-        
+
         for bucket in buckets {
             for node in bucket {
                 if closestNodes.count < k {
@@ -49,10 +50,10 @@ struct Node {
                 }
             }
         }
-        
+
         return Array(closestNodes.prefix(k))
     }
-    
+
     // Insert a node into the appropriate bucket
     mutating func insert(_ node: Node) {
         let distance = xorDistance(self.id, node.id)

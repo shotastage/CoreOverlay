@@ -1,6 +1,6 @@
 //
 //  Node.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2023/01/09.
 //
@@ -48,7 +48,7 @@ public struct KNode {
         self.id = id
         self.address = address
     }
-    
+
     func distance(to other: KNode) -> Int {
         return OverlayDHTUtils.xor(self.id, other.id)
     }

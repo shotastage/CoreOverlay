@@ -42,7 +42,6 @@ class OverlayDHTUtils {
         return count
     }
 
-    
     /// randomID generates unique 160bit random ID string
     /// - Returns: Random 160bit ID as integer.
     public static func randomID() -> Int {
