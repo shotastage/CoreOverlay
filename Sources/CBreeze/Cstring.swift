@@ -1,6 +1,6 @@
 //
 //  CString.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2023/01/02.
 //
@@ -20,7 +20,7 @@ public func toCStr(from str: String) throws -> UnsafeMutablePointer<Int8> {
     let result: UnsafeMutableBufferPointer<Int8> = UnsafeMutableBufferPointer<Int8>.allocate(capacity: count)
     // func initialize<S>(from: S) -> (S.Iterator, UnsafeMutableBufferPointer<Element>.Index)
     _ = result.initialize(from: str.utf8CString)
-    
+
     guard let bsAddr = result.baseAddress else {
         throw NSError()
     }
