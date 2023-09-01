@@ -31,8 +31,7 @@ This framework provides utilities that make or integrate structured overlay netw
 
 >> Currently, we supports iOS `*.framework` build or Swift Package distribution.
 
-To make standalone frmework, you can use `Makefile` running `make build`.
-
+To make standalone framework, you can use `Makefile` running `make build`.
 
 ## License
 
