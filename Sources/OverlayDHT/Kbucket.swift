@@ -19,7 +19,7 @@ public struct KBucket {
 
     /// Add function is main procedures to add new peer to get involved a new DHT network
     mutating func add(id: Int, address: String) {
-        self.nodes.append(KNode(id: id, address: (address, 913)))
+        self.nodes.append(KNode(id: id, address: (address, 913))!)
     }
 
     /// Remove peer from KBucket

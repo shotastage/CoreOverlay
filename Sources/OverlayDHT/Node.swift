@@ -7,16 +7,6 @@
 
 import Foundation
 
-
-    static func genDefaultPort() -> String {
-        var port = "1234"
-        if let envPort = ProcessInfo.processInfo.environment["PORT"] {
-            port = envPort
-        }
-        return port
-    }
-
-
 public struct NodeOption {
     let id: Int
     let ip: String
@@ -25,9 +15,10 @@ public struct NodeOption {
     let refreshTime: Date
 
     init(ip: String, port: String, exprTime: Date, refTime: Date) throws {
-        guard let ip = ip, let port = port else {
-            throw NodeError.invalidParameters
-        }
+        // TODO: Check ip and port
+        // guard let ip = ip, let port = port else {
+        //     throw NodeError.invalidParameters
+        // }
         self.id = OverlayDHTUtils.randomID()
         self.ip = ip
         self.port = port

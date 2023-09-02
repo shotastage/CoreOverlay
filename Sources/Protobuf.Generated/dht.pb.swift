@@ -200,7 +200,7 @@ public struct Dht_Pb_Message {
 
 extension Dht_Pb_Message.MessageType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Dht_Pb_Message.MessageType] = [
+  public static let allCases: [Dht_Pb_Message.MessageType] = [
     .putValue,
     .getValue,
     .addProvider,
@@ -212,7 +212,7 @@ extension Dht_Pb_Message.MessageType: CaseIterable {
 
 extension Dht_Pb_Message.ConnectionType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Dht_Pb_Message.ConnectionType] = [
+  public static let allCases: [Dht_Pb_Message.ConnectionType] = [
     .notConnected,
     .connected,
     .canConnect,

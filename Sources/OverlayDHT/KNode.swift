@@ -11,26 +11,7 @@ import Foundation
 typealias NodeID = [UInt8]
 
 // Convert a hexadecimal string to a node ID
-func NodeIDFromString(_ s: String) throws -> NodeID {
-    guard s.count == 40 else {
-        throw NodeIDError.invalidLength
-    }
-    let hexChars = "0123456789abcdef"
-    var bytes = NodeID()
-    for i in 0..<20 {
-        let start = s.index(s.startIndex, offsetBy: i*2)
-        let end = s.index(start, offsetBy: 2)
-        let substr = String(s[start..<end])
-        guard let first = hexChars.firstIndex(of: substr[substr.startIndex]) else {
-            throw NodeIDError.invalidCharacter
-        }
-        guard let second = hexChars.firstIndex(of: substr[substr.index(startIndex, offsetBy: 1)]) else {
-            throw NodeIDError.invalidCharacter
-        }
-        bytes.append(UInt8(first*16 + second))
-    }
-    return bytes
-}
+
 
 enum NodeIDError: Error {
     case invalidLength

@@ -20,7 +20,7 @@ enum KademliaRPCProtocol: Int {
 public struct Bootstrap {
     let addr: String
     let port: UInt16
-    
+
     public init(addr: String, port: UInt16) {
         self.addr = addr
         self.port = port
@@ -36,7 +36,7 @@ public class OverlayDHT {
     let kbuckets: [KNode]
 
     public init(k: Int = 20, bootstrap: Bootstrap, selfPortAlign: Int = 1234) {
-        node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))
+        node = KNode(id: OverlayDHTUtils.randomID(), address: (bootstrap.addr, bootstrap.port))!
         connection = UDPConnection(on: selfPortAlign)
         self.k = k
         kbuckets = []
