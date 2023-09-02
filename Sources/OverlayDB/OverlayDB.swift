@@ -11,4 +11,28 @@ open class OverlayDB {
     init() {
         fatalError("Currently now under construction...")
     }
+
+    public func put(key: String, value: String) {
+        fatalError("Currently now under construction...")
+    }
+
+    public func get(key: String) -> String {
+        fatalError("Currently now under construction...")
+    }
+
+    private func flashMemTable() {
+        fatalError("Currently now under construction...")
+    }
+
+    private func flashSSTable() {
+        fatalError("Currently now under construction...")
+    }
+
+    private func flashLog() {
+        fatalError("Currently now under construction...")
+    }
+
+    private func compact() {
+        fatalError("Currently now under construction...")
+    }
 }
