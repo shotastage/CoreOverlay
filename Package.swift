@@ -15,7 +15,7 @@ enum EnviromentVal: String {
     static let `default`: EnviromentVal = .production
 
     case development, production
-    
+
     static func get() -> EnviromentVal {
         if let envPointer = getenv("COREOVERLAY_BUILD_MODE") {
             let env = String(cString: envPointer)
@@ -61,12 +61,6 @@ var targetDeps: [Target] = [
     ),
     .target(
         name: "OverlayDHT"
-    ),
-    .target(
-        name: "OverlayDB",
-        dependencies: [
-            .product(name: "SQLite", package: "SQLite.swift"),
-        ]
     ),
     .target(
         name: "Runtime",
@@ -122,8 +116,8 @@ case .production:
     targetDeps.append(
         Target.binaryTarget(
             name: "CoreOverlayEngine",
-             url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.7/bundle.zip",
-             checksum: "e749ddef2fe7da8639d78c46a35977e3bc09dfd935ceaede4fbef28b4c9895e8"
+            url: "https://github.com/shotastage/CoreOverlay/releases/download/v0.0.7/bundle.zip",
+            checksum: "e749ddef2fe7da8639d78c46a35977e3bc09dfd935ceaede4fbef28b4c9895e8"
         )
     )
 case .development:
@@ -162,6 +156,9 @@ let package = Package(
         ),
     ],
     dependencies: [
+        // CoreOverlay dependencies
+        .package(url: "https://github.com/shotastage/OverlayDB.git", branch: "main"),
+
         // Basic dependencies
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
