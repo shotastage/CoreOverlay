@@ -158,6 +158,7 @@ let package = Package(
     dependencies: [
         // CoreOverlay dependencies
         .package(url: "https://github.com/shotastage/OverlayDB.git", branch: "main"),
+        .package(url: "https://github.com/shotastage/SwiftID.git", branch: "main"),
 
         // Basic dependencies
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
