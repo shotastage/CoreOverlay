@@ -146,10 +146,6 @@ let package = Package(
             name: "CoreOverlay",
             targets: ["CoreOverlay"]
         ),
-        .library(
-            name: "OverlayDB",
-            targets: ["OverlayDB"]
-        ),
         .executable(
             name: "cot",
             targets: ["CLI"]
@@ -158,7 +154,7 @@ let package = Package(
     dependencies: [
         // CoreOverlay dependencies
         .package(url: "https://github.com/shotastage/OverlayDB.git", branch: "main"),
-        .package(url: "https://github.com/shotastage/SwiftID.git", branch: "main"),
+        .package(url: "https://github.com/shotastage/DataLogic.swift.git", branch: "main"),
 
         // Basic dependencies
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),

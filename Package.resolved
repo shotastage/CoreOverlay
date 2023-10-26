@@ -1,12 +1,39 @@
 {
   "pins" : [
     {
+      "identity" : "datalogic.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shotastage/DataLogic.swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0da2e1385a9ef19d9c68175a153965c9a4de5228"
+      }
+    },
+    {
       "identity" : "grpc-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift.git",
       "state" : {
         "revision" : "d114c5ec34015bab663b3b7afaa7d6197656e47e",
         "version" : "1.9.0"
+      }
+    },
+    {
+      "identity" : "overlaydb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shotastage/OverlayDB.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5fda2115335939e2e8ddc276737c393fbe2cdb54"
+      }
+    },
+    {
+      "identity" : "shell.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shotastage/Shell.swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dce7f7ff3e9956c76ba9a08befe4b084135d35bc"
       }
     },
     {
@@ -23,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
-        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
-        "version" : "1.2.0"
+        "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
+        "version" : "1.2.3"
       }
     },
     {
