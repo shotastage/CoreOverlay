@@ -62,6 +62,10 @@ struct Node {
         return Array(closestNodes.prefix(k))
     }
 
+    func distance(to other: NodeID) -> NodeID {
+        return self.id ^ other.id
+    }
+
     // Insert a node into the appropriate bucket
     mutating func insert(_ node: Node) {
         let distance = xorDistance(self.id, node.id)
