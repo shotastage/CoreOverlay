@@ -62,14 +62,16 @@ struct Node {
         return Array(closestNodes.prefix(k))
     }
 
-    func distance(to other: NodeID) -> NodeID {
-        return self.id ^ other.id
-    }
-
     // Insert a node into the appropriate bucket
     mutating func insert(_ node: Node) {
         let distance = xorDistance(self.id, node.id)
         let index = 159 - distance.prefix { $0 == 0 }.count // Find the first differing bit
         buckets[index].append(node)
+    }
+}
+
+extension Node {
+    func distance(to other: NodeID) -> Int {
+        return self.id ^ other.id
     }
 }
