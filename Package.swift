@@ -5,11 +5,10 @@ import Foundation
 import PackageDescription
 
 #if os(Linux)
-import Glibc
+    import Glibc
 #else
-import Darwin.C
+    import Darwin.C
 #endif
-
 
 enum EnviromentVal: String {
     static let `default`: EnviromentVal = .production
@@ -25,7 +24,6 @@ enum EnviromentVal: String {
         }
     }
 }
-
 
 func getRelativePathToHome() -> String {
     let fm = FileManager.default
@@ -48,11 +46,12 @@ func getRelativePathToHome() -> String {
 }
 
 var targetDeps: [Target] = [
-    .binaryTarget(
-        name: "CWasmer",
-        url: "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
-        checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
-    ),
+    //.binaryTarget(
+    //    name: "CWasmer",
+    //    url:
+    //        "https://github.com/shotastage/CWasmer/releases/download/v0.0.1/CWasmer.xcframework.zip",
+    //    checksum: "b91a858ee7ff1ee9ec1fd0b9da126cd1bfde4e09f9ae75a4ad0364fdcbdd27f3"
+    //),
     .target(
         name: "OverlayFundation"
     ),
@@ -72,7 +71,7 @@ var targetDeps: [Target] = [
     .target(
         name: "Protobuf.Generated",
         dependencies: [
-            .product(name: "GRPC", package: "grpc-swift"),
+            .product(name: "GRPC", package: "grpc-swift")
         ]
     ),
     .target(
@@ -100,7 +99,7 @@ var targetDeps: [Target] = [
     .testTarget(
         name: "CoreOverlayTests",
         dependencies: ["CoreOverlay"]
-    )
+    ),
 ]
 
 let cxxSettings: [CXXSetting] = [
@@ -108,7 +107,6 @@ let cxxSettings: [CXXSetting] = [
     .headerSearchPath("include"),
     .headerSearchPath("\(getRelativePathToHome()).wasmer/include"),
 ]
-
 
 switch EnviromentVal.get() {
 case .production:
@@ -129,7 +127,6 @@ case .development:
         )
     )
 }
-
 
 let package = Package(
     name: "CoreOverlay",
@@ -158,11 +155,13 @@ let package = Package(
 
         // Basic dependencies
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
-        .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
-        .package(url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.9.2")),
+        .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0"..<"3.0.0"),
+        .package(
+            url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.9.2")),
         .package(url: "https://github.com/shareup/wasm-interpreter-apple.git", from: "0.5.3"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
-        .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
+        .package(
+            url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
 
         // Development only dependencies
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"),
