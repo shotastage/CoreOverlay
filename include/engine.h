@@ -14,14 +14,6 @@ const char *ovr_os();
 
 const char *ovr_user_agent();
 
-void ovry_info(const char *msg);
-
-void ovry_log(const char *msg);
-
-void ovry_warning(const char *msg);
-
-void ovry_error(const char *msg);
-
 void overlay_ping(const char *listen_on);
 
 void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
