@@ -33,3 +33,5 @@ artifacts/
 *.wasmu
 
 .vscode/
+
+*.log
