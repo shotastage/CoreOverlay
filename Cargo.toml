@@ -5,7 +5,7 @@ description = "Core engine for CoreOverlay"
 repository = "https://github.com/shotastage/CoreOverlay"
 version = "0.1.1"
 edition = "2021"
-exclude=["/Sources", "*.swift"]
+exclude=["/src-swift", "/co-desktop", "/co-cli",, "/src-go", "*.swift"]
 license = "MIT"
 publish = false
 
