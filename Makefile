@@ -7,6 +7,7 @@ ENABLE_ANDROID_SUPPORT := 0
 # Command Definitions
 SWIFT := swift
 CARGO ?= cargo
+GO ?= go
 SDKROOT=(xcrun --sdk macosx --show-sdk-path)
 
 
