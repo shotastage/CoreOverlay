@@ -8,12 +8,6 @@ extern "C" {
 
 int64_t add(int64_t first, int64_t second);
 
-const char *ovr_arch();
-
-const char *ovr_os();
-
-const char *ovr_user_agent();
-
 void overlay_ping(const char *listen_on);
 
 void c_exec_wasm_text_module(const char *wasm_text, const char *main_fn);
