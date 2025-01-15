@@ -1,8 +1,6 @@
-use std::ffi::{CString, c_char};
 use sha1::{Sha1, Digest};
 
-
-fn gen_sha1(data: &str) -> String {
+pub fn gen_sha1(data: &str) -> String {
     // create a Sha1 object
     let mut hasher = Sha1::new();
 
@@ -12,16 +10,19 @@ fn gen_sha1(data: &str) -> String {
     // acquire hash digest in the form of GenericArray,
     // which in this case is equivalent to [u8; 20]
     let result = hasher.finalize();
-    //assert_eq!(result[..], hex!("2aae6c35c94fcfb415dbe95f408b9ce91ee846ed"));
-    return result;
+
+    // convert the result to a hexadecimal string
+    hex::encode(result)
 }
 
-#[no_mangle]
-pub extern "C" fn sha1(data: &str) -> *const c_char {
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    let digest = gen_sha1(data);
-
-    let c_str =  CString::new(digest).unwrap();
-
-    return c_str.into_raw();
+    #[test]
+    fn test_gen_sha1() {
+        let data = "example data";
+        let digest = gen_sha1(data);
+        assert_eq!(digest, "9fc42adac31303d68b444e6129f13f6093a0e045");
+    }
 }
