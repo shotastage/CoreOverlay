@@ -1,6 +1,6 @@
 //
 //  Connections.swift
-//  
+//
 //
 //  Created by Shota Shimazu on 2023/01/12.
 //
@@ -24,7 +24,7 @@ class UDPConnection: ObservableObject {
     @Published private(set) public var isReady: Bool = false
     /// Default value `true`, this will become false if the UDPListener ceases listening for any reason
     @Published public var listening: Bool = true
-    
+
     /// A convenience init using Int instead of NWEndpoint.Port
     convenience init(on port: Int) {
         self.init(on: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(port)))
@@ -54,11 +54,11 @@ class UDPConnection: ObservableObject {
         }
         self.listener?.start(queue: self.queue)
     }
-    
+
     func createConnection(host: String, port: UInt16) {
         let nwHost = NWEndpoint.Host(host)
         let nwPort = NWEndpoint.Port(integerLiteral: port)
-        
+
         let connection = NWConnection(host: nwHost, port: nwPort, using: .udp)
         self.conn = connection
 
@@ -100,7 +100,7 @@ class UDPConnection: ObservableObject {
         }
         self.conn?.start(queue: .global())
     }
-    
+
     func receive() {
         self.conn?.receiveMessage { data, context, isComplete, error in
             if let unwrappedError = error {
@@ -117,7 +117,7 @@ class UDPConnection: ObservableObject {
             }
         }
     }
-    
+
     func cancel() {
         self.listening = false
         self.conn?.cancel()

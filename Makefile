@@ -37,7 +37,7 @@ endif
 
 
 ###############################################################
-## BUILD ENV SETuP FOR CI                                    ##
+## BUILD ENV SETUP FOR CI                                    ##
 ###############################################################
 .PHONY:
 setup-ci:
@@ -54,21 +54,9 @@ ifeq ($(ENABLE_MAC_CATALYST), 1)
 endif
 
 
-
-.PHONY:
-run:
-	${SWIFT} run
-
-
 ###############################################################
 ## BUILD PROCEDURES                                          ##
 ###############################################################
-
-## Generate & compile protobuff
-.PHONY:
-generate-proto:
-	@echo "Generating compiled protobuf!"
-	protoc --swift_out=Sources/Protobuf.Generated/ --swift_opt=Visibility=Public --proto_path=proto/ proto/*.proto
 
 ## Preparation for building
 .PHONY:
@@ -78,8 +66,16 @@ pre-build-preparation:
 
 ## Rust build procedure
 .PHONY:
-build-rust:
-	$(CARGO) build --release --target aarch64-apple-ios
+build-main-components:
+    $(CARGO) build --release --target aarch64-apple-ios
+    $(CARGO) build --release --target x86_64-apple-darwin
+    $(CARGO) build --release --target aarch64-apple-darwin
+    $(CARGO) build --release --target x86_64-apple-ios
+    $(CARGO) build --release --target aarch64-apple-ios-sim
+
+.PHONY:
+build-apple-platform-framework:
+    $(CARGO) build --release --target aarch64-apple-ios
 	$(CARGO) build --release --target x86_64-apple-darwin
 	$(CARGO) build --release --target aarch64-apple-darwin
 	$(CARGO) build --release --target x86_64-apple-ios
@@ -158,7 +154,7 @@ build-finalize:
 ## GATHERED ALL BUILD PROCEDURE                              ##
 ###############################################################
 .PHONY:
-build: pre-build-preparation generate-proto build-rust build-universal-bin build-rust-xcframework build-artifacts build-swift build-finalize
+build: pre-build-preparation build-main-components build-universal-bin build-rust-xcframework build-artifacts build-swift build-finalize
 
 
 ###############################################################
@@ -185,13 +181,10 @@ clean:
 	@echo "Cleaning project..."
 	@rm -rf .build/
 	@rm -rf .swiftpm/xcode/
-	@find ./Sources/Protobuf.Generated/ -type f -name "*.swift" -delete
 	@cargo clean
 	@rm -rf ./artifacts/
 	@rm Cargo.lock
 	@echo "Done!"
-
-
 
 ###############################################################
 ## PROJECT UTILITIES                                         ##
