@@ -80,7 +80,6 @@ build-apple-platform-framework:
 	$(CARGO) build --release --target aarch64-apple-darwin
 	$(CARGO) build --release --target x86_64-apple-ios
 	$(CARGO) build --release --target aarch64-apple-ios-sim
-
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	$(CARGO) build --release --target x86_64-apple-ios-macabi
 	$(CARGO) build --release --target aarch64-apple-ios-macabi
