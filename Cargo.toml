@@ -27,6 +27,7 @@ swift-bridge = "0.1.57"
 libc = "0.2.169"
 colored = "3.0.0"
 hex = "0.4.3"
+overlaystd = { path = "lib/overlaystd" }
 algs = { path = "lib/algs" }
 codb = { path = "lib/codb" }
 coprotocol = { path = "lib/coprotocol" }
@@ -34,7 +35,8 @@ coprotocol = { path = "lib/coprotocol" }
 [workspace]
 members = [
     "lib/algs",
-    "lib/codb", "lib/cologger",
+    "lib/codb",
+    "lib/overlaystd",
     "lib/coprotocol",
 ]
 
