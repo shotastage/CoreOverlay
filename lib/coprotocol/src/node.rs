@@ -1,38 +1,40 @@
-use std::{net::SocketAddr, time::SystemTime};
+// Implementation of Kademlia node
 
-/// Size of K-buckets
-const K: usize = 20;
+use crate::{NodeId, RoutingTable, Rpc, Store};
+use std::net::SocketAddr;
 
-/// NodeID length
-const ID_LENGTH: usize = 160;
-
-/// Represents a node in the network with an ID, address, and last seen time.
-#[derive(Clone, Debug, Eq, PartialEq)]
-struct Node {
+pub struct Node {
     id: NodeId,
     addr: SocketAddr,
-    last_seen: SystemTime,
+    routing_table: RoutingTable,
+    store: Store,
+    rpc: Rpc,
 }
 
-/// Represents a Node ID consisting of 160 bits (20 bytes).
-#[derive(Clone, Debug, Eq, PartialEq)]
-struct NodeId([u8; 20]);
-
-impl NodeId {
-    /// Calculates the distance (XOR distance) between two Node IDs.
-    ///
-    /// # Arguments
-    ///
-    /// * `other` - A reference to another NodeId to calculate the distance to.
-    ///
-    /// # Returns
-    ///
-    /// A new NodeId representing the XOR distance between the two Node IDs.
-    fn distance(&self, other: &NodeId) -> NodeId {
-        let mut result = [0u8; 20];
-        for i in 0..20 {
-            result[i] = self.0[i] ^ other.0[i];
+impl Node {
+    pub fn new(id: NodeId, addr: SocketAddr) -> Self {
+        Node {
+            id,
+            addr,
+            routing_table: RoutingTable::new(id),
+            store: Store::new(),
+            rpc: Rpc::new(),
         }
-        NodeId(result)
+    }
+
+    pub async fn bootstrap(&mut self, known_node: SocketAddr) {
+        todo!()
+    }
+
+    pub async fn store(&mut self, key: Vec<u8>, value: Vec<u8>) {
+        todo!()
+    }
+
+    pub async fn find_value(&mut self, key: Vec<u8>) -> Option<Vec<u8>> {
+        todo!()
+    }
+
+    pub async fn find_node(&mut self, id: NodeId) -> Vec<(NodeId, SocketAddr)> {
+        todo!()
     }
 }
