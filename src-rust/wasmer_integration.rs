@@ -17,7 +17,7 @@ pub fn wasmer_exec(file_binary: &[u8]) -> anyhow::Result<()> {
 }
 
 // Rust function that calls the wasm text module
-fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
+pub fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
     let mut store = Store::default();
     let module = Module::new(&store, &wat_module)?;
     let import_object = imports! {};
@@ -31,7 +31,7 @@ fn wasm_text_exec(wat_module: &str, main_fn: &str) -> anyhow::Result<()> {
 }
 
 // Rust function that calls the pre-compiled wasm module
-fn wasm_native_exec(file_binary: &[u8]) -> anyhow::Result<()> {
+pub fn wasm_native_exec(file_binary: &[u8]) -> anyhow::Result<()> {
     let engine = EngineBuilder::headless();
     let mut store = Store::new(engine);
     let module = Module::from_binary(&store, file_binary)?;
