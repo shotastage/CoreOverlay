@@ -52,13 +52,3 @@ fn test_hello_world() -> anyhow::Result<()> {
     // wasm_exec("hello_world.wasm")
     Ok(())
 }
-
-fn main() {
-    // Example usage of wasm_text_exec
-    let wat_module = "(module (func $add_one (param i32) (result i32) local.get 0 i32.const 1 i32.add) (export \"add_one\" (func $add_one)))";
-    wasm_text_exec(wat_module, "add_one").unwrap();
-
-    // Example usage of wasm_native_exec
-    let file_binary: &[u8] = &[]; // Replace with actual binary data
-    wasm_native_exec(file_binary).unwrap();
-}
