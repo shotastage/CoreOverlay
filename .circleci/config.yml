@@ -1,30 +1,25 @@
 version: 2.1
 jobs:
   build:
-    macos:
-      xcode: "14.1.0"
+    docker:
+      - image: rust:latest
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - restore_cache:
-          name: Restore Swift and Rust packaging compiled cache
+          name: Restore Rust packaging compiled cache
           keys:
-            - v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Package.resolved" }}
-      - run: brew update
-      - run: brew install swift-protobuf grpc-swift wabt
-      - run: brew upgrade
-      - run: brew cleanup
-      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
-      - run: make setup-ci
-      - run: COREOVERLAY_BUILD_MODE="development" make build-ci
+            - v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Cargo.lock" }}
+      - run: apt-get update && apt-get install -y protobuf-compiler
+      - run: curl -sSf https://sh.rustup.rs | sh -s -- -y
+      - run: rustup component add rustfmt
+      - run: cargo install grpcio-compiler
+      - run: cargo build --release
       - store_artifacts:
-          path: ./artifacts/
+          path: ./target/release/
       - save_cache:
           name: save
           paths:
-            - ./.build/
             - ./target/
             - ~/.cargo/
-            - /Users/distiller/Library/Caches/Homebrew
-            - /usr/local/Homebrew
-          key: v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Package.resolved" }}
+          key: v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Cargo.lock" }}
