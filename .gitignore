@@ -32,6 +32,8 @@ artifacts/
 # WebAssembly Related Files
 *.wasmu
 
+# IDE Specific Files and Directories
 .vscode/
 
+# Workspace
 *.log
