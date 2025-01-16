@@ -1,3 +1,12 @@
+// Import necessary modules
+use std::sync::Arc;
+use std::collections::HashMap;
+use tokio::sync::RwLock;
+use ethereum_types::H256;
+use bytes::Bytes;
+
+struct Database; // Define the Database struct
+
 struct OverlayDB {
     backing: Arc<Database>,
     overlay: RwLock<HashMap<H256, Option<Bytes>>>,

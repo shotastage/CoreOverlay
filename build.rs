@@ -1,5 +1,3 @@
-extern crate cbindgen;
-
 fn main() {
     println!("Gnerating bindings for C/C++");
 

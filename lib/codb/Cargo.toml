@@ -1,5 +1,5 @@
 [package]
-name = "overlaydb"
+name = "codb"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -7,3 +7,6 @@ authors.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tokio = { version = "1", features = ["full"] }
+bytes = "1"
+ethereum-types = "0.10"
