@@ -62,13 +62,6 @@ var targetDeps: [Target] = [
         name: "OverlayDHT"
     ),
     .target(
-        name: "Runtime",
-        dependencies: [
-            "CWasmer",
-            .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-        ]
-    ),
-    .target(
         name: "Protobuf.Generated",
         dependencies: [
             .product(name: "GRPC", package: "grpc-swift")
@@ -80,13 +73,11 @@ var targetDeps: [Target] = [
             "OverlayFundation",
             "CoreOverlayEngine",
             "Protobuf.Generated",
-            "Runtime",
             "CBreeze",
             "OverlayDHT",
             .product(name: "GRPC", package: "grpc-swift"),
             .product(name: "Crypto", package: "swift-crypto"),
             .product(name: "WasmInterpreter", package: "wasm-interpreter-apple"),
-            // - .product(name: "LibP2P", package: "swift-libp2p"),
         ]
     ),
     .executableTarget(
