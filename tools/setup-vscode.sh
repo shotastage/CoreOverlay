@@ -1,13 +1,29 @@
 #!/usr/bin/env bash
 
-if command -v code >/dev/null 2>&1; then
-    echo "Visual Studio Code is installed."
-else
+# Check if the VSCode installed
+if ! command -v code >/dev/null 2>&1; then
     echo "Visual Studio Code is not installed."
-    echo "Please install Visual Studio Code from https://code.visualstudio.com/."
+    echo "Please install Visual Studio Code from https://code.visualstudio.com/"
     exit 1
 fi
 
-code --install-extension rust-lang.rust-analyzer
-code --install-extension juggernautjp.less-toml
-code --install-extension editorconfig.editorconfig
+echo "Visual Studio Code is installed."
+
+# List of VSCode extensions
+extensions=(
+    "rust-lang.rust-analyzer"
+    "juggernautjp.less-toml"
+    "editorconfig.editorconfig"
+)
+
+# Install VSCode extensions
+for ext in "${extensions[@]}"; do
+    echo "Installing VS Code extension: $ext"
+    code --install-extension "$ext"
+done
+
+# Install rustfmt
+echo "Installing rustfmt..."
+rustup component add rustfmt
+
+echo "Setup completed."
