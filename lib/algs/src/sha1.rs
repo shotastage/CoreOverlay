@@ -1,4 +1,4 @@
-use sha1::{Sha1, Digest};
+use sha1::{Digest, Sha1};
 
 // Function to calculate SHA1 hash from a string
 pub fn calculate_sha1(text: &str) -> String {

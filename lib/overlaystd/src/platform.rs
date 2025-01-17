@@ -36,6 +36,9 @@ mod tests {
     fn test_ovr_user_agent() {
         let user_agent_str = ovr_user_agent();
         println!("user_agent_str: {}", user_agent_str);
-        assert_eq!("OVERLAY/0.1.0 COREOVERLAY/0.1.0 DHT/Kademlia WASMER/3.1.0", user_agent_str);
+        assert_eq!(
+            "OVERLAY/0.1.0 COREOVERLAY/0.1.0 DHT/Kademlia WASMER/3.1.0",
+            user_agent_str
+        );
     }
 }

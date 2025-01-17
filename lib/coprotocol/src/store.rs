@@ -31,6 +31,7 @@ impl Store {
     }
 
     pub fn cleanup(&mut self) {
-        self.data.retain(|_, (_, timestamp)| timestamp.elapsed() < self.ttl);
+        self.data
+            .retain(|_, (_, timestamp)| timestamp.elapsed() < self.ttl);
     }
 }

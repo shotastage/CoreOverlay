@@ -1,4 +1,3 @@
-
 pub fn xor_distance(x: i32, y: i32) -> i32 {
     let mut z = x ^ y;
     let mut count = 0;

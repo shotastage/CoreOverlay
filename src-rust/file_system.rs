@@ -34,13 +34,19 @@ pub fn upload_file(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-pub fn list_directory(peer: &Peer, directory_path: &str) -> Result<Vec<FileMetadata>, Box<dyn std::error::Error>> {
+pub fn list_directory(
+    peer: &Peer,
+    directory_path: &str,
+) -> Result<Vec<FileMetadata>, Box<dyn std::error::Error>> {
     // Implement a function that lists the contents of a shared directory
     // on a peer, returning a list of file and directory names along with their metadata.
     Ok(vec![])
 }
 
-pub fn get_metadata(peer: &Peer, file_path: &str) -> Result<FileMetadata, Box<dyn std::error::Error>> {
+pub fn get_metadata(
+    peer: &Peer,
+    file_path: &str,
+) -> Result<FileMetadata, Box<dyn std::error::Error>> {
     // Implement a function that retrieves metadata for a file or directory,
     // such as size, hash, creation date, and modification date.
     Ok(FileMetadata {
@@ -51,7 +57,6 @@ pub fn get_metadata(peer: &Peer, file_path: &str) -> Result<FileMetadata, Box<dy
         modified_at: std::time::SystemTime::now(),
     })
 }
-
 
 pub fn create_file(path: &str) -> io::Result<()> {
     File::create(path)?;

@@ -1,7 +1,7 @@
-use std::time::SystemTime;
-use std::fs::{OpenOptions, File};
-use std::io::Write;
 use colored::*;
+use std::fs::{File, OpenOptions};
+use std::io::Write;
+use std::time::SystemTime;
 
 #[derive(Debug, Clone, Copy)]
 pub enum LogLevel {
@@ -19,10 +19,7 @@ pub struct Logger {
 impl Logger {
     pub fn new(log_file_path: Option<&str>, console_output: bool) -> Result<Self, std::io::Error> {
         let log_file = match log_file_path {
-            Some(path) => Some(OpenOptions::new()
-                .create(true)
-                .append(true)
-                .open(path)?),
+            Some(path) => Some(OpenOptions::new().create(true).append(true).open(path)?),
             None => None,
         };
 
@@ -41,7 +38,12 @@ impl Logger {
     }
 
     fn format_message(&self, level: LogLevel, msg: &str) -> String {
-        format!("[{}] [{}] {}\n", self.get_timestamp(), format!("{:?}", level), msg)
+        format!(
+            "[{}] [{}] {}\n",
+            self.get_timestamp(),
+            format!("{:?}", level),
+            msg
+        )
     }
 
     pub fn log(&mut self, level: LogLevel, msg: &str) -> Result<(), std::io::Error> {
