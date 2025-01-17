@@ -1,0 +1,9 @@
+[package]
+name = "sample-rust"
+authors = ["Shota Shimazu <shota.shimazu@mgq.app>"]
+edition = "2021"
+homepage = "https://github.com/shotastage/CoreOverlay"
+license = "MIT"
+version = "0.0.1"
+
+[dependencies]
