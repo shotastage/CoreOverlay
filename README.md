@@ -2,37 +2,44 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/shotastage/CoreOverlay/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/shotastage/CoreOverlay/tree/main)
 
->> This framework is now under construction...
+A utility framework for building and integrating structured overlay networks.
 
-This framework provides utilities that make or integrate structured overlay network.
+> **Note**: This framework is currently under development
 
+## Key Features
 
-## Overlay Feature
+CoreOverlay provides the following capabilities:
 
-- Kademlia Based Protocol
-- Fast consensus algs
-- Abstracted P2P IO
-
+* Kademlia-based protocol implementation
+* Fast consensus algorithms
+* Abstracted P2P I/O interface
 
 ## Package Structure
 
-✅ Work 🔴 Not work 🟡 Partially work
+Development status of each package:
 
-| Package Name     | Status |  Description  |
-|:-----------------|:------:|---------------|
-| CoreOverlay      | 🟡     | Main package of this framework |
-| CLI              | 🟡     | Commandline tools for CoreOverlay package |
-| Runtime          | 🟡     | WebAssembly embeded runtime |
-| OverlayFundation | 🟡     | CoreOverlay utility package |
-| RS-Wasmer        | ⚪️     | Standalone wasmer runtime will be deprecated due to JIT-compiler restriction policy.    |
+✅ Working | 🔴 Not working | 🟡 Partially working
 
+| Package Name | Status | Description |
+|------------|------|------|
+| CoreOverlay | 🟡 | Main framework package |
+| CLI | 🟡 | Command-line tools for CoreOverlay |
+| Runtime | 🟡 | WebAssembly embedded runtime |
+| OverlayFundation | 🟡 | CoreOverlay utility package |
+| RS-Wasmer | ⚪️ | Standalone Wasmer runtime (to be deprecated due to JIT compiler restriction policy) |
 
-## Self Build Instruction
+## Build Instructions
 
->> Currently, we supports iOS `*.framework` build or Swift Package distribution.
+Currently supported distribution formats:
+- iOS `.framework`
+- Swift Package
 
-To make standalone framework, you can use `Makefile` running `make build`.
+To create a standalone framework, run the following command:
+
+```bash
+make build
+```
 
 ## License
 
-This software is licensed under the MIT, see [LICENSE](LICENSE) for detail.
+This software is released under the MIT License. See [LICENSE](LICENSE) for details.
