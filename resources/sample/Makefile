@@ -1,23 +1,28 @@
+# OS detection
+UNAME_S := $(shell uname -s)
+
 .PHONY:
 setup:
+ifeq ($(UNAME_S),Darwin)  # Darwin is macOS
 	brew update
-#	brew install emscripten
-    rustup target add wasm32-wasip1
+else
+	@echo "Skipping Homebrew commands (not on macOS)"
+endif
+	rustup target add wasm32-wasip1
 
 
 .PHONY:
 build:
-#	emcc -O3 -s WASM=1 -s SIDE_MODULE=1 -s EXPORTED_FUNCTIONS="['_main']" -o program.wasm program.c
-	rustc --target wasm32-wasip1 hello-rust.rs
-#	wasmer compile --llvm -o hello-rust.lvmpc hello-rust.wasm
-	wasmer compile --singlepass ./hello-rust.wasm -o ./hello-rust.wasmu
+	@echo "Building sample-rust package..."
+	cd sample-rust && cargo build --release --target wasm32-wasip1
 
 .PHONY:
 test-all:
-	wasmer compile --singlepass ./program.wasm -o ./program.wasmu
-	wasmer compile --cranelift ./program.wasm -o ./program.s
+	wasmer ../../target/wasm32-wasip1/release/sample-rust.wasm
 
 .PHONY:
 clean:
 	@rm hello-rust.wasm
 #	rm hello-rust.lvmpc
+	@echo "Cleaning sample-rust package..."
+	cd sample-rust && cargo clean
