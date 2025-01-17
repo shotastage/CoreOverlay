@@ -5,17 +5,17 @@ use wasmer::{
 };
 use anyhow::{Result, anyhow};
 
-/// WasmRunner は .wasm ファイルの実行を管理するための構造体です
+/// WasmRunner is a struct for managing the execution of .wasm files
 pub struct WasmRunner {
     store: Store,
     instance: Instance,
 }
 
 impl WasmRunner {
-    /// 新しい WasmRunner インスタンスを作成します
+    /// Creates a new WasmRunner instance
     pub fn new<P: AsRef<Path>>(wasm_path: P) -> Result<Self> {
         let engine = Engine::default();
-        let mut store = Store::new(&engine);
+        let mut store = Store::new(engine);
         let wasm_bytes = std::fs::read(wasm_path)?;
         let module = Module::new(&store, wasm_bytes)?;
         let imports = Imports::new();
@@ -23,7 +23,7 @@ impl WasmRunner {
         Ok(Self { store, instance })
     }
 
-    /// 指定された関数を実行します
+    /// Executes the specified function
     pub fn call_function(&mut self, func_name: &str, params: &[wasmer::Value]) -> Result<Box<[wasmer::Value]>> {
         let func = self.instance
             .exports
@@ -32,11 +32,15 @@ impl WasmRunner {
         Ok(func.call(&mut self.store, params)?)
     }
 
-    /// 型付き関数を取得します
+    /// Retrieves a typed function
     pub fn get_typed_function<Params, Results>(
         &mut self,
         func_name: &str,
-    ) -> Result<TypedFunction<Params, Results>> {
+    ) -> Result<TypedFunction<Params, Results>>
+    where
+        Params: wasmer::WasmTypeList,
+        Results: wasmer::WasmTypeList,
+    {
         let func = self.instance
             .exports
             .get_typed_function(&mut self.store, func_name)
@@ -44,35 +48,36 @@ impl WasmRunner {
         Ok(func)
     }
 
-    /// メモリにアクセスするためのヘルパー関数
+    /// Helper function to access memory
     pub fn get_memory(&self) -> Result<Memory> {
         self.instance
             .exports
             .get_memory("memory")
+            .map(|mem| (*mem).clone())
             .map_err(|_| anyhow!("Memory not found in module"))
     }
 
-    /// メモリに値を書き込むヘルパー関数
+    /// Helper function to write values to memory
     pub fn write_memory(&mut self, offset: u32, data: &[u8]) -> Result<()> {
         let memory = self.get_memory()?;
-        let view = memory.view();
-        view.write(offset as usize, data)?;
+        let view = memory.view(&self.store);
+        view.write(offset as u64, data)?;
         Ok(())
     }
 
-    /// メモリから値を読み込むヘルパー関数
+    /// Helper function to read values from memory
     pub fn read_memory(&self, offset: u32, length: u32) -> Result<Vec<u8>> {
         let memory = self.get_memory()?;
-        let view = memory.view();
+        let view = memory.view(&self.store);
         let mut buffer = vec![0u8; length as usize];
-        view.read(offset as usize, &mut buffer)?;
+        view.read(offset as u64, &mut buffer)?;
         Ok(buffer)
     }
 
-    /// WasmPtrを使用してメモリから文字列を読み込むヘルパー関数
+    /// Helper function to read a string from memory using WasmPtr
     pub fn read_string(&self, ptr: WasmPtr<u8>, len: u32) -> Result<String> {
         let memory = self.get_memory()?;
-        let view = memory.view();
+        let view = memory.view(&self.store);
         let data = ptr.read_utf8_string(&view, len)?;
         Ok(data)
     }
