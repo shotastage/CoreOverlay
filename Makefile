@@ -22,17 +22,18 @@ setup:
 	rustup target add aarch64-apple-darwin
 	rustup target add x86_64-apple-ios
 	rustup target add aarch64-apple-ios-sim
-ifeq ($(ENABLE_ANDROID_SUPPORT), 1)
-	rustup target add aarch64-linux-android
-	rustup target add armv7-linux-androideabi
-	rustup target add i686-linux-android
-	rustup target add x86_64-linux-android
-endif
+
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	$(CARGO) +nightly build --release -Z build-std --target x86_64-apple-ios-macabi
 	$(CARGO) +nightly build --release -Z build-std --target aarch64-apple-ios-high macabi
 	rustup target add x86_64-apple-ios-macabi
 	rustup target add aarch64-apple-ios-macabi
+endif
+ifeq ($(ENABLE_ANDROID_SUPPORT), 1)
+	rustup target add aarch64-linux-android
+	rustup target add armv7-linux-androideabi
+	rustup target add i686-linux-android
+	rustup target add x86_64-linux-android
 endif
 
 
@@ -67,15 +68,15 @@ pre-build-preparation:
 ## Rust build procedure
 .PHONY:
 build-main-components:
-    $(CARGO) build --release --target aarch64-apple-ios
-    $(CARGO) build --release --target x86_64-apple-darwin
-    $(CARGO) build --release --target aarch64-apple-darwin
-    $(CARGO) build --release --target x86_64-apple-ios
-    $(CARGO) build --release --target aarch64-apple-ios-sim
+	$(CARGO) build --release --target aarch64-apple-ios
+	$(CARGO) build --release --target x86_64-apple-darwin
+	$(CARGO) build --release --target aarch64-apple-darwin
+	$(CARGO) build --release --target x86_64-apple-ios
+	$(CARGO) build --release --target aarch64-apple-ios-sim
 
 .PHONY:
 build-apple-platform-framework:
-    $(CARGO) build --release --target aarch64-apple-ios
+	$(CARGO) build --release --target aarch64-apple-ios
 	$(CARGO) build --release --target x86_64-apple-darwin
 	$(CARGO) build --release --target aarch64-apple-darwin
 	$(CARGO) build --release --target x86_64-apple-ios
@@ -91,19 +92,19 @@ endif
 build-universal-bin:
 	mkdir -p ./artifacts
 	lipo -create \
-  		target/x86_64-apple-darwin/release/libcoreoverlayengine.a \
-  		target/aarch64-apple-darwin/release/libcoreoverlayengine.a \
-  		-output ./artifacts/libcoreoverlayengine_macos.a
+		target/x86_64-apple-darwin/release/libcoreoverlayengine.a \
+		target/aarch64-apple-darwin/release/libcoreoverlayengine.a \
+		-output ./artifacts/libcoreoverlayengine_macos.a
 
 	lipo -create \
-  		target/x86_64-apple-ios/release/libcoreoverlayengine.a \
-  		target/aarch64-apple-ios-sim/release/libcoreoverlayengine.a \
-  		-output ./artifacts/libcoreoverlayengine_iossimulator.a
+		target/x86_64-apple-ios/release/libcoreoverlayengine.a \
+		target/aarch64-apple-ios-sim/release/libcoreoverlayengine.a \
+		-output ./artifacts/libcoreoverlayengine_iossimulator.a
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	lipo -create \
-  		target/x86_64-apple-ios-macabi/release/libcoreoverlayengine.a \
-  		target/aarch64-apple-ios-macabi/release/libcoreoverlayengine.a \
-  		-output ./artifacts/libcoreoverlayengine_maccatalyst.a
+		target/x86_64-apple-ios-macabi/release/libcoreoverlayengine.a \
+		target/aarch64-apple-ios-macabi/release/libcoreoverlayengine.a \
+		-output ./artifacts/libcoreoverlayengine_maccatalyst.a
 endif
 
 
@@ -111,18 +112,18 @@ endif
 .PHONY:
 build-rust-xcframework:
 	xcodebuild -create-xcframework \
-  		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
-  		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
-  		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
-  		-output ./artifacts/CoreOverlayEngine.xcframework
+		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
+		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
+		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
+		-output ./artifacts/CoreOverlayEngine.xcframework
 
 ifeq ($(ENABLE_MAC_CATALYST), 1)
 	xcodebuild -create-xcframework \
-  		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
-  		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
-  		-library ./artifacts/libcoreoverlayengine_maccatalyst.a -headers ./include/ \
-  		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
-  		-output ./artifacts/CoreOverlayEngine.xcframework
+		-library ./artifacts/libcoreoverlayengine_macos.a -headers ./include/ \
+		-library ./artifacts/libcoreoverlayengine_iossimulator.a -headers ./include/ \
+		-library ./artifacts/libcoreoverlayengine_maccatalyst.a -headers ./include/ \
+		-library ./target/aarch64-apple-ios/release/libcoreoverlayengine.a -headers ./include/ \
+		-output ./artifacts/CoreOverlayEngine.xcframework
 endif
 
 

@@ -2,12 +2,13 @@
 setup:
 	brew update
 #	brew install emscripten
-	rustup target add wasm32-wasi
+    rustup target add wasm32-wasip1
+
 
 .PHONY:
 build:
 #	emcc -O3 -s WASM=1 -s SIDE_MODULE=1 -s EXPORTED_FUNCTIONS="['_main']" -o program.wasm program.c
-	rustc --target wasm32-wasi hello-rust.rs
+	rustc --target wasm32-wasip1 hello-rust.rs
 #	wasmer compile --llvm -o hello-rust.lvmpc hello-rust.wasm
 	wasmer compile --singlepass ./hello-rust.wasm -o ./hello-rust.wasmu
 

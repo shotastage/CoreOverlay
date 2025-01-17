@@ -31,6 +31,7 @@ overlaystd = { path = "lib/overlaystd" }
 algs = { path = "lib/algs" }
 codb = { path = "lib/codb" }
 coprotocol = { path = "lib/coprotocol" }
+coruntime = { path = "lib/coruntime" }
 
 [workspace]
 members = [
@@ -38,6 +39,7 @@ members = [
     "lib/codb",
     "lib/overlaystd",
     "lib/coprotocol",
+    "lib/coruntime", "resources/sample/sample-rust",
 ]
 
 [workspace.package]

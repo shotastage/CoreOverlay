@@ -1,0 +1,13 @@
+[package]
+name = "coruntime"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[dependencies]
+wasmer = "5.0"
+wasmer-compiler-cranelift = "5.0"
+anyhow = "1.0"
