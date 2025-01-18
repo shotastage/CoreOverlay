@@ -35,7 +35,8 @@ overlaystd = { path = "lib/overlaystd" }
 algs = { path = "lib/algs" }
 codb = { path = "lib/codb" }
 coprotocol = { path = "lib/coprotocol" }
-ovryvm = { path = "lib/ovryvm" }
+ovlyvm = { path = "lib/ovlyvm" }
+ovlypkg = { path = "lib/ovlypkg" }
 clap = { version = "4.5.26", features = ["derive"] }
 
 [workspace]
@@ -44,7 +45,8 @@ members = [
     "lib/codb",
     "lib/overlaystd",
     "lib/coprotocol",
-    "lib/ovryvm",
+    "lib/ovlyvm",
+    "lib/ovlypkg",
 ]
 
 [workspace.package]

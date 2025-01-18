@@ -1,5 +1,5 @@
 [package]
-name = "ovryvm"
+name = "ovlyvm"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true
