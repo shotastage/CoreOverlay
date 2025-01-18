@@ -1,9 +1,6 @@
+use anyhow::{anyhow, Result};
 use std::path::Path;
-use wasmer::{
-    Engine, Instance, Module, Store, Imports, Function, TypedFunction,
-    WasmPtr, Memory
-};
-use anyhow::{Result, anyhow};
+use wasmer::{Engine, Function, Imports, Instance, Memory, Module, Store, TypedFunction, WasmPtr};
 
 /// WasmRunner is a struct for managing the execution of .wasm files
 pub struct WasmRunner {
@@ -24,8 +21,13 @@ impl WasmRunner {
     }
 
     /// Executes the specified function
-    pub fn call_function(&mut self, func_name: &str, params: &[wasmer::Value]) -> Result<Box<[wasmer::Value]>> {
-        let func = self.instance
+    pub fn call_function(
+        &mut self,
+        func_name: &str,
+        params: &[wasmer::Value],
+    ) -> Result<Box<[wasmer::Value]>> {
+        let func = self
+            .instance
             .exports
             .get_function(func_name)
             .map_err(|_| anyhow!("Function {} not found", func_name))?;
@@ -41,7 +43,8 @@ impl WasmRunner {
         Params: wasmer::WasmTypeList,
         Results: wasmer::WasmTypeList,
     {
-        let func = self.instance
+        let func = self
+            .instance
             .exports
             .get_typed_function(&mut self.store, func_name)
             .map_err(|_| anyhow!("Typed function {} not found", func_name))?;

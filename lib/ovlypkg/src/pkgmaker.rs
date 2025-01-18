@@ -1,8 +1,8 @@
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
 use std::io::{self, Read, Write};
 use std::path::Path;
-use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct WasmMetadata {
@@ -35,10 +35,7 @@ pub fn package_wasm_files(
         let mut content = Vec::new();
         fs::File::open(path)?.read_to_end(&mut content)?;
 
-        modules.push(WasmModule {
-            metadata,
-            content,
-        });
+        modules.push(WasmModule { metadata, content });
     }
 
     let package = WasmPackage {
@@ -47,64 +44,24 @@ pub fn package_wasm_files(
     };
 
     // Serialize the package to bytes
-    bincode::serialize(&package)
-        .map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))
+    bincode::serialize(&package).map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))
 }
 
-pub fn unarchive_wasm_package(package_data: &[u8]) -> io::Result<(WasmPackage, Vec<(String, Vec<u8>)>)> {
+pub fn unarchive_wasm_package(
+    package_data: &[u8],
+) -> io::Result<(WasmPackage, Vec<(String, Vec<u8>)>)> {
     // Deserialize the package
     let package: WasmPackage = bincode::deserialize(package_data)
         .map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))?;
 
     // Extract WASM modules
-    let modules: Vec<(String, Vec<u8>)> = package.modules
+    let modules: Vec<(String, Vec<u8>)> = package
+        .modules
         .iter()
         .map(|module| (module.metadata.name.clone(), module.content.clone()))
         .collect();
 
     Ok((package, modules))
-}
-
-// Example usage
-fn main() -> io::Result<()> {
-    // Create sample metadata
-    let mut dependencies = HashMap::new();
-    dependencies.insert("dep1".to_string(), "1.0.0".to_string());
-
-    let module_metadata = WasmMetadata {
-        name: "example-module".to_string(),
-        version: "1.0.0".to_string(),
-        description: Some("Example WASM module".to_string()),
-        dependencies,
-    };
-
-    let package_metadata = WasmMetadata {
-        name: "example-package".to_string(),
-        version: "1.0.0".to_string(),
-        description: Some("Example WASM package".to_string()),
-        dependencies: HashMap::new(),
-    };
-
-    // Package WASM files
-    let wasm_files = vec![
-        (Path::new("example.wasm"), module_metadata),
-    ];
-
-    let package_data = package_wasm_files(wasm_files, package_metadata)?;
-
-    // Save package to file
-    fs::write("package.wasm", &package_data)?;
-
-    // Later, unarchive the package
-    let package_data = fs::read("package.wasm")?;
-    let (package, modules) = unarchive_wasm_package(&package_data)?;
-
-    // Process extracted modules
-    for (name, content) in modules {
-        println!("Extracted module: {} ({} bytes)", name, content.len());
-    }
-
-    Ok(())
 }
 
 // Tests
@@ -139,9 +96,7 @@ mod tests {
         };
 
         // Package the test file
-        let wasm_files = vec![
-            (temp_file.path(), module_metadata),
-        ];
+        let wasm_files = vec![(temp_file.path(), module_metadata)];
 
         let package_data = package_wasm_files(wasm_files, package_metadata)?;
 
