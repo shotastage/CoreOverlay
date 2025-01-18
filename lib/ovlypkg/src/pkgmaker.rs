@@ -5,7 +5,7 @@ use std::io::{self, Read, Write};
 use std::path::Path;
 
 #[derive(Serialize, Deserialize)]
-struct WasmMetadata {
+pub struct WasmMetadata {
     name: String,
     version: String,
     description: Option<String>,
@@ -19,7 +19,7 @@ struct WasmModule {
 }
 
 #[derive(Serialize, Deserialize)]
-struct WasmPackage {
+pub struct WasmPackage {
     modules: Vec<WasmModule>,
     package_metadata: WasmMetadata,
 }
@@ -45,6 +45,17 @@ pub fn package_wasm_files(
 
     // Serialize the package to bytes
     bincode::serialize(&package).map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))
+}
+
+// Write the package to a file
+pub fn write_package_to_file(name: String, wasm_files: Vec<(&Path, WasmMetadata)>,
+package_metadata: WasmMetadata,) -> io::Result<()> {
+    let package_data = package_wasm_files(wasm_files, package_metadata)?;
+
+    // Save package to file
+    fs::write(format!("{}{}", name, ".ovpkg"), &package_data)?;
+
+    Ok(())
 }
 
 pub fn unarchive_wasm_package(

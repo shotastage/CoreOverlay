@@ -2,11 +2,17 @@
 
 >> Now under construction...
 
+## Package Formats
+
+`*.ovpkg` is packaged WASM binaries with metadata.
+
+`*.ovmeta` is meta information file exported from `*.ovpkg`.
+
+`*.owsm` is extracted WASM binary from `*.ovpkg`.
 
 ## Usage for Packaging
 
 ```rust
-
 // Example usage
 fn main() -> io::Result<()> {
     // Create sample metadata
@@ -27,8 +33,25 @@ fn main() -> io::Result<()> {
         dependencies: HashMap::new(),
     };
 
-    // Package WASM files
-    let wasm_files = vec![(Path::new("example.wasm"), module_metadata)];
+    // Package multiple WASM files
+    let module_metadata1 = WasmMetadata {
+        name: "module1".to_string(),
+        version: "1.0.0".to_string(),
+        description: Some("First WASM module".to_string()),
+        dependencies: dependencies.clone(),
+    };
+
+    let module_metadata2 = WasmMetadata {
+        name: "module2".to_string(),
+        version: "1.0.0".to_string(),
+        description: Some("Second WASM module".to_string()),
+        dependencies: dependencies,
+    };
+
+    let wasm_files = vec![
+        (Path::new("module1.wasm"), module_metadata1),
+        (Path::new("module2.wasm"), module_metadata2),
+    ];
 
     let package_data = package_wasm_files(wasm_files, package_metadata)?;
 
