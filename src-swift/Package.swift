@@ -62,17 +62,10 @@ var targetDeps: [Target] = [
         name: "OverlayDHT"
     ),
     .target(
-        name: "Protobuf.Generated",
-        dependencies: [
-            .product(name: "GRPC", package: "grpc-swift")
-        ]
-    ),
-    .target(
         name: "CoreOverlay",
         dependencies: [
             "OverlayFundation",
             "CoreOverlayEngine",
-            "Protobuf.Generated",
             "CBreeze",
             "OverlayDHT",
             .product(name: "GRPC", package: "grpc-swift"),
