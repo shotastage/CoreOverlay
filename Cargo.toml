@@ -46,7 +46,7 @@ members = [
     "lib/overlaystd",
     "lib/coprotocol",
     "lib/ovlyvm",
-    "lib/ovlypkg",
+    "lib/ovlypkg", "lib/ovdevhelper",
 ]
 
 [workspace.package]
