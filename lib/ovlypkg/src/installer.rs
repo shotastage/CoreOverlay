@@ -1,4 +1,4 @@
-use ovdevhelper::under_construction;
+use devhelper::under_construction;
 
 pub fn fake_install() {
     under_construction::message();
