@@ -48,8 +48,11 @@ pub fn package_wasm_files(
 }
 
 // Write the package to a file
-pub fn write_package_to_file(name: String, wasm_files: Vec<(&Path, WasmMetadata)>,
-package_metadata: WasmMetadata,) -> io::Result<()> {
+pub fn write_package_to_file(
+    name: String,
+    wasm_files: Vec<(&Path, WasmMetadata)>,
+    package_metadata: WasmMetadata,
+) -> io::Result<()> {
     let package_data = package_wasm_files(wasm_files, package_metadata)?;
 
     // Save package to file

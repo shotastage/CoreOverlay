@@ -1,10 +1,29 @@
 use std::env;
 
-pub fn ovr_arch() -> &'static str {
+pub fn platform() -> &'static str {
+    #[cfg(target_os = "windows")]
+    {
+        "windows"
+    }
+    #[cfg(target_os = "linux")]
+    {
+        "linux"
+    }
+    #[cfg(target_os = "macos")]
+    {
+        "macos"
+    }
+    #[cfg(not(any(target_os = "windows", target_os = "linux", target_os = "macos")))]
+    {
+        "other"
+    }
+}
+
+pub fn arch() -> &'static str {
     env::consts::ARCH
 }
 
-pub fn ovr_os() -> &'static str {
+pub fn os_info() -> &'static str {
     env::consts::OS
 }
 
@@ -19,7 +38,7 @@ mod tests {
 
     #[test]
     fn test_ovr_arch() {
-        let arch_str = ovr_arch();
+        let arch_str = arch();
 
         println!("arch_str: {}", arch_str);
         assert_eq!(env::consts::ARCH, arch_str);
@@ -27,7 +46,7 @@ mod tests {
 
     #[test]
     fn test_ovr_os() {
-        let os_str = ovr_os();
+        let os_str = os_info();
         println!("os_str: {}", os_str);
         assert_eq!(env::consts::OS, os_str);
     }
