@@ -55,7 +55,7 @@ mod tests {
         let temp_dir = TempDir::new()?;
         let temp_path = temp_dir.path();
 
-        // テスト用のファイルを作成
+        // Create a test file
         fs::write(temp_path.join("test.txt"), "test content")?;
 
         let output = execute_command_advanced("ls", &[], Some(temp_path), None)?;

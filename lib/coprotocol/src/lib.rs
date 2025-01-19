@@ -12,7 +12,7 @@ pub use routing::RoutingTable;
 pub use rpc::{Rpc, RpcMessage};
 pub use store::Store;
 
-// NodeId は 160bit の ID を表現
+// NodeId represents a 160-bit ID
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct NodeId([u8; 20]);
 
