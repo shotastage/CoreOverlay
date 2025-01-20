@@ -6,16 +6,46 @@ use anyhow::Result;
 use std::collections::HashSet;
 use std::net::SocketAddr;
 
+/// A node in the Kademlia distributed hash table network.
+///
+/// Each node maintains:
+/// - A unique 160-bit identifier (NodeId)
+/// - A routing table containing information about other nodes
+/// - Local storage for key-value pairs
+/// - RPC capabilities for network communication
+///
+/// The node implements the core Kademlia protocol operations including:
+/// - Node lookup
+/// - Value storage
+/// - Value retrieval
+///
+/// # References
+/// Based on the Kademlia DHT paper:
+/// "Kademlia: A Peer-to-peer Information System Based on the XOR Metric"
+/// by Petar Maymounkov and David Mazières
 pub struct Node {
+    /// Unique 160-bit identifier for this node
     id: NodeId,
+    /// Network address of this node
     addr: SocketAddr,
+    /// k-bucket routing table storing known nodes
     routing_table: RoutingTable,
+    /// Local key-value storage
     storage: Storage,
+    /// Server for handling incoming RPCs
     rpc_server: RpcServer,
+    /// Client for making outgoing RPCs
     rpc_client: RpcClient,
 }
 
 impl Node {
+    /// Creates a new Kademlia node with a randomly generated NodeId.
+    ///
+    /// # Arguments
+    /// * `addr` - The socket address this node will listen on
+    ///
+    /// # Returns
+    /// * `Result<Self>` - A new Node instance or an error
     pub async fn new(addr: SocketAddr) -> Result<Self> {
         let id = NodeId::random();
         let routing_table = RoutingTable::new(id);
@@ -33,8 +63,19 @@ impl Node {
         })
     }
 
+    /// Stores a value in the DHT network.
+    ///
+    /// This implements the Kademlia STORE operation. The value is stored on the k nodes
+    /// closest to the key in the XOR metric space.
+    ///
+    /// # Arguments
+    /// * `key` - The key under which to store the value
+    /// * `value` - The value to store
+    ///
+    /// # Process
+    /// 1. Looks up the k closest nodes to the key
+    /// 2. Sends STORE RPCs to each of these nodes
     pub async fn store(&mut self, key: Key, value: Vec<u8>) -> Result<()> {
-        // Find nodes to store the value
         let nodes = self.lookup_nodes(key).await?;
         for (node_id, addr) in nodes {
             self.rpc_client
@@ -44,16 +85,34 @@ impl Node {
         Ok(())
     }
 
+    /// Looks up the k closest nodes to a given key using the Kademlia node lookup algorithm.
+    ///
+    /// This is a core operation in Kademlia that implements the iterative node lookup process:
+    /// 1. Starts with the α closest nodes from the local routing table
+    /// 2. Sends parallel FIND_NODE RPCs to improve knowledge of the target ID's neighborhood
+    /// 3. Iteratively queries nodes that are closer to the target until no closer nodes are found
+    ///
+    /// # Arguments
+    /// * `key` - The target key to find nodes close to
+    ///
+    /// # Returns
+    /// * `Result<Vec<(NodeId, SocketAddr)>>` - Vector of the k closest nodes and their addresses
+    ///
+    /// # Implementation Details
+    /// * Uses α (ALPHA) parallel lookups for better performance
+    /// * Maintains sets of contacted and pending nodes to avoid duplicate queries
+    /// * Sorts results by XOR distance to the target key
+    /// * Terminates when no closer nodes are found
     pub async fn lookup_nodes(&self, key: Key) -> Result<Vec<(NodeId, SocketAddr)>> {
         let mut closest = self.routing_table.closest_nodes(&key, K);
         let mut contacted = HashSet::new();
         let mut pending = HashSet::new();
-        let mut closest_with_addr = Vec::new(); // (NodeId, SocketAddr) pairs
+        let mut closest_with_addr = Vec::new();
 
         while !closest.is_empty() {
             let mut concurrent_lookups = Vec::new();
 
-            // Query up to ALPHA nodes in parallel
+            // Query up to ALPHA nodes in parallel for better network utilization
             for node_id in closest.iter().take(ALPHA) {
                 if !contacted.contains(node_id) && !pending.contains(node_id) {
                     // TODO: Get actual SocketAddr from routing table
@@ -64,13 +123,10 @@ impl Node {
                 }
             }
 
-            // Wait for responses
+            // Process responses and update closest nodes
             let responses = futures::future::join_all(concurrent_lookups).await;
-
-            // Process responses
             for response in responses {
                 if let Ok(new_nodes) = response {
-                    // new_nodesから(NodeId, SocketAddr)のペアを処理
                     for (node_id, addr) in new_nodes {
                         closest.push(node_id);
                         closest_with_addr.push((node_id, addr));
@@ -78,14 +134,14 @@ impl Node {
                 }
             }
 
-            // Sort results by distance and limit to K nodes
+            // Maintain k-closest nodes invariant
             closest.sort_by_key(|n| Distance::between(n, &key));
             closest.truncate(K);
 
             closest_with_addr.sort_by_key(|(n, _)| Distance::between(n, &key));
             closest_with_addr.truncate(K);
 
-            // Update contacted and pending sets
+            // Track queried nodes
             for node_id in closest.iter().take(ALPHA) {
                 pending.remove(node_id);
                 contacted.insert(*node_id);
@@ -95,6 +151,10 @@ impl Node {
         Ok(closest_with_addr)
     }
 
+    /// Starts the node's RPC server to handle incoming requests.
+    ///
+    /// This method runs indefinitely, processing incoming RPCs according to the
+    /// Kademlia protocol specification.
     pub async fn run(&self) -> Result<()> {
         self.rpc_server.start(self.id).await
     }
