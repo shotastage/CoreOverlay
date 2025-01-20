@@ -8,3 +8,9 @@ repository.workspace = true
 version.workspace = true
 
 [dependencies]
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.48", features = ["Win32_System_ProcessStatus", "Win32_System_Threading"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+mach = "0.3"
