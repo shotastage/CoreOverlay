@@ -35,7 +35,7 @@ clap = { version = "4.5.26", features = ["derive"] }
 overlaystd = { path = "lib/overlaystd" }
 algs = { path = "lib/algs" }
 codb = { path = "lib/codb" }
-coprotocol = { path = "lib/coprotocol" }
+protocol = { path = "lib/protocol" }
 ovlyvm = { path = "lib/ovlyvm" }
 ovlypkg = { path = "lib/ovlypkg" }
 replicafs = { path = "lib/replicafs" }
@@ -45,7 +45,7 @@ members = [
     "lib/algs",
     "lib/codb",
     "lib/overlaystd",
-    "lib/coprotocol",
+    "lib/protocol",
     "lib/ovlyvm",
     "lib/ovlypkg",
     "lib/devhelper",
