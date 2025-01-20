@@ -1,5 +1,5 @@
 [package]
-name = "codb"
+name = "replicadb"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

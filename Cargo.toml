@@ -34,7 +34,7 @@ hex = "0.4"
 clap = { version = "4.5", features = ["derive"] }
 overlaystd = { path = "lib/overlaystd" }
 algs = { path = "lib/algs" }
-codb = { path = "lib/codb" }
+replicadb = { path = "lib/replicadb" }
 protocol = { path = "lib/protocol" }
 ovlyvm = { path = "lib/ovlyvm" }
 ovlypkg = { path = "lib/ovlypkg" }
@@ -43,7 +43,7 @@ replicafs = { path = "lib/replicafs" }
 [workspace]
 members = [
     "lib/algs",
-    "lib/codb",
+    "lib/replicadb",
     "lib/overlaystd",
     "lib/protocol",
     "lib/ovlyvm",

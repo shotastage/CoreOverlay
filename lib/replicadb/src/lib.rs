@@ -5,9 +5,9 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
 
-struct Database; // Define the Database struct
+pub struct Database; // Define the Database struct
 
-struct OverlayDB {
+pub struct OverlayDB {
     backing: Arc<Database>,
     overlay: RwLock<HashMap<H256, Option<Bytes>>>,
 }
