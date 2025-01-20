@@ -1,12 +1,12 @@
 // src/types.rs
-// Basic type definitions
 use crate::KEY_SIZE;
 use rand::{thread_rng, RngCore};
+use serde::{Deserialize, Serialize};
 use sha1::{Digest, Sha1};
 use std::cmp::Ordering;
 use std::fmt;
 
-#[derive(Clone, Copy, Hash, Eq, PartialEq)]
+#[derive(Clone, Copy, Hash, Eq, PartialEq, Serialize, Deserialize)]
 pub struct NodeId([u8; KEY_SIZE / 8]);
 
 impl NodeId {
@@ -22,7 +22,7 @@ impl NodeId {
     }
 }
 
-#[derive(Clone, Copy, Eq, PartialEq)]
+#[derive(Clone, Copy, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Distance([u8; KEY_SIZE / 8]);
 
 impl Distance {
@@ -50,7 +50,6 @@ impl Distance {
 
 impl Ord for Distance {
     fn cmp(&self, other: &Self) -> Ordering {
-        // Compare byte by byte
         self.0.cmp(&other.0)
     }
 }

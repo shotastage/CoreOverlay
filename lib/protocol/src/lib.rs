@@ -1,7 +1,5 @@
 // src/lib.rs
 // Main library file for Kademlia DHT
-use std::collections::HashMap;
-use std::net::SocketAddr;
 use std::time::Duration;
 
 pub mod node;
