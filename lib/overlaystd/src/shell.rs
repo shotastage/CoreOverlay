@@ -38,7 +38,6 @@ pub fn execute_command_advanced(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::env;
     use std::fs;
     use tempfile::TempDir;
 
