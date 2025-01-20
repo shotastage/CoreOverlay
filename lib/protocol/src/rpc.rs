@@ -12,7 +12,7 @@ pub struct RpcClient {
     socket: UdpSocket,
 }
 
-// RPCメッセージの種類を定義
+// Define the types of RPC messages
 #[derive(Serialize, Deserialize)]
 enum RpcMessage {
     Ping {
@@ -33,7 +33,7 @@ enum RpcMessage {
     },
 }
 
-// RPCレスポンスの種類を定義
+// Define the types of RPC responses
 #[derive(Serialize, Deserialize)]
 enum RpcResponse {
     Pong {
