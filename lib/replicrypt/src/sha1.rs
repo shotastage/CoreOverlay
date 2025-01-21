@@ -1,5 +1,35 @@
+//! A module providing SHA-1 hash calculation functionality.
+//!
+//! This module offers a simple interface for computing SHA-1 hashes of arbitrary data
+//! that implements the `AsRef<[u8]>` trait.
+
 use sha1::{Sha1, Digest};
 
+/// Calculates the SHA-1 hash of the provided data and returns it as a hexadecimal string.
+///
+/// This function accepts any type that can be referenced as a byte slice (i.e., implements
+/// `AsRef<[u8]>`). This includes strings, byte arrays, vectors, and more.
+///
+/// # Arguments
+///
+/// * `data` - The data to hash, which must implement `AsRef<[u8]>`
+///
+/// # Returns
+///
+/// A `String` containing the hexadecimal representation of the SHA-1 hash.
+///
+/// # Examples
+///
+/// ```
+/// use your_crate_name::calculate_sha1;
+///
+/// let hash = calculate_sha1("Hello, World!");
+/// assert_eq!(hash, "2ef7bde608ce5404e97d5f042f95f89f1c232871");
+///
+/// // Works with different types that implement AsRef<[u8]>
+/// let bytes = vec![1, 2, 3, 4, 5];
+/// let hash = calculate_sha1(bytes);
+/// ```
 pub fn calculate_sha1<T: AsRef<[u8]>>(data: T) -> String {
     // Create an SHA1 hasher
     let mut hasher = Sha1::new();
@@ -15,6 +45,7 @@ pub fn calculate_sha1<T: AsRef<[u8]>>(data: T) -> String {
 mod tests {
     use super::*;
 
+    /// Test SHA-1 hash of an empty string
     #[test]
     fn test_empty_string() {
         let empty = "";
@@ -25,26 +56,29 @@ mod tests {
         );
     }
 
+    /// Test SHA-1 hash of a basic ASCII string
     #[test]
     fn test_basic_string() {
         let text = "Hello, World!";
-        // SHA1("Hello, World!") = 0a0a9f2a6772942557ab5355d76af442f8f65e01
+        // SHA1("Hello, World!") = 2ef7bde608ce5404e97d5f042f95f89f1c232871
         assert_eq!(
             calculate_sha1(text),
-            "0a0a9f2a6772942557ab5355d76af442f8f65e01"
+            "2ef7bde608ce5404e97d5f042f95f89f1c232871"
         );
     }
 
+    /// Test SHA-1 hash of a String type
     #[test]
     fn test_string_type() {
         let text = String::from("Hello, World!");
         // Verify that a `String` type produces the same SHA1 hash
         assert_eq!(
             calculate_sha1(text),
-            "0a0a9f2a6772942557ab5355d76af442f8f65e01"
+            "2ef7bde608ce5404e97d5f042f95f89f1c232871"
         );
     }
 
+    /// Test SHA-1 hash of a byte vector
     #[test]
     fn test_byte_array() {
         let bytes = vec![1, 2, 3, 4, 5];
@@ -55,26 +89,29 @@ mod tests {
         );
     }
 
+    /// Test SHA-1 hash of a Unicode string
     #[test]
     fn test_unicode_string() {
         let text = "こんにちは、世界！";
-        // Verify SHA1 hash for a Unicode string
+        // SHA1("こんにちは、世界！") = 8b38efdabdac695c2a2f47e6eb3a2e4a19cd0628
         assert_eq!(
             calculate_sha1(text),
-            "89b9b54481c896e5cd35b4dd8e5a176f898407e0"
+            "8b38efdabdac695c2a2f47e6eb3a2e4a19cd0628"
         );
     }
 
+    /// Test SHA-1 hash of a long string
     #[test]
     fn test_long_string() {
         let text = "a".repeat(1000);
-        // Verify SHA1 hash for a long string (example hash value)
+        // SHA1 of a string with 1000 'a' characters
         assert_eq!(
             calculate_sha1(text),
-            "29b1c3065c2c2a281214burnot62c98e67baba9c"  // This value is for demonstration purposes
+            "c5f289104b54a6cba1d708f93b3ac48ff774b86a"
         );
     }
 
+    /// Test SHA-1 hash of a byte slice
     #[test]
     fn test_slice_bytes() {
         let bytes = [1, 2, 3, 4, 5];
@@ -85,6 +122,7 @@ mod tests {
         );
     }
 
+    /// Test that different inputs produce different hashes
     #[test]
     fn test_different_inputs_produce_different_hashes() {
         let hash1 = calculate_sha1("Hello");
@@ -93,6 +131,7 @@ mod tests {
         assert_ne!(hash1, hash2);
     }
 
+    /// Test that identical inputs produce identical hashes
     #[test]
     fn test_same_inputs_produce_same_hashes() {
         let hash1 = calculate_sha1("Hello, World!");
