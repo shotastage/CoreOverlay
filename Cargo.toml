@@ -49,7 +49,7 @@ members = [
     "lib/ovlyvm",
     "lib/ovlypkg",
     "lib/devhelper",
-    "lib/replicafs",
+    "lib/replicafs", "lib/replicrypt",
 ]
 
 [workspace.package]
