@@ -15,7 +15,6 @@ pub fn fake_install(target: &str) -> usize {
     return 0;
 }
 
-
 /// install_package_to_dht is the function that performs a production install to a running DHT network on CoreOverlay.
 ///
 /// # Arguments
