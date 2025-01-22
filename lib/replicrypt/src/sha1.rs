@@ -3,7 +3,7 @@
 //! This module offers a simple interface for computing SHA-1 hashes of arbitrary data
 //! that implements the `AsRef<[u8]>` trait.
 
-use sha1::{Sha1, Digest};
+use sha1::{Digest, Sha1};
 
 /// Calculates the SHA-1 hash of the provided data and returns it as a hexadecimal string.
 ///
