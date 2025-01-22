@@ -9,4 +9,4 @@ authors.workspace = true
 [dependencies]
 tokio = { version = "1", features = ["full"] }
 bytes = "1"
-ethereum-types = "0.10"
+primitive-types = "0.13"

@@ -1,6 +1,6 @@
 // Import necessary modules
 use bytes::Bytes;
-use ethereum_types::H256;
+use primitive_types::H256;
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
