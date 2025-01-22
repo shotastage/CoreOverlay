@@ -1,5 +1,5 @@
 [package]
-name = "overlaystd"
+name = "ovlystd"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true
