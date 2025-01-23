@@ -5,19 +5,15 @@ use crate::{Key, NodeId, RoutingTable, ALPHA, K};
 use anyhow::Result;
 use std::collections::HashSet;
 use std::net::SocketAddr;
+use std::path::{Path, PathBuf};
 
 /// A node in the Kademlia distributed hash table network.
 ///
 /// Each node maintains:
 /// - A unique 160-bit identifier (NodeId)
 /// - A routing table containing information about other nodes
-/// - Local storage for key-value pairs
+/// - Persistent storage for key-value pairs using Sled
 /// - RPC capabilities for network communication
-///
-/// The node implements the core Kademlia protocol operations including:
-/// - Node lookup
-/// - Value storage
-/// - Value retrieval
 ///
 /// # References
 /// Based on the Kademlia DHT paper:
@@ -30,7 +26,7 @@ pub struct Node {
     addr: SocketAddr,
     /// k-bucket routing table storing known nodes
     routing_table: RoutingTable,
-    /// Local key-value storage
+    /// Persistent key-value storage using Sled
     storage: Storage,
     /// Server for handling incoming RPCs
     rpc_server: RpcServer,
@@ -43,13 +39,14 @@ impl Node {
     ///
     /// # Arguments
     /// * `addr` - The socket address this node will listen on
+    /// * `storage_path` - Path to the directory where Sled will store its data
     ///
     /// # Returns
     /// * `Result<Self>` - A new Node instance or an error
-    pub async fn new(addr: SocketAddr) -> Result<Self> {
+    pub async fn new(addr: SocketAddr, storage_path: impl AsRef<Path>) -> Result<Self> {
         let id = NodeId::random();
         let routing_table = RoutingTable::new(id);
-        let storage = Storage::new();
+        let storage = Storage::new(storage_path)?;
         let rpc_server = RpcServer::new().await?;
         let rpc_client = RpcClient::new().await?;
 
@@ -76,6 +73,14 @@ impl Node {
     /// 1. Looks up the k closest nodes to the key
     /// 2. Sends STORE RPCs to each of these nodes
     pub async fn store(&mut self, key: Key, value: Vec<u8>) -> Result<()> {
+        // First store locally with a TTL of 24 hours
+        self.storage.store(
+            key,
+            value.clone(),
+            std::time::Duration::from_secs(24 * 60 * 60),
+        )?;
+
+        // Then replicate to k closest nodes
         let nodes = self.lookup_nodes(key).await?;
         for (node_id, addr) in nodes {
             self.rpc_client

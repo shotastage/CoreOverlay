@@ -27,14 +27,14 @@ rand = "0.8"
 
 # Logging
 log = "0.4"
-env_logger = "0.10"
+env_logger = "0.11"
 
 # Utilities
-thiserror = "1.0"
+thiserror = "2.0"
 parking_lot = "0.12"  # Efficient mutex implementation
 
 anyhow = "1.0"
-rocksdb = "0.23"
+sled = "0.34"
 
 
 [dev-dependencies]

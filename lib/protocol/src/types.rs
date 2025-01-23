@@ -26,6 +26,16 @@ use std::fmt;
 pub struct NodeId([u8; KEY_SIZE / 8]);
 
 impl NodeId {
+    /// Returns a reference to the underlying byte array.
+    ///
+    /// # Returns
+    /// A slice containing the node ID's bytes
+    pub fn as_bytes(&self) -> &[u8] {
+        &self.0
+    }
+}
+
+impl NodeId {
     /// Creates a new NodeId from an existing byte array.
     ///
     /// # Arguments

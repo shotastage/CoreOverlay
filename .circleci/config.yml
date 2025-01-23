@@ -23,6 +23,3 @@ jobs:
             - ./target/
             - ~/.cargo/
           key: v1-dependencies-{{ checksum "Cargo.toml" }}-{{ checksum "Cargo.lock" }}
-    executor:
-        name: rust
-        tag: latest
