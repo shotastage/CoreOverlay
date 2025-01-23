@@ -6,6 +6,8 @@ use anyhow::Result;
 use std::collections::HashSet;
 use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
+use tokio::sync::Mutex;
 
 /// A node in the Kademlia distributed hash table network.
 ///
@@ -161,6 +163,12 @@ impl Node {
     /// This method runs indefinitely, processing incoming RPCs according to the
     /// Kademlia protocol specification.
     pub async fn run(&self) -> Result<()> {
-        self.rpc_server.start(self.id).await
+        // Wrap routing table in Arc<Mutex> for shared access
+        let routing_table = Arc::new(Mutex::new(self.routing_table.clone()));
+
+        // Start the RPC server with all required components
+        self.rpc_server
+            .start(self.id, self.storage.clone(), routing_table)
+            .await
     }
 }

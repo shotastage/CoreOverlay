@@ -18,6 +18,7 @@ use std::collections::VecDeque;
 /// - Stores up to k nodes (where k is a system-wide parameter)
 /// - Implements a least-recently seen eviction policy
 /// - Orders nodes based on last contact time
+#[derive(Clone)]
 pub struct KBucket {
     /// Queue of nodes in this bucket, ordered by time last seen
     nodes: VecDeque<NodeId>,
@@ -69,6 +70,7 @@ impl KBucket {
 /// - Contains KEY_SIZE k-buckets (one for each bit of the node ID)
 /// - Each bucket stores nodes with specific XOR distance properties
 /// - Provides O(log N) lookup complexity for network size N
+#[derive(Clone)]
 pub struct RoutingTable {
     /// ID of the local node
     node_id: NodeId,

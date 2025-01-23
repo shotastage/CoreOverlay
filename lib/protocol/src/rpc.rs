@@ -6,11 +6,16 @@
 //! - FIND_NODE: Finds the k closest nodes to a given ID
 //! - FIND_VALUE: Similar to FIND_NODE but returns a value if found
 
-use crate::{Key, NodeId};
+use crate::routing::RoutingTable;
+use crate::storage::Storage;
+use crate::{Key, NodeId, K};
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
+use std::sync::Arc;
+use std::time::Duration;
 use tokio::net::UdpSocket;
+use tokio::sync::Mutex;
 
 /// Server component for handling incoming Kademlia RPC requests
 pub struct RpcServer {
@@ -101,47 +106,134 @@ impl RpcServer {
         Ok(RpcServer { socket })
     }
 
+    /// Handles STORE RPC requests
+    async fn handle_store(
+        &self,
+        node_id: NodeId,
+        sender: NodeId,
+        key: Key,
+        value: Vec<u8>,
+        storage: &Storage,
+        routing_table: &mut RoutingTable,
+    ) -> RpcResponse {
+        // Update routing table with sender information
+        routing_table.update(sender);
+
+        // Store with 24 hour TTL
+        let ttl = Duration::from_secs(24 * 60 * 60);
+        match storage.store(key, value, ttl) {
+            Ok(()) => RpcResponse::Stored {
+                responder: node_id,
+                success: true,
+            },
+            Err(_) => RpcResponse::Stored {
+                responder: node_id,
+                success: false,
+            },
+        }
+    }
+
+    /// Handles FIND_NODE RPC requests
+    async fn handle_find_node(
+        &self,
+        node_id: NodeId,
+        sender: NodeId,
+        target: Key,
+        routing_table: &mut RoutingTable,
+    ) -> RpcResponse {
+        // Update routing table with sender information
+        routing_table.update(sender);
+
+        // Find k closest nodes to target
+        let closest_nodes = routing_table.closest_nodes(&target, K);
+
+        // Convert NodeIds to (NodeId, SocketAddr) pairs
+        // TODO: Get actual addresses from routing table
+        let nodes: Vec<(NodeId, SocketAddr)> = closest_nodes
+            .into_iter()
+            .map(|id| (id, SocketAddr::from(([127, 0, 0, 1], 8000))))
+            .collect();
+
+        RpcResponse::NodesFound {
+            responder: node_id,
+            nodes,
+        }
+    }
+
+    /// Handles FIND_VALUE RPC requests
+    async fn handle_find_value(
+        &self,
+        node_id: NodeId,
+        sender: NodeId,
+        key: Key,
+        storage: &Storage,
+        routing_table: &mut RoutingTable,
+    ) -> RpcResponse {
+        // Update routing table with sender information
+        routing_table.update(sender);
+
+        // First try to find the value locally
+        match storage.get(&key) {
+            Ok(Some(value)) => RpcResponse::ValueFound {
+                responder: node_id,
+                value,
+            },
+            Ok(None) | Err(_) => {
+                // If value not found, return k closest nodes
+                let closest_nodes = routing_table.closest_nodes(&key, K);
+                let nodes: Vec<(NodeId, SocketAddr)> = closest_nodes
+                    .into_iter()
+                    .map(|id| (id, SocketAddr::from(([127, 0, 0, 1], 8000))))
+                    .collect();
+
+                RpcResponse::NodesFound {
+                    responder: node_id,
+                    nodes,
+                }
+            }
+        }
+    }
+
     /// Starts the RPC server's main loop handling incoming requests.
-    ///
-    /// # Arguments
-    /// * `node_id` - The ID of this node for responses
-    ///
-    /// # Implementation Details
-    /// - Uses a 64KB buffer for UDP packets
-    /// - Deserializes incoming messages using bincode
-    /// - Handles all four Kademlia RPC types
-    pub async fn start(&self, node_id: NodeId) -> Result<()> {
+    pub async fn start(
+        &self,
+        node_id: NodeId,
+        storage: Storage,
+        routing_table: Arc<Mutex<RoutingTable>>,
+    ) -> Result<()> {
         let mut buf = vec![0u8; 65536]; // Maximum UDP packet size
 
         loop {
             let (size, src) = self.socket.recv_from(&mut buf).await?;
             let message: RpcMessage = bincode::deserialize(&buf[..size])?;
 
+            // Clone Arc and get mutex lock
+            let mut routing_table = routing_table.lock().await;
+
             let response = match message {
-                RpcMessage::Ping { sender } => RpcResponse::Pong { responder: node_id },
+                RpcMessage::Ping { sender } => {
+                    // Update routing table and respond with Pong
+                    routing_table.update(sender);
+                    RpcResponse::Pong { responder: node_id }
+                }
                 RpcMessage::Store { sender, key, value } => {
-                    // TODO: Implement actual storage logic
-                    RpcResponse::Stored {
-                        responder: node_id,
-                        success: true,
-                    }
+                    self.handle_store(node_id, sender, key, value, &storage, &mut routing_table)
+                        .await
                 }
                 RpcMessage::FindNode { sender, target } => {
-                    // TODO: Implement node lookup logic
-                    RpcResponse::NodesFound {
-                        responder: node_id,
-                        nodes: vec![], // Return closest nodes from routing table
-                    }
+                    self.handle_find_node(node_id, sender, target, &mut routing_table)
+                        .await
                 }
                 RpcMessage::FindValue { sender, key } => {
-                    // TODO: Implement value lookup logic
-                    RpcResponse::NodesFound {
-                        responder: node_id,
-                        nodes: vec![], // Return closest nodes if value not found
-                    }
+                    self.handle_find_value(node_id, sender, key, &storage, &mut routing_table)
+                        .await
                 }
             };
 
+            // Drop routing table lock
+            drop(routing_table);
+
+            // Send response
             let response_bytes = bincode::serialize(&response)?;
             self.socket.send_to(&response_bytes, src).await?;
         }
@@ -156,13 +248,6 @@ impl RpcClient {
     }
 
     /// Sends a PING RPC to check if a node is alive.
-    ///
-    /// # Arguments
-    /// * `node` - ID of the sending node
-    /// * `addr` - Address to send the ping to
-    ///
-    /// # Returns
-    /// * `Result<bool>` - true if PONG received, false otherwise
     pub async fn ping(&self, node: NodeId, addr: SocketAddr) -> Result<bool> {
         let message = RpcMessage::Ping { sender: node };
 
@@ -179,16 +264,6 @@ impl RpcClient {
     }
 
     /// Sends a STORE RPC to store a key-value pair on a node.
-    ///
-    /// # Arguments
-    /// * `node` - ID of the sending node
-    /// * `target` - ID of the target node
-    /// * `addr` - Address of the target node
-    /// * `key` - Key under which to store the value
-    /// * `value` - Value to store
-    ///
-    /// # Returns
-    /// * `Result<bool>` - Whether the store operation succeeded
     pub async fn store(
         &self,
         node: NodeId,
@@ -216,14 +291,6 @@ impl RpcClient {
     }
 
     /// Sends a FIND_NODE RPC to find the k closest nodes to a target.
-    ///
-    /// # Arguments
-    /// * `node` - ID of the sending node
-    /// * `target` - Target ID to find close nodes to
-    /// * `addr` - Address to send the request to
-    ///
-    /// # Returns
-    /// * `Result<Vec<(NodeId, SocketAddr)>>` - Vector of found nodes and their addresses
     pub async fn find_node(
         &self,
         node: NodeId,
@@ -248,16 +315,6 @@ impl RpcClient {
     }
 
     /// Sends a FIND_VALUE RPC to retrieve a stored value.
-    ///
-    /// # Arguments
-    /// * `node` - ID of the sending node
-    /// * `key` - Key of the value to find
-    /// * `addr` - Address to send the request to
-    ///
-    /// # Returns
-    /// * `Result<Result<Vec<u8>, Vec<(NodeId, SocketAddr)>>>` - Either:
-    ///   - Ok(Vec<u8>) - The found value
-    ///   - Err(Vec<(NodeId, SocketAddr)>) - k closest nodes if value not found
     pub async fn find_value(
         &self,
         node: NodeId,

@@ -5,6 +5,7 @@ use std::path::Path;
 use std::time::{Duration, Instant};
 
 /// Persistent storage implementation for a Kademlia node using Sled.
+#[derive(Clone)]
 pub struct Storage {
     /// Sled database instance
     db: Db,
