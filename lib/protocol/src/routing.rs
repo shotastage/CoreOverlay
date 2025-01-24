@@ -7,6 +7,45 @@
 use crate::KEY_SIZE;
 use crate::{Distance, NodeId, K};
 use std::collections::VecDeque;
+use std::net::SocketAddr;
+use tokio::time::Instant;
+
+/// Information about a node in the Kademlia network.
+///
+/// This struct contains all necessary information to identify and communicate with
+/// a node in the Kademlia DHT network:
+/// - A unique node identifier (NodeId)
+/// - Network address information (SocketAddr)
+/// - Timestamp of last successful contact
+///
+/// # Fields
+/// * `node_id` - The unique 160-bit identifier of the node
+/// * `sock_addr` - The network address (IP and port) used for communication
+/// * `last_seen` - Timestamp of the last successful contact with this node
+///
+/// # Examples
+/// ```
+/// use std::net::SocketAddr;
+/// use std::time::Instant;
+/// use protocol::NodeId;
+/// use protocol::routing::NodeInfo;
+///
+/// let addr = "127.0.0.1:8000".parse().unwrap();
+/// let node_info = NodeInfo {
+///     node_id: NodeId::random(),
+///     sock_addr: addr,
+///     last_seen: Instant::from(Instant::from(Instant::now())),
+/// };
+/// ```
+#[derive(Clone)]
+pub struct NodeInfo {
+    /// The unique 160-bit identifier of the node
+    pub node_id: NodeId,
+    /// The network address (IP and port) used for communication
+    pub sock_addr: SocketAddr,
+    /// Timestamp of the last successful contact with this node
+    pub last_seen: Instant,
+}
 
 /// A k-bucket in the Kademlia routing table that stores up to k nodes.
 ///
