@@ -23,20 +23,6 @@ use tokio::time::Instant;
 /// * `sock_addr` - The network address (IP and port) used for communication
 /// * `last_seen` - Timestamp of the last successful contact with this node
 ///
-/// # Examples
-/// ```
-/// use std::net::SocketAddr;
-/// use std::time::Instant;
-/// use protocol::NodeId;
-/// use protocol::routing::NodeInfo;
-///
-/// let addr = "127.0.0.1:8000".parse().unwrap();
-/// let node_info = NodeInfo {
-///     node_id: NodeId::random(),
-///     sock_addr: addr,
-///     last_seen: Instant::from(Instant::from(Instant::now())),
-/// };
-/// ```
 #[derive(Clone)]
 pub struct NodeInfo {
     /// The unique 160-bit identifier of the node
