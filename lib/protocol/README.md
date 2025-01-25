@@ -2,7 +2,7 @@
 
 ## Kademlia - A Fundamental Algorithm of the CoreOverlay DHT
 
-This protocol is based on Kademlia and is strongly influenced by [this paper](https://hazm.at/mox/distributed-system/algorithm/distributed-hash-table/kademlia/kademlia-a-peer-to-peer-information-system-based-on-the-xor-metric/index.html).
+This protocol is based on Kademlia and is strongly influenced by [this paper](https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf)
 
 ## Initial Node
 
