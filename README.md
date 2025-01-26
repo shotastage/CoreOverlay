@@ -1,6 +1,6 @@
-# CoreOverlay
+# ComputeDHT
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/shotastage/CoreOverlay/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/shotastage/CoreOverlay/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/shotastage/ComputeDHT/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/shotastage/ComputeDHT/tree/main)
 
 A utility framework for building and integrating structured overlay networks.
 
@@ -8,7 +8,7 @@ A utility framework for building and integrating structured overlay networks.
 
 ## Key Features
 
-CoreOverlay provides the following capabilities:
+ComputeDHT provides the following capabilities:
 
 * Kademlia-based protocol implementation
 * Fast consensus algorithms
@@ -22,7 +22,7 @@ Development status of each package:
 
 | Package Name | Status | Description |
 |------------|------|------|
-| CoreOverlay | 🟡 | Main framework package |
+| ComputeDHT | 🟡 | Main framework package |
 | CLI | 🟡 | Command-line tools for CoreOverlay |
 | Runtime | 🟡 | WebAssembly embedded runtime |
 | OverlayFundation | 🟡 | CoreOverlay utility package |

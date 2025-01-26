@@ -1,8 +1,8 @@
 [package]
-name = "CoreOverlay"
+name = "ComputeDHT"
 authors = ["Shota Shimazu <shota.shimazu@mgq.app>"]
-description = "Core for CoreOverlay"
-repository = "https://github.com/shotastage/CoreOverlay"
+description = "Core for ComputeDHT"
+repository = "https://github.com/shotastage/ComputeDHT"
 version = "0.1.1"
 edition = "2021"
 exclude=["/src-swift", "/co-desktop", "*.swift"]
@@ -11,12 +11,12 @@ publish = false
 
 
 [lib]
-name = "coreoverlay"
+name = "computedht"
 crate-type = [ "staticlib" ]
 path = "src-rust/lib.rs"
 
 [[bin]]
-name = "ovlysvr"
+name = "computecell"
 path = "src-rust/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
