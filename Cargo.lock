@@ -10,10 +10,10 @@ dependencies = [
  "anyhow",
  "cbindgen",
  "clap",
+ "compute-pkg",
  "futures",
  "hex",
  "libc",
- "ovlypkg",
  "ovlystd",
  "ovlyvm",
  "protocol",
@@ -489,6 +489,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fde0e0ec90c9dfb3b4b1a0891a7dcd0e2bffde2f7efed5fe7c9bb00e5bfb915e"
 dependencies = [
  "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "compute-pkg"
+version = "0.1.1"
+dependencies = [
+ "bincode",
+ "devhelper",
+ "serde",
+ "tempfile",
 ]
 
 [[package]]
@@ -1657,16 +1667,6 @@ name = "once_cell"
 version = "1.20.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
-
-[[package]]
-name = "ovlypkg"
-version = "0.1.1"
-dependencies = [
- "bincode",
- "devhelper",
- "serde",
- "tempfile",
-]
 
 [[package]]
 name = "ovlystd"

@@ -1,5 +1,5 @@
 [package]
-name = "ovlypkg"
+name = "compute-pkg"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true

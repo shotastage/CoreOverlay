@@ -36,7 +36,7 @@ algs = { path = "lib/algs" }
 replicadb = { path = "lib/replicadb" }
 protocol = { path = "lib/protocol" }
 ovlyvm = { path = "lib/ovlyvm" }
-ovlypkg = { path = "lib/ovlypkg" }
+compute-pkg = { path = "lib/compute-pkg" }
 replicafs = { path = "lib/replicafs" }
 
 [workspace]
@@ -46,7 +46,7 @@ members = [
     "lib/ovlystd",
     "lib/protocol",
     "lib/ovlyvm",
-    "lib/ovlypkg",
+    "lib/compute-pkg",
     "lib/devhelper",
     "lib/replicafs",
     "lib/replicrypt",
