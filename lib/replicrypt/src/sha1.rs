@@ -21,10 +21,10 @@ use sha1::{Digest, Sha1};
 /// # Examples
 ///
 /// ```
-/// use your_crate_name::calculate_sha1;
+/// use replicrypt::calculate_sha1;
 ///
 /// let hash = calculate_sha1("Hello, World!");
-/// assert_eq!(hash, "2ef7bde608ce5404e97d5f042f95f89f1c232871");
+/// assert_eq!(hash, "907d14fb3af2b0d4f18c2d46abe8aedce17367bd");
 ///
 /// // Works with different types that implement AsRef<[u8]>
 /// let bytes = vec![1, 2, 3, 4, 5];
@@ -60,10 +60,10 @@ mod tests {
     #[test]
     fn test_basic_string() {
         let text = "Hello, World!";
-        // SHA1("Hello, World!") = 2ef7bde608ce5404e97d5f042f95f89f1c232871
+        // SHA1("Hello, World!") = 907d14fb3af2b0d4f18c2d46abe8aedce17367bd
         assert_eq!(
             calculate_sha1(text),
-            "2ef7bde608ce5404e97d5f042f95f89f1c232871"
+            "907d14fb3af2b0d4f18c2d46abe8aedce17367bd"
         );
     }
 
@@ -74,7 +74,7 @@ mod tests {
         // Verify that a `String` type produces the same SHA1 hash
         assert_eq!(
             calculate_sha1(text),
-            "2ef7bde608ce5404e97d5f042f95f89f1c232871"
+            "907d14fb3af2b0d4f18c2d46abe8aedce17367bd"
         );
     }
 

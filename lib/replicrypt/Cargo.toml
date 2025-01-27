@@ -9,3 +9,7 @@ version.workspace = true
 
 [dependencies]
 sha1 = "0.10.0"
+
+[[bin]]
+name = "replicrypt"
+path = "src/main.rs"
