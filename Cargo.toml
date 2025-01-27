@@ -35,7 +35,7 @@ computestd = { path = "lib/computestd" }
 algs = { path = "lib/algs" }
 replicadb = { path = "lib/replicadb" }
 protocol = { path = "lib/protocol" }
-ovlyvm = { path = "lib/ovlyvm" }
+compute-vm = { path = "lib/compute-vm" }
 compute-pkg = { path = "lib/compute-pkg" }
 replicafs = { path = "lib/replicafs" }
 
@@ -45,7 +45,7 @@ members = [
     "lib/replicadb",
     "lib/computestd",
     "lib/protocol",
-    "lib/ovlyvm",
+    "lib/compute-vm",
     "lib/compute-pkg",
     "lib/devhelper",
     "lib/replicafs",

@@ -1,6 +1,6 @@
 use devhelper::under_construction;
 
-/// Fake install is the function that is used to install the package
+/// fake_install is the function that is used to install the package
 ///
 /// # Arguments
 /// - `target`: target ovpkg to install

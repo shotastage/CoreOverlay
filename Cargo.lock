@@ -11,11 +11,11 @@ dependencies = [
  "cbindgen",
  "clap",
  "compute-pkg",
+ "compute-vm",
  "computestd",
  "futures",
  "hex",
  "libc",
- "ovlyvm",
  "protocol",
  "replicadb",
  "replicafs",
@@ -499,6 +499,15 @@ dependencies = [
  "devhelper",
  "serde",
  "tempfile",
+]
+
+[[package]]
+name = "compute-vm"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "wasmer",
+ "wasmer-compiler-cranelift",
 ]
 
 [[package]]
@@ -1675,15 +1684,6 @@ name = "once_cell"
 version = "1.20.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
-
-[[package]]
-name = "ovlyvm"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "wasmer",
- "wasmer-compiler-cranelift",
-]
 
 [[package]]
 name = "parity-scale-codec"

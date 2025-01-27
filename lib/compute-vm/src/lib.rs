@@ -1,3 +1,6 @@
+pub mod wasm_vm;
+mod pkg_loader;
+
 use anyhow::{anyhow, Result};
 use std::path::Path;
 use wasmer::{Engine, Imports, Instance, Memory, Module, Store, TypedFunction, WasmPtr};

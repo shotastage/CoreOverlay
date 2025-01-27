@@ -1,5 +1,5 @@
 [package]
-name = "ovlyvm"
+name = "compute-vm"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true

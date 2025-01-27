@@ -1,5 +1,5 @@
 fn main() {
-    println!("Gnerating bindings for C/C++");
+    println!("Generating bindings for C/C++");
 
     cbindgen::Builder::new()
         .with_crate(".")
