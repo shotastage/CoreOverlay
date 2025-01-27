@@ -31,7 +31,7 @@ sha1 = "0.10"
 libc = "0.2"
 hex = "0.4"
 clap = { version = "4.5", features = ["derive"] }
-ovlystd = { path = "lib/ovlystd" }
+computestd = { path = "lib/computestd" }
 algs = { path = "lib/algs" }
 replicadb = { path = "lib/replicadb" }
 protocol = { path = "lib/protocol" }
@@ -43,7 +43,7 @@ replicafs = { path = "lib/replicafs" }
 members = [
     "lib/algs",
     "lib/replicadb",
-    "lib/ovlystd",
+    "lib/computestd",
     "lib/protocol",
     "lib/ovlyvm",
     "lib/compute-pkg",
