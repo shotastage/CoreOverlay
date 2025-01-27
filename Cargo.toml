@@ -5,7 +5,7 @@ description = "Core for ComputeDHT"
 repository = "https://github.com/shotastage/ComputeDHT"
 version = "0.1.1"
 edition = "2021"
-exclude=["/src-swift", "/co-desktop", "*.swift"]
+exclude=["/src-swift", "/apps", "*.swift"]
 license = "MIT"
 publish = false
 
