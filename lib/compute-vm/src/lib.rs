@@ -1,5 +1,5 @@
-pub mod wasm_vm;
 mod pkg_loader;
+pub mod wasm_vm;
 
 use anyhow::{anyhow, Result};
 use std::path::Path;

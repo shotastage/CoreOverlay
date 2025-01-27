@@ -1,6 +1,6 @@
 // replicrypt/src/main.rs
-use std::env;
 use replicrypt::sha1::calculate_sha1;
+use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
