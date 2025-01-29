@@ -13,6 +13,7 @@ dependencies = [
  "compute-pkg",
  "compute-vm",
  "computestd",
+ "cpdns",
  "futures",
  "hex",
  "libc",
@@ -621,6 +622,10 @@ dependencies = [
  "scopeguard",
  "windows-sys 0.59.0",
 ]
+
+[[package]]
+name = "cpdns"
+version = "0.1.1"
 
 [[package]]
 name = "cpufeatures"
