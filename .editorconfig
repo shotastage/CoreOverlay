@@ -14,6 +14,12 @@ trim_trailing_whitespace = true
 indent_size = 4
 max_line_length = 100
 
+[*.bat]
+charset = ibm437
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+
 # Make sure makefiles use tabs
 [{makefile,Makefile,*.mk,*.make}]
 indent_style = tab
