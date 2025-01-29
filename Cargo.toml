@@ -1,14 +1,13 @@
 [package]
 name = "ComputeDHT"
+version = "0.1.1"
 authors = ["Shota Shimazu <shota.shimazu@mgq.app>"]
 description = "Core for ComputeDHT"
-repository = "https://github.com/shotastage/ComputeDHT"
-version = "0.1.1"
 edition = "2021"
-exclude=["/src-swift", "/apps", "*.swift"]
-license = "MIT"
+license = "Apache-2.0"
+repository = "https://github.com/shotastage/ComputeDHT"
+exclude = ["/src-swift", "/apps", "*.swift"]
 publish = false
-
 
 [lib]
 name = "computedht"
@@ -19,59 +18,55 @@ path = "src-rust/lib.rs"
 name = "computecell"
 path = "src-rust/main.rs"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-wasmer = "5.0"
-futures = "0.3"
 anyhow = "1.0"
-tokio = { version = "1.43", features = ["full"] }
-sha1 = "0.10"
-# swift-bridge = "0.1"
-libc = "0.2"
-hex = "0.4"
 clap = { version = "4.5", features = ["derive"] }
-
-# Automatic binding gen
+futures = "0.3"
+hex = "0.4"
+libc = "0.2"
+sha1 = "0.10"
+tokio = { version = "1.43", features = ["full"] }
 uniffi = "0.28"
 uniffi_macros = "0.28"
+wasmer = "5.0"
+# swift-bridge = "0.1"
 
 # Internal dependencies
-computestd = { path = "lib/computestd" }
 algs = { path = "lib/algs" }
-replicadb = { path = "lib/replicadb" }
-protocol = { path = "lib/protocol" }
-compute-vm = { path = "lib/compute-vm" }
 compute-pkg = { path = "lib/compute-pkg" }
+compute-vm = { path = "lib/compute-vm" }
+computestd = { path = "lib/computestd" }
+protocol = { path = "lib/protocol" }
+replicadb = { path = "lib/replicadb" }
 replicafs = { path = "lib/replicafs" }
 
 [workspace]
 members = [
     "lib/algs",
-    "lib/replicadb",
     "lib/computestd",
-    "lib/protocol",
-    "lib/compute-vm",
     "lib/compute-pkg",
+    "lib/compute-vm",
     "lib/devhelper",
+    "lib/protocol",
+    "lib/replicadb",
     "lib/replicafs",
     "lib/replicrypt",
 ]
 
 [workspace.package]
+version = "0.1.1"
 authors = ["Shota Shimazu <shota.shimazu@mgq.app>"]
 edition = "2021"
 homepage = "https://mgq.app/"
-license = "MIT"
+license = "Apache-2.0"
 repository = "https://github.com/shotastage/ComputeDHT"
-version = "0.1.1"
 
 [build-dependencies]
 anyhow = "1.0"
-# rustc_version = "0.4"
-# swift-bridge-build = "0.1"
 cbindgen = "0.28"
 uniffi_build = "0.28"
+# rustc_version = "0.4"
+# swift-bridge-build = "0.1"
 
 [dev-dependencies]
 anyhow = "1.0"
