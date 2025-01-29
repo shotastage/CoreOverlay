@@ -1,5 +1,5 @@
 @echo off
-echo Starting installation of xxxx.msi
+echo Starting installation of ComputeDHT Server program...
 echo.
 echo Press [Enter] to continue or [Ctrl+C] to cancel...
 pause >nul
