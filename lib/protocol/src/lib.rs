@@ -43,6 +43,7 @@ pub mod routing;
 pub mod rpc;
 pub mod storage;
 pub mod types;
+mod bootstrap;
 
 pub use node::Node;
 pub use routing::RoutingTable;
