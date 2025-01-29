@@ -38,18 +38,18 @@
 
 use std::time::Duration;
 
+mod bootstrap;
 pub mod node;
 pub mod routing;
 pub mod rpc;
 pub mod storage;
 pub mod types;
-mod bootstrap;
 pub use bootstrap::bootstrap_node;
 
 pub use node::Node;
 pub use routing::RoutingTable;
-pub use types::{Distance, Key, NodeId};
 pub use rpc::{RpcClient, RpcServer};
+pub use types::{Distance, Key, NodeId};
 
 /// The size of a k-bucket (k) in the Kademlia routing table.
 ///

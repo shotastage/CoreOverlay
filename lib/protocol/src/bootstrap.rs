@@ -1,7 +1,7 @@
+use crate::{Key, Node};
+use anyhow::Result;
 use std::net::SocketAddr;
 use std::path::PathBuf;
-use anyhow::Result;
-use crate::{Key, Node};
 use std::{thread, time::Duration};
 
 // Constants for storage configuration

@@ -1,11 +1,11 @@
 //! A module implementing a Kademlia DHT bootstrap node.
 //!
-//! This module provides initialization and bootstrap functionality 
+//! This module provides initialization and bootstrap functionality
 //! required for joining a Kademlia network.
 
+use protocol::bootstrap_node;
 use std::thread;
 use std::time::Duration;
-use protocol::bootstrap_node;
 
 /// Displays a boot splash screen with Kademlia ASCII art logo.
 ///
@@ -23,7 +23,7 @@ fn boot_splash() {
         "|/ |/ /  / \\  |  * \\ | *___|  \\/  | |   |_ _| / \\   ",
         "|  '  |  / * \\ | | | ||  *| | |\\/| | |    | | / _ \\  ",
         "| . \\ | / ___ \\| |_| || |___| |  | | |___ | |/ ___ \\ ",
-        "|_|\\_\\/_/   \\_\\____/ |_____|_|  |_|_____|___/_/   \\_\\"
+        "|_|\\_\\/_/   \\_\\____/ |_____|_|  |_|_____|___/_/   \\_\\",
     ];
 
     for line in kademlia_art.iter() {

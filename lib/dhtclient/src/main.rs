@@ -1,9 +1,9 @@
 use anyhow::Result;
+use clap::{Parser, Subcommand};
 use protocol::{Key, NodeId, RpcClient};
 use std::net::SocketAddr;
 use std::time::Duration;
 use tokio::time::timeout;
-use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(name = "dhtclient")]
@@ -84,8 +84,9 @@ async fn main() -> Result<()> {
             println!("Listing key-value pairs...");
             let result = timeout(
                 timeout_duration,
-                client.find_node(node_id, Key::random(), addr)
-            ).await??;
+                client.find_node(node_id, Key::random(), addr),
+            )
+            .await??;
 
             for (node_id, node_addr) in result {
                 if let Ok(Ok(value)) = client.find_value(node_id, node_id, node_addr).await {
@@ -104,57 +105,53 @@ async fn main() -> Result<()> {
                     println!("---");
                 }
             }
-        },
+        }
 
         Commands::Get { key } => {
             let key = parse_key(&key)?;
-            match timeout(
-                timeout_duration,
-                client.find_value(node_id, key, addr)
-            ).await?? {
+            match timeout(timeout_duration, client.find_value(node_id, key, addr)).await?? {
                 Ok(value) => {
                     println!("Value: {}", String::from_utf8_lossy(&value));
-                },
+                }
                 Err(_) => {
                     println!("Key not found");
                 }
             }
-        },
+        }
 
         Commands::Put { key, value } => {
             let key = parse_key(&key)?;
             let success = timeout(
                 timeout_duration,
-                client.store(node_id, node_id, addr, key, value.into_bytes())
-            ).await??;
+                client.store(node_id, node_id, addr, key, value.into_bytes()),
+            )
+            .await??;
 
             if success {
                 println!("Value stored successfully");
             } else {
                 println!("Failed to store value");
             }
-        },
+        }
 
         Commands::Delete { key } => {
             let key = parse_key(&key)?;
             let success = timeout(
                 timeout_duration,
-                client.store(node_id, node_id, addr, key, Vec::new())  // Empty value for deletion
-            ).await??;
+                client.store(node_id, node_id, addr, key, Vec::new()), // Empty value for deletion
+            )
+            .await??;
 
             if success {
                 println!("Key deleted successfully");
             } else {
                 println!("Failed to delete key");
             }
-        },
+        }
 
         Commands::Info => {
             // Try to ping the node
-            let ping_result = timeout(
-                timeout_duration,
-                client.ping(node_id, addr)
-            ).await??;
+            let ping_result = timeout(timeout_duration, client.ping(node_id, addr)).await??;
 
             println!("DHT Node Information");
             println!("-------------------");
@@ -164,11 +161,12 @@ async fn main() -> Result<()> {
             // Get routing table information
             let nodes = timeout(
                 timeout_duration,
-                client.find_node(node_id, Key::random(), addr)
-            ).await??;
+                client.find_node(node_id, Key::random(), addr),
+            )
+            .await??;
 
             println!("Known nodes: {}", nodes.len());
-        },
+        }
     }
 
     Ok(())
