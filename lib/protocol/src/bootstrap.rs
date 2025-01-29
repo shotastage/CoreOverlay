@@ -17,8 +17,7 @@ const DEFAULT_STORAGE_PATH: &str = "./.compute-dht";
 ///
 /// # Returns
 /// * `Result<()>` - Success or error
-#[tokio::main]
-async fn bootstrap_node() -> Result<()> {
+pub async fn bootstrap_node() -> Result<()> {
     // Create the storage directory if it doesn't exist
     let storage_path = PathBuf::from(DEFAULT_STORAGE_PATH);
     std::fs::create_dir_all(&storage_path)?;

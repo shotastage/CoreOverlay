@@ -39,3 +39,5 @@ artifacts/
 *.drawio
 
 .idea/
+
+.compute-dht/

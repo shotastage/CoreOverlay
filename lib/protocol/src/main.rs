@@ -5,6 +5,7 @@
 
 use std::thread;
 use std::time::Duration;
+use protocol::bootstrap_node;
 
 /// Displays a boot splash screen with Kademlia ASCII art logo.
 ///
@@ -47,11 +48,13 @@ fn boot_splash() {
 /// # Note
 ///
 /// Bootstrap functionality is not implemented in the current version.
-fn main() {
+///
+#[tokio::main]
+async fn main() {
     boot_splash();
     println!("Welcome to the Kademlia DHT!");
     println!("Starting node...");
-    // bootstrap_node().await.unwrap();
+    bootstrap_node().await.unwrap();
     println!("Node started successfully");
     println!("Press Ctrl+C to stop the node");
     loop {
