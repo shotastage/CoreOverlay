@@ -1,0 +1,10 @@
+# THIS IS EXAMPLE CONFIG FILE FOR DHT SERVER
+
+[ComputeServer]
+name = "MagicNode"
+description = "ComputeDHT server by MagicApp"
+owner = "MagicApp <dht_association@mgq.app>"
+fdqn = "dhtserver1.example.com"
+port = 8080
+settings = "settings.toml"
+storage = "storage.toml"
