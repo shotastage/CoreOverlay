@@ -21,7 +21,7 @@
 //!
 //! # Example
 //! ```rust,no_run
-//! use kademlia::{Node, Key};
+//! use protocol::{Node, Key};
 //! use std::net::SocketAddr;
 //!
 //! #[tokio::main]
@@ -48,6 +48,7 @@ mod bootstrap;
 pub use node::Node;
 pub use routing::RoutingTable;
 pub use types::{Distance, Key, NodeId};
+pub use rpc::{RpcClient, RpcServer};
 
 /// The size of a k-bucket (k) in the Kademlia routing table.
 ///
