@@ -32,30 +32,30 @@ wasmer = "5.0"
 # swift-bridge = "0.1"
 
 # Internal dependencies
-algs = { path = "lib/algs" }
-compute-pkg = { path = "lib/compute-pkg" }
-compute-vm = { path = "lib/compute-vm" }
-computestd = { path = "lib/computestd" }
-protocol = { path = "lib/protocol" }
-replicadb = { path = "lib/replicadb" }
-replicafs = { path = "lib/replicafs" }
-cpdns = { path = "lib/cpdns" }
-platform = { path = "lib/platform" }
+algs = { path = "crates/algs" }
+compute-pkg = { path = "crates/compute-pkg" }
+compute-vm = { path = "crates/compute-vm" }
+computestd = { path = "crates/computestd" }
+protocol = { path = "crates/protocol" }
+replicadb = { path = "crates/replicadb" }
+replicafs = { path = "crates/replicafs" }
+cpdns = { path = "crates/cpdns" }
+platform = { path = "crates/platform" }
 
 [workspace]
 members = [
-    "lib/algs",
-    "lib/computestd",
-    "lib/compute-pkg",
-    "lib/compute-vm",
-    "lib/devhelper",
-    "lib/protocol",
-    "lib/replicadb",
-    "lib/replicafs",
-    "lib/replicrypt",
-    "lib/dhtclient",
-    "lib/cpdns",
-    "lib/platform",
+    "crates/algs",
+    "crates/computestd",
+    "crates/compute-pkg",
+    "crates/compute-vm",
+    "crates/devhelper",
+    "crates/protocol",
+    "crates/replicadb",
+    "crates/replicafs",
+    "crates/replicrypt",
+    "crates/dhtclient",
+    "crates/cpdns",
+    "crates/platform",
 ]
 
 [workspace.package]

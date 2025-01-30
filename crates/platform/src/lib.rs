@@ -48,10 +48,10 @@ mod tests {
     fn test_get_work_dir_path_structure() {
         let path = get_work_dir().unwrap();
 
-        // パスの最後のコンポーネントが"compute-dht"であることを確認
+        // Ensure the last component of the path is "compute-dht"
         assert_eq!(path.file_name().unwrap(), "compute-dht");
 
-        // パスが絶対パスであることを確認
+        // Ensure the path is absolute
         assert!(path.is_absolute());
     }
 }
