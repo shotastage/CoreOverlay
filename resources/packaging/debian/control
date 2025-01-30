@@ -1,0 +1,33 @@
+Source: compute-dht
+Section: net
+Priority: optional
+Maintainer: Shota Shimazu <shota.shimazu@mgq.app>
+Build-Depends: debhelper-compat (= 13),
+               cargo (>= 0.47.0),
+               rustc (>= 1.56.0),
+               pkg-config,
+               libssl-dev
+Standards-Version: 4.6.0
+Homepage: https://github.com/shotastage/ComputeDHT
+Vcs-Browser: https://github.com/shotastage/ComputeDHT
+Vcs-Git: https://github.com/shotastage/ComputeDHT.git
+Rules-Requires-Root: no
+
+Package: compute-dht
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Kademlia DHT server implementation in Rust
+ A high-performance implementation of the Kademlia Distributed Hash Table (DHT)
+ protocol in Rust. This server provides a complete implementation of the
+ Kademlia peer-to-peer network protocol, including:
+ .
+  * XOR-based metric for node/key distance calculation
+  * k-bucket routing tables for efficient node lookup
+  * Iterative node lookups with parallel queries
+  * Persistent key-value storage using Sled
+  * UDP-based RPC protocol for network communication
+ .
+ The server is designed for high throughput and reliability, making it
+ suitable for production use in distributed systems and peer-to-peer
+ networks.
