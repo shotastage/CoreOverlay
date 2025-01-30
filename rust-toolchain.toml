@@ -3,7 +3,12 @@ channel = "stable"
 components = ["rustfmt", "clippy"]
 profile = "default"
 targets = [
+    # PC platforms
     "aarch64-apple-darwin",
     "aarch64-unknown-linux-gnu",
-    "aarch64-pc-windows-msvc"
+    "aarch64-pc-windows-msvc",
+
+    # Mobile platforms
+    "aarch64-apple-ios",
+    "aarch64-apple-ios-sim",
 ]
