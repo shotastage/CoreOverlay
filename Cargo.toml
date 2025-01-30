@@ -12,11 +12,11 @@ publish = false
 [lib]
 name = "computedht"
 crate-type = ["staticlib", "cdylib"]
-path = "src-rust/lib.rs"
+path = "src/lib.rs"
 
 [[bin]]
 name = "computecell"
-path = "src-rust/main.rs"
+path = "src/main.rs"
 
 [dependencies]
 anyhow = "1.0"
@@ -43,20 +43,7 @@ cpdns = { path = "crates/cpdns" }
 platform = { path = "crates/platform" }
 
 [workspace]
-members = [
-    "crates/algs",
-    "crates/computestd",
-    "crates/compute-pkg",
-    "crates/compute-vm",
-    "crates/devhelper",
-    "crates/protocol",
-    "crates/replicadb",
-    "crates/replicafs",
-    "crates/replicrypt",
-    "crates/dhtclient",
-    "crates/cpdns",
-    "crates/platform",
-]
+members = ["crates/*"]
 
 [workspace.package]
 version = "0.1.1"
