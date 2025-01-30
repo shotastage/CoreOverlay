@@ -6,7 +6,7 @@ description = "Core for ComputeDHT"
 edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/shotastage/ComputeDHT"
-exclude = ["/src-swift", "/apps", "*.swift"]
+exclude = ["/compute-swift", "/apps", "*.swift"]
 publish = false
 
 [lib]
