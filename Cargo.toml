@@ -40,6 +40,7 @@ protocol = { path = "lib/protocol" }
 replicadb = { path = "lib/replicadb" }
 replicafs = { path = "lib/replicafs" }
 cpdns = { path = "lib/cpdns" }
+platform = { path = "lib/platform" }
 
 [workspace]
 members = [
@@ -54,6 +55,7 @@ members = [
     "lib/replicrypt",
     "lib/dhtclient",
     "lib/cpdns",
+    "lib/platform",
 ]
 
 [workspace.package]
