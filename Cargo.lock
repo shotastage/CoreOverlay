@@ -593,6 +593,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "compute-vector"
+version = "0.1.1"
+
+[[package]]
 name = "compute-vm"
 version = "0.1.1"
 dependencies = [
